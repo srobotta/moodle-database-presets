@@ -1,0 +1,17 @@
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  showMapOutline();
+  document.getElementById('places').childNodes.forEach(function(row) {
+    if (row.nodeType !== 1) return;
+    const tag = row.querySelector('a.badge');
+    addPlace(
+      row.firstChild.innerHTML,
+      row.getAttribute('data-lat'),
+      row.getAttribute('data-lon'),
+      tag ? tag.innerHTML.trim() : 'undef'
+    );
+  });
+});
+
+</script>
