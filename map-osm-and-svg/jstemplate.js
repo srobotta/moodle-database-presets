@@ -1,3 +1,17 @@
+// Geojson with the map outline.
+const geojsonLocation = 'https://raw.githubusercontent.com/srobotta/moodle-database-presets/master/map-osm-and-svg/ch_outline.geojson';
+// The classification of the tags. Change/add colors and tags here.
+// You may also use hexadecimal notation as in html/css.
+function getColor4Tag(tag) {
+  tag = tag.toLowerCase();
+  const colors = {
+    "settlement": "red",
+    "waters": "blue",
+    "road": "orange",
+  };
+  return colors.hasOwnProperty(tag) ? colors[tag] : 'black';
+};
+
 // Tooltip container
 function showTlp(evt, text) {
   d3.select('#map-tlp')
@@ -15,6 +29,7 @@ function showTlp(evt, text) {
     });
 };
 
+// Hide the tooltip when moving the cursor away from a point.
 function hideTlp() {
   d3.select('#map-tlp').style('display', 'none');
 };
@@ -38,7 +53,7 @@ function showMapOutline() {
   function loadMap() {
     return new Promise((resolve, reject) => {
       // Load the json with the german border.
-      d3.json("https://raw.githubusercontent.com/srobotta/moodle-database-presets/master/map-osm-and-svg/ch_outline.geojson", function (error, data) {
+      d3.json(geojsonLocation, function (error, data) {
         if (error) reject(error);
         else resolve(data);
       });
@@ -59,21 +74,19 @@ function showMapOutline() {
   });
 };
 
+// Add a single data set (i.e. a point on the map) to the SVG.
+// Paint a circle with radius 4 at the location given by latitude
+// And longitude. Provide the fist tag as a string.
 function addPlace(name, lat, lon, tag) {
   let projection = getMapProjection();
   let coordinates = projection([lon, lat]);
-  let colors = {
-    "Siedlung": "red",
-    "Gewässer": "blue",
-    "Strasse": "orange"
-  };
   name = name.replace(/<[^>]*>/g, '').replace('"', '\\"');
   d3.select('#map-svg')
     .append("circle")
     .attr('cx', coordinates[0])
     .attr('cy', coordinates[1])
     .attr('r', 4)
-    .attr('fill', colors.hasOwnProperty(tag) ? colors[tag] : 'black')
+    .attr('fill', getColor4Tag(tag))
     .attr('onmousemove', 'showTlp(evt,"' + name + '");')
     .attr('onmouseout', 'hideTlp();');
 }
