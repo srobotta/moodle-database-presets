@@ -10,8 +10,9 @@ jobs:
       - name: Create map-osm-and-svg.zip
         run: ./make-zip.sh map-osm-and-svg
 
-      - name: Upload all zip archives.
-        uses: actions/upload-artifact@v3
+      - name: Commit and push
+        uses: EndBug/add-and-commit@v7
         with:
-          name: zip-archives
-          path: "*.zip"
+          add: '["*.zip"]'
+          message: 'Autobuild zip files after push'
+          push: true
