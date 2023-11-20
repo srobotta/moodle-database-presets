@@ -21,16 +21,20 @@ if [ -e "$zipfile" ]; then
   rm $zipfile
 fi
 
-zip $zipfile \
-  $1/addtemplate.html \
-  $1/jstemplate.js \
-  $1/listtemplateheader.html \
-  $1/preset.xml \
-  $1/rsstitletemplate.html \
-  $1/asearchtemplate.html \
-  $1/csstemplate.css \
-  $1/listtemplatefooter.html \
-  $1/listtemplate.html \
-  $1/rsstemplate.html \
-  $1/singletemplate.html
+cd $1
+zip $zipfile  \
+  addtemplate.html \
+  jstemplate.js \
+  listtemplateheader.html \
+  preset.xml \
+  rsstitletemplate.html \
+  asearchtemplate.html \
+  csstemplate.css \
+  listtemplatefooter.html \
+  listtemplate.html \
+  rsstemplate.html \
+  singletemplate.html
+
+cd ..
+mv $1/$zipfile .
 
