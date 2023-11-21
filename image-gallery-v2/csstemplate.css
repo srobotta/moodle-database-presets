@@ -1,0 +1,8 @@
+.defaulttemplate-listentry img.list_picture {
+  width: 100%;
+  height: 15vw;
+  object-fit: cover;
+}
+.defaulttemplate-listentry .col-12.img {
+  height: 15em;
+}
