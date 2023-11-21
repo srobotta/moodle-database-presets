@@ -1,0 +1,73 @@
+<div id="defaulttemplate-single" class="my-5">
+    <div class="defaulttemplate-single-body my-5">
+        <div class="row my-6">
+            <div class="col-auto">##userpicture##</div>
+            <div class="col">
+                <div class="row h-100">
+                    <div class="col-3 align-self-center">
+                        ##user##<br/><span class="data-timeinfo">##timeadded##</span>
+                    </div>
+                    <div class="col-4 col-md-6 text-right align-self-center data-timeinfo">
+                        <span class="font-weight-bold ">Zuletzt bearbeitet&nbsp;</span>##timemodified##
+                    </div>
+                    <div class="col-4 col-md-3 ml-auto align-self-center d-flex flex-row-reverse">
+                        <div>##actionsmenu##</div>
+                        <div class="ml-auto my-auto ##approvalstatusclass##">##approvalstatus##</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr/>
+
+       Deine Auswahl:
+        <div id="your-selection" class="row my-6">
+        </div>
+    </div>
+</div>
+<script>
+const currDataset = [{
+  id: 'opt_a',
+  name: "[[opt_a#description]]",
+  value: '[[opt_a]]'
+},{
+  id: 'opt_b',
+  name: "[[opt_b#description]]",
+  value: '[[opt_b]]'
+},{
+  id: 'opt_c',
+  name: "[[opt_c#description]]",
+  value: '[[opt_c]]'
+},{
+  id: 'opt_d',
+  name: "[[opt_d#description]]",
+  value: '[[opt_d]]'
+},{
+  id: 'opt_e',
+  name: "[[opt_e#description]]",
+  value: '[[opt_e]]'
+},{
+  id: 'opt_f',
+  name: "[[opt_f#description]]",
+  value: '[[opt_f]]'
+},{
+  id: 'opt_g',
+  name: "[[opt_g#description]]",
+  value: '[[opt_g]]'
+},{
+  id: 'opt_h',
+  name: "[[opt_h#description]]",
+  value: '[[opt_h]]'
+},{
+  id: 'opt_i',
+  name: "[[opt_i#description]]",
+  value: '[[opt_i]]'
+}];
+let html = '';
+for (const item of currDataset) {
+  for (let i  = 0; i < item.value; i++) {
+    let image = getImageHtml(item.id, item.name);
+    html += `<div class="col-xs-4 col-sm-2">${image} ${item.name}</div>`;
+  }
+}
+document.getElementById('your-selection').innerHTML = html;
+</script>

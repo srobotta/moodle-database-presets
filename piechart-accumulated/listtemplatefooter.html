@@ -1,0 +1,46 @@
+];
+const labels = ['Älplermagronen', 'Chügelipastetli', 'Cordon bleu', 'Fondue', 'Polenta', 'Raclette', 'Rösti', 'Saucisson' ,'Züricher Geschnetzeltes'];
+let sum = [...Array(labels.length)].map(() => 0);
+for (let i = 0; i < data.length; i++) {
+  for (let j = 0; j < labels.length; j++) {
+    let val = parseInt(data[i][j]);
+    if (!isNaN(val) && val < 4 && val > 0) {
+      sum[j] += val;
+    }
+  }
+}
+const filteredLabels = [];
+const filteredSum = [];
+for (let i = 0, j = labels.length; i < j; i++) {
+   if (sum[i] > 0) {
+      filteredLabels.push(labels[i]);
+      filteredSum.push(sum[i]);
+   }
+}
+
+const ctx = document.getElementById('piechart');
+
+  new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: filteredLabels,
+      datasets: [{
+        label: 'Stimmen',
+        data: filteredSum,
+    backgroundColor: [
+      '#82AAFF',
+      '#dc322f',
+      'rgb(87, 205, 86)',
+      '#6a8759',
+      '#cc7832',
+      '#d1a600',
+      '#f36d63',
+      '#FFEB3B',
+      '#CE93D8',
+    ]
+      }]
+    }
+  });
+document.querySelector('span.votes').innerHTML = sum.reduce((a, v) => { return a + v}).toString();
+document.querySelector('span.voters').innerHTML = data.length.toString();
+</script>

@@ -1,0 +1,50 @@
+<h2>Wähle dein Lieblingsgericht</h2>
+<p>Es können 3 Punkte vergeben werden, auch panaschiert. Sprich: man darf seine 3 Wahlmöglichkeiten beliebig verteilen, z.B.auf 3 verschiedene Gerichte, oder auch kummuliert auf nur zwei oder eine Option.</p>
+<div id="defaulttemplate-addentry">
+    <p class="alert alert-danger hidden toomany">Du hast nur 3 Stimmen, die maximal vergeben werden können.</p>
+    <p class="alert alert-danger hidden notselected">Du musst mindestens 1 Stimme vergeben.</p>
+    <div class="row">
+        <div class="form-group pt-3 col-xs-4 col-sm-3">
+            <div class="opt_a">[[opt_a#description]]</div>
+            <input type="number" name="[[opt_a#id]]" min="0" max="3" size="1" value="0"/>            
+        </div>
+        <div class="form-group pt-3 col-xs-4 col-sm-3">
+                <div class="opt_b">[[opt_b#description]]</div>
+                <input type="number" name="[[opt_b#id]]" min="0" max="3" size="1" value="0"/>            
+        </div>
+        <div class="form-group pt-3 col-xs-4 col-sm-3">
+            <div class="opt_c">[[opt_c#description]]</div>
+            <input type="number" name="[[opt_c#id]]" min="0" max="3" size="1" value="0"/>
+        </div>
+        <div class="form-group pt-3 col-xs-4 col-sm-3">
+            <div class="opt_d">[[opt_d#description]]</div>
+            <input type="number" name="[[opt_d#id]]" min="0" max="3" size="1" value="0"/>
+        </div>
+        <div class="form-group pt-3 col-xs-4 col-sm-3">
+            <div class="opt_e">[[opt_e#description]]</div>
+            <input type="number" name="[[opt_e#id]]" min="0" max="3" size="1" value="0"/>
+        </div>
+        <div class="form-group pt-3 col-xs-4 col-sm-3">
+            <div class="opt_f">[[opt_f#description]]</div>
+            <input type="number" name="[[opt_f#id]]" min="0" max="3" size="1" value="0"/>
+        </div>
+        <div class="form-group pt-3 col-xs-4 col-sm-3">
+            <div class="opt_g">[[opt_g#description]]</div>
+            <input type="number" name="[[opt_g#id]]" min="0" max="3" size="1" value="0"/>
+        </div>
+        <div class="form-group pt-3 col-xs-4 col-sm-3">
+            <div class="opt_h">[[opt_h#description]]</div>
+            <input type="number" name="[[opt_h#id]]" min="0" max="3" size="1" value="0"/>
+        </div>
+        <div class="form-group pt-3 col-xs-4 col-sm-3">
+            <div class="opt_i">[[opt_i#description]]</div>
+            <input type="number" name="[[opt_i#id]]" min="0" max="3" size="1" value="0"/>
+        </div>
+   </div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  checkNewInput();
+  insertImages();
+});
+</script>

@@ -1,0 +1,7 @@
+#defaulttemplate-addentry .label {
+    float: left;
+    width: 260px;
+}
+#defaulttemplate-addentry input {
+  width: 3rem;
+}
