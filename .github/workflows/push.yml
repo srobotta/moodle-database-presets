@@ -2,6 +2,8 @@ name: Create ZIP archives
 on: [push]
 jobs:
   To-Zip:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 
@@ -11,7 +13,7 @@ jobs:
         run: ./make-zip.sh map-osm-and-svg
 
       - name: Commit and push
-        uses: EndBug/add-and-commit@v7
+        uses: EndBug/add-and-commit@v9
         with:
           add: '["*.zip"]'
           message: 'Autobuild zip files after push'
