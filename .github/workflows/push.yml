@@ -16,5 +16,5 @@ jobs:
         uses: EndBug/add-and-commit@v9
         with:
           add: '["*.zip"]'
-          message: 'Autobuild zip files after push'
-          push: true
+          message: 'github action: autobuild zip files after push'
+          push: 'origin master --force'
