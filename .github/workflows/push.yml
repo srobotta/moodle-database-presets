@@ -9,7 +9,7 @@ jobs:
       - name: Checkout 
         uses: actions/checkout@v3
       
-      - name: Create zip archives
+      - name: Create zip archivec from dirs
         run: ./make-zip.sh
 
       - name: Commit and push
