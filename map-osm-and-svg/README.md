@@ -8,6 +8,10 @@ Furthermore, tags can be used to classify the location, whether it's a village,
 road, waters or something else. In this case the dots in the map are painted in
 different colors.
 
+![List view](list_view.png "List view")
+![Single view](single_view.png "Single view")
+![New entry](new_entry.png "New entry")
+
 ## Installation
 
 After importing the zip file with the templates and the preset, tags for classification
