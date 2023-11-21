@@ -15,6 +15,8 @@ Inside each subdirectory is an additional README.md that explains the specific p
 
 ### [Image gallery v2](image-gallery-v2/README.md)
 
+### [Animated barchart](barchart-animated/README.md)
+
 ## Installation
 
 Any of these examples can be installed in your Moodle installation in the

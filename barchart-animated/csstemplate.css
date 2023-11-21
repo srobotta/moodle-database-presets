@@ -1,0 +1,71 @@
+.head {
+    text-align: center;
+    font-size: calc(16px + (28 - 16) * ((100vw - 320px) / (1600 - 320)));
+    margin-top:40px;
+    margin-bottom:40px
+ }
+    
+ .barchart {
+    border-left: 2px solid rgb(0, 0, 0);
+    width: 100%;
+    padding-bottom: 2%;
+    max-width: 1400px;
+    min-width: 500px;
+    aspect-ratio: 21/9;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 8%;
+    margin: 0 auto;
+    margin-bottom: 25px;
+    background-color: #fff;
+    justify-content: space-around;
+}
+    
+@keyframes chartheight {
+    from {
+        width: 0;
+    }
+    to {
+    }
+}
+
+@keyframes bartopdisplay {
+    0% {
+        opacity: 0;
+    }
+    98% {
+        opacity: 0;
+    }
+    99% {
+        opacity: 1;
+    }
+}
+    
+.bar {
+    animation-name: chartheight;
+    animation-duration: 3s;
+    height: 5%;
+    position: relative;
+    text-align: center;
+}
+
+.legend {
+    position: absolute;
+    bottom: 0;
+    font-size: calc(12px + (22 - 12) * ((100vw - 320px) / (1600 - 320)));
+    transform: translateY(100%);
+    left: 5px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    -moz-text-overflow: ellipsis;
+}
+ 
+.bartop {
+    animation-name: bartopdisplay;
+    animation-duration: 3s;
+}
+.summary {
+    font-size: x-large;
+    text-align:center;margin-top:40px;"
+}

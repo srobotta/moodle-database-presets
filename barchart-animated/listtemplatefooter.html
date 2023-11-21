@@ -1,0 +1,27 @@
+];
+
+const answer = array.reduce(
+    (obj, num) => {
+        obj[num] = ++obj[num] || 1;
+        return obj;
+    }, {}
+);
+
+const barchart = document.getElementById("links");
+
+
+for (const [sound, count] of Object.entries(answer)) {
+    const container = document.createElement("div");
+    container.classList.add("bar");
+    container.style.width = count * 100 / array.length + "%"
+    container.style.backgroundColor = '#'+ Math.floor(Math.random()*16777215).toString(16);
+    container.style.border = "1px solid #000";
+    container.style.borderLeft = "0px solid #000";
+    container.style.order = count
+    container.innerHTML = '<div class="legend">' + sound + ': <span class="bartop">' + count + '</span></div>';
+    barchart.appendChild(container);
+};
+    </script>
+<br><p class="summary"><i class="fa fa-users"></i> <span id="counter"></span></p>
+
+<script>document.getElementById('counter').innerHTML = array.length ;</script>

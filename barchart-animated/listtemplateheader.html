@@ -1,0 +1,52 @@
+<p class="head">Lieblingsinstrumente</p>
+   
+<script>
+// Run once per session.
+if ((typeof sessionStorage !== 'undefined') &&
+   (sessionStorage.getItem('ChangeEntriesReload') === null)) {
+
+   // Set url for 1000 entries per site.
+   const params = new URLSearchParams(location.search);
+   params.set('perpage', 1000);
+   window.history.replaceState({}, '', `${location.pathname}?${params}`);
+   // Reload page.
+   window.location.reload();
+
+   console.log('ok');
+
+   sessionStorage.setItem('ChangeEntriesReload', true);
+}
+</script>
+<div class="text-right d-print-none ion-hide">
+    <label for="checkbox1" onClick="save()"><input type="checkbox" id="checkbox1"> Automatisch
+        aktualisieren</input></label></div>
+<script>
+// Save status of checkbox.
+function save() {
+    const checkbox = document.getElementById("checkbox1");
+    localStorage.setItem("checkbox1", checkbox.checked);
+    location.reload();
+}
+// Get status of checkbox.
+const checked = JSON.parse(localStorage.getItem("checkbox1"));
+document.getElementById("checkbox1").checked = checked;
+
+// Reload if checkbox is checked.
+if (checkbox1.checked == true) {
+
+    // Set single div every 15 sec.
+    setInterval(function () {
+        window.location.reload(true);
+    }, 15000);
+
+    document.addEventListener("DOMContentLoaded", function(){
+        window.location.href = '#barchart';
+    });
+}
+</script>
+
+ <a href="#barchart"></a>
+
+<div class="barchart" id="links"></div>
+<script type="text/javascript">
+const array = [
