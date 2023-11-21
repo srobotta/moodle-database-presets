@@ -14,8 +14,13 @@ There's a nice reload option that when you check the checkbox, the chart is relo
 every 15 seconds. This makes it quite useful if you have an ongoing event and
 want to display the progress.
 
+<div style="margin: 0 25%">
+
 ![Screenshot list viee](list_view.png "Screenshot list view")
+
 ![Sceeenshot dropdown list](dropdown_list_instruments.png "Sceeenshot dropdown list")
+
+</div>
 
 ## Installation
 

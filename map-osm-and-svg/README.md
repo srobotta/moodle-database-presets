@@ -8,9 +8,15 @@ Furthermore, tags can be used to classify the location, whether it's a village,
 road, waters or something else. In this case the dots in the map are painted in
 different colors.
 
+<div style="margin: 0 25%;">
+
 ![List view](list_view.png "List view")
+
 ![Single view](single_view.png "Single view")
+
 ![New entry](new_entry.png "New entry")
+
+</div>
 
 ## Installation
 

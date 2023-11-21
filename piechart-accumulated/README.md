@@ -20,8 +20,12 @@ At the single entry page, instead of showing the selected options, the data is u
 to display an image for each vote. Repeated images on that page mean that the user
 gave more than one vote to the same option.
 
+<div style="margin: 0 25%;">
+
 ![Cast a new vote by a single user](new_entry.png "Cast a new vote by a single user")
+
 ![Result of the votes](list_entry.png "Result of the votes")
+</div>
 
 ## Installation
 
