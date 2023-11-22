@@ -1,0 +1,48 @@
+<div id="defaulttemplate-single" class="my-5">
+    <div class="defaulttemplate-single-body my-5">
+        <div class="row">
+            <div class="col-3">
+                <span class="font-weight-bold">[[name#name]]</span>
+            </div>
+            <div class="col-3">
+                <span class="font-weight-bold">[[lat#description]]</span>
+            </div>
+            <div class="col-3">
+                <span class="font-weight-bold">[[lon#description]]</span>
+            </div>
+            <div class="col-3">
+                <span class="font-weight-bold">[[kanton#description]]</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <p class="mt-2">[[name]]</p>
+            </div>
+            <div class="col-3">
+                <p class="mt-2">[[lat]]</p>
+            </div>
+            <div class="col-3">
+                <p class="mt-2">[[lon]]</p>
+            </div>
+            <div class="col-3">
+                <p class="mt-2">[[kanton]]</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <p class="text-center">
+                    <svg id="map-svg" xmlns="http://www.w3.org/2000/svg"></svg>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="//d3js.org/topojson.v1.min.js"></script>
+
+<script>
+const places = [{'name': '[[name]]', 'lat': [[lat]], 'lon': [[lon]]}];
+document.addEventListener("DOMContentLoaded", function() {
+  showMapOutline(places);
+});
+</script>

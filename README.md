@@ -13,6 +13,8 @@ Inside each subdirectory is an additional README.md that explains the specific p
 
 ### [Map with OSM and SVG](map-osm-and-svg/README.md)
 
+### [Switzerland place names](ch-place-names/README.md)
+
 ### [Image gallery v2](image-gallery-v2/README.md)
 
 ### [Animated bar chart](barchart-animated/README.md)
