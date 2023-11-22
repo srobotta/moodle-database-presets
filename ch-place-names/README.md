@@ -3,10 +3,11 @@
 This is a preset that makes more sense with the dataset accompanied. The database
 provides an SVG map of Switzerland with a list of all towns and villages. The handling
 is very similar to the [Map with OSM and SVG](../map-osm-and-svg/README.md) example.
-Differences are: this example has not the Open Street Map included (assuming that the)
-list of the named places is complete). In contrast, this example contains the
-facility to download the SVG map. Furthermore, on the list page the current
-url is encoded into a QR code.
+The differences are:
+- this example has not the Open Street Map service included (assuming that the
+list of the named places is complete).
+- The resulting SVG map can be downloaded.
+- A QR code from the current parameterized url of the list template is available.
 
 <div style="margin: 0 25%;">
 

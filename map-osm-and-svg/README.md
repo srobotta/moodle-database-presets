@@ -18,6 +18,8 @@ different colors.
 
 </div>
 
+A very similar example is [Switzerland place names](../ch-place-names/README.md).
+
 ## Installation
 
 After importing the zip file with the templates and the preset, tags for classification
@@ -27,7 +29,7 @@ extend the object that defined a tag name and a color.
 The Geojson that contains the map must be stored somewhere. By default, the template
 refers to the version from this repository. You might want to download the Geojson
 put it as a file activity into your Moodle course and the copy the link of that file
-into the variable `geojosnLocation` at the very top of the *Custom Javascript* template.
+into the variable `geojsonLocation` at the very top of the *Custom Javascript* template.
 
 ## Credits
 
