@@ -14,27 +14,27 @@ Inside each subdirectory is an additional README.md that explains the specific p
 ### [Map with OSM and SVG](map-osm-and-svg)
 
 Create SVG maps from the data, use Open Street Map to enter data sets.<br/>
-Download Link: [map-osm-and-svg.zip]()
+Download Link: [map-osm-and-svg.zip](map-osm-and-svg.zip)
 
 ### [Switzerland place names](ch-place-names)
 
 Create SVG maps from the data, download the dynamically created SVG and have a QR code for the parameterized search.<br/>
-Download Link: [ch-place-names.zip]()
+Download Link: [ch-place-names.zip](ch-place-names.zip)
 
 ### [Image gallery v2](image-gallery-v2)
 
 Improved image gallery that looks more modern than the original preset from Moodle.<br/>
-Download Link: [image-gallery-v2.zip]()
+Download Link: [image-gallery-v2.zip](image-gallery-v2.zip)
 
 ### [Animated bar chart](barchart-animated)
 
 Pick one choice from a selection list. Results are displayed in a animated bar chart and can be periodically refreshes while the activity is ongoing.<br/>
-Download Link: [barchart-animated.zip]()
+Download Link: [barchart-animated.zip](barchart-animated.zip])
 
 ### [Accumulated pie chart](piechart-accumulated)
 
 Kind of a voting machine, vote for one or more options in a well-designed new entry page. The result is displayed as a pie chart.<br/>
-Download Link: [piechart-accumulated.zip]()
+Download Link: [piechart-accumulated.zip](piechart-accumulated.zip)
 
 ## Installation
 
