@@ -2,7 +2,7 @@
 
 This is a preset that makes more sense with the dataset accompanied. The database
 provides an SVG map of Switzerland with a list of all towns and villages. The handling
-is very similar to the [Map with OSM and SVG](../map-osm-and-svg/README.md) example.
+is very similar to the [Map with OSM and SVG](../map-osm-and-svg) example.
 The differences are:
 - this example has not the Open Street Map service included (assuming that the
 list of the named places is complete).

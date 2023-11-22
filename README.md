@@ -11,15 +11,15 @@ may contain additional data (images, metadata) so that the database activity wor
 
 Inside each subdirectory is an additional README.md that explains the specific preset.
 
-### [Map with OSM and SVG](map-osm-and-svg/README.md)
+### [Map with OSM and SVG](map-osm-and-svg)
 
-### [Switzerland place names](ch-place-names/README.md)
+### [Switzerland place names](ch-place-names)
 
-### [Image gallery v2](image-gallery-v2/README.md)
+### [Image gallery v2](image-gallery-v2)
 
-### [Animated bar chart](barchart-animated/README.md)
+### [Animated bar chart](barchart-animated)
 
-### [Accumulated pie chart](piechart-accumulated/README.md)
+### [Accumulated pie chart](piechart-accumulated)
 
 ## Installation
 

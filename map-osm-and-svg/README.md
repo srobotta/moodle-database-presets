@@ -18,7 +18,7 @@ different colors.
 
 </div>
 
-A very similar example is [Switzerland place names](../ch-place-names/README.md).
+A very similar example is [Switzerland place names](../ch-place-names).
 
 ## Installation
 
