@@ -1,5 +1,5 @@
 // Geojson with the map outline.
-const geojsonLocation = 'https://raw.githubusercontent.com/srobotta/moodle-database-presets/master/map-osm-and-svg/ch_outline.geojson';
+const geojsonLocation = 'https://raw.githubusercontent.com/srobotta/moodle-database-presets/master/assets/ch_outline.geojson';
 // The classification of the tags. Change/add colors and tags here.
 // You may also use hexadecimal notation as in html/css.
 function getColor4Tag(tag) {
