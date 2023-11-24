@@ -36,6 +36,16 @@ Download Link: [barchart-animated.zip](barchart-animated.zip])
 Kind of a voting machine, vote for one or more options in a well-designed new entry page. The result is displayed as a pie chart.<br/>
 Download Link: [piechart-accumulated.zip](piechart-accumulated.zip)
 
+### [Wordcloud list(wordcloud-list)
+
+A wordcloud built from terms entered as datasets.
+Download Link: [wordcloud-list.zip](wordcloud-list.zip)
+
+### [Wordclound text](wordcloud-text)
+
+A wordcloud built from texts entered as datasets.
+Download Link: [wordcloud-text.zip](wordcloud-text.zip)
+
 ## Installation
 
 Any of these examples can be installed in your Moodle installation in the

@@ -1,0 +1,139 @@
+<div id="defaulttemplate-single" class="my-5">
+    <div class="defaulttemplate-single-body my-5">
+        <div class="row my-6">
+            <div class="col-auto">##userpicture##</div>
+            <div class="col">
+                <div class="row h-100">
+                    <div class="col-3 align-self-center">
+                        ##user##<br/><span class="data-timeinfo">##timeadded##</span>
+                    </div>
+                    <div class="col-4 col-md-6 text-right align-self-center data-timeinfo">
+                        <span class="font-weight-bold ">Last edited:&nbsp;</span>##timemodified##
+                    </div>
+                    <div class="col-4 col-md-3 ml-auto align-self-center d-flex flex-row-reverse">
+                        <div>##actionsmenu##</div>
+                        <div class="ml-auto my-auto ##approvalstatusclass##">##approvalstatus##</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr/>
+
+        <div class="my-6">
+            <div class="mt-4">
+                <span class="font-weight-bold">[[headline]]</span>
+                <div id="wordcloud"></div>
+            </div>
+    </div>
+</div>
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v4.js"></script>
+
+<!-- Load d3-cloud -->
+<script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3.layout.cloud.js"></script>
+
+<script>
+let stopwords = [];
+
+const mytext = [
+`
+[[text]]
+`
+];
+
+const fetchStopwords = async function() {
+  const response = await fetch("https://raw.githubusercontent.com/srobotta/moodle-database-presets/master/assets/stopwords_de.txt");
+  if (response.ok) {
+    return response.text();
+  } 
+  return '';
+};
+
+fetchStopwords().then((res) => {
+  stopwords = res.split(/\r?\n/);
+  loadWordCloud();
+});
+
+// Set the dimensions of the graph. Margins can be set via css on the div container.
+const width = 750, height = 450;
+
+// Append the svg object to the div container.
+const svg = d3.select("#wordcloud")
+  .append("svg")
+  .attr("width", width)
+  .attr("height", height);
+
+let layout;
+
+
+const loadWordCloud = function() {
+
+  // From the text
+  // - remove all html taga
+  // - replace linebreaks with space
+  // - keep all letters, digits, apostroph, dash and spaces
+  // - reduce several space occurences to one
+  // - split the string a the space to create an array of words
+  // - create an object of "word" => # of occurrences.
+  const wordlist = mytext.join()
+    .replace(/<[^>]*>/g, ' ')
+    .replace(/\r?\n/g, ' ')
+    .replace(/[^\w\-' äàåȃăâāȁáảçčḍďêéèëęģḫîłñöøőơřșšțṭťüůủỷżžß]/gi, '')
+    .replace(/ +/, ' ')
+    .split(' ')
+    .filter((w) => !stopwords.includes(w.toLowerCase()))
+    .reduce(
+      (obj, num) => {
+          obj[num] = ++obj[num] || 1;
+          return obj;
+      }, {}
+    );
+
+  // Map the wordlist to a list of objects that will be used for the cloud. Each object item contains:
+  // text = the word itself.
+  // rotate = -90, 0 or 90 dregrees.
+  // value = a random value that "weigths" the word (used for the font size).
+  // color = some random color, use '#000000' for black.
+  const wordsmapped = Object.entries(wordlist).map(function(d) { 
+    return {
+      rotate: ~~(Math.random() * 3) * 90 - 90,
+      text: d[0],
+      value: ~~(d[1] * 4 + 12),
+      color: '#' + Math.floor(Math.random()*16777215).toString(16)
+    }; 
+  });
+
+
+  // Constructs a new cloud layout instance. It runs an algorithm to find the position of words that suits your requirements.
+  // Note that if a word doesn't fit into the already created cloud, it will be skipped.
+  // See: https://github.com/jasondavies/d3-cloud
+  layout = d3.layout.cloud()
+    .size([width, height])
+    .words(wordsmapped)
+    .padding(0)
+    .fontSize(function(d) { return d.value; })
+    .rotate(function(d) { return d.rotate; })
+    .on("end", draw);
+  layout.start();
+
+};
+
+// This function takes the output of 'layout' above and draw the words into the SVG.
+const draw = function(words) {
+  svg
+    .append("g")
+    .attr("transform", "translate(" + layout.size()[0] / 2 + "," + layout.size()[1] / 2 + ")")
+    .selectAll("text")
+    .data(words)
+    .enter()
+    .append("text")
+    .style("font-size", function(d) { return d.size + "px"; })
+    .style("stroke", function(d) { return d.color; })
+    .attr("text-anchor", "middle")
+    .attr("transform", function(d) {
+      return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+    })
+    .text(function(d) { return d.text; });
+}
+
+</script>
