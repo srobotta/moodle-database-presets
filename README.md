@@ -36,7 +36,7 @@ Download Link: [barchart-animated.zip](barchart-animated.zip])
 Kind of a voting machine, vote for one or more options in a well-designed new entry page. The result is displayed as a pie chart.<br/>
 Download Link: [piechart-accumulated.zip](piechart-accumulated.zip)
 
-### [Wordcloud list(wordcloud-list)
+### [Wordcloud list](wordcloud-list)
 
 A wordcloud built from terms entered as datasets.
 Download Link: [wordcloud-list.zip](wordcloud-list.zip)
@@ -79,3 +79,8 @@ in the course overview.
 **Note**: whenever you export/import or copy the database activity these files must
 be copied as well and the links in the templates must be adapted to the new location.
 If you use external URLs then this is not necessary.
+
+## Other resources
+
+Mebis has got a large collection of database presets and other resources for
+Moodle at https://fdagner.notion.site/0cfe4ce41b2d463da99e0d08c825a461
