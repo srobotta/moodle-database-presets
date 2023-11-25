@@ -11,3 +11,5 @@ Only the list view template has been modified to display the word cloud.
 ![Wordcloud from a bunch of words in the list view](screenshot.png "Wordcloud from a bunch of words in the list view")
 
 </div>
+
+For more details on how the word cloud works, please check [Wordcloud text](../wordcloud-text/README.md).

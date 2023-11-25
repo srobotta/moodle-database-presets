@@ -22,3 +22,32 @@ skipped. So there probably will be fewer words in the cloud than are in the text
 ![Wordcloud from a bunch of words in the list view](screenshot.png "Wordcloud from a bunch of words in the list view")
 
 </div>
+
+## Customization
+
+The wordcloud is done in three steps:
+* Create a list of word (see above)
+* Use the algorithm from the d3.js wordcloud library to calculate where exactly to place the words
+* Create a SVG graphic from these calculations.
+
+The list of words is transformed into an array of word objects named `wordsmapped`. One item
+of this array is an object that represent a single word. The object contains
+these properties:
+* `rotate` the angle how to rotate the word.
+* `text` the word itself
+* `value` a numeric value that represents the importance of this word.
+* `color` a value in which color the word is printed.
+
+Apart from the `text` property, none of the others must be set here.
+
+The list of this word objects is then used in the `d3.layout.cloud()` object. This
+is the function that calculates the wordcloud. Many of these functions that are
+called here define settings on how the cloud is created. See https://github.com/jasondavies/d3-cloud
+for details. Some of the properties that are set above in the array of word object
+are used now in callbacks as input parameters to define the settings.
+
+Whenever you do changes, you should change the word object or the settings when
+creating the wordcloud.
+
+The function `draw()` finally takes the wordlist from the layout function and adds a
+text element inside the svg.

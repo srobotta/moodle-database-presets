@@ -38,12 +38,12 @@ Download Link: [piechart-accumulated.zip](piechart-accumulated.zip)
 
 ### [Wordcloud list](wordcloud-list)
 
-A wordcloud built from terms entered as datasets.
+A wordcloud built from terms entered as datasets.<br/>
 Download Link: [wordcloud-list.zip](wordcloud-list.zip)
 
 ### [Wordclound text](wordcloud-text)
 
-A wordcloud built from texts entered as datasets.
+A wordcloud built from texts entered as datasets.<br/>
 Download Link: [wordcloud-text.zip](wordcloud-text.zip)
 
 ## Installation
