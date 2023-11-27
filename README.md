@@ -24,7 +24,7 @@ Download Link: [ch-place-names.zip](ch-place-names.zip)
 ### [Image gallery v2](image-gallery-v2)
 
 Improved image gallery that looks more modern than the original preset from Moodle.<br/>
-Download Link: [image-gallery-v2.zip](image-gallery-v2.zip)
+Download Link: <a href="raw/master/image-gallery-v2.zip" download="image-gallery-v2.zip">image-gallery-v2.zip</a>
 
 ### [Animated bar chart](barchart-animated)
 
