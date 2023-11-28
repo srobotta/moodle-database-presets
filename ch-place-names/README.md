@@ -36,3 +36,6 @@ delimiter is the semicolon, that must be properly adjusted at the import page.
 
 The dataset with the list of places has been taken from [Geonames](https://www.geonames.org)
 and can be used under the **cc-by licence**.
+
+The map data with the swiss border was taken from 
+https://www.naturalearthdata.com/ from the Admin 0 Countries.
