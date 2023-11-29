@@ -1,0 +1,25 @@
+table.applicants {
+  width: 100%;
+}
+table.applicants tr {
+  border: 1px solid #cccccc;
+  line-height: 1.5rem;
+  vertical-align: middle;
+}
+table.applicants tr:first-child {
+  background-color: #D4D9FD
+}
+table.db-listview {
+  width: 100%;
+  border-collapse: collapse;
+}
+table.db-listview tr:first-child {
+  background-color: #D4D9FD
+}
+table.db-listview tr:not(:first-child):hover {
+  background-color: #eeeeee;
+}
+table.db-listview td {
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+}

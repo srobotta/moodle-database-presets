@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<preset>
+
+<description/>
+
+<settings>
+<intro/>
+<comments>0</comments>
+<requiredentries>0</requiredentries>
+<requiredentriestoview>0</requiredentriestoview>
+<maxentries>0</maxentries>
+<rssarticles>2</rssarticles>
+<approval>0</approval>
+<manageapproved>1</manageapproved>
+<defaultsortdir>0</defaultsortdir>
+<defaultsort>0</defaultsort>
+</settings>
+
+<field>
+<type>text</type>
+<name>app_4_firstname</name>
+<description>4th applicant - first name</description>
+<required>0</required>
+</field>
+
+<field>
+<type>text</type>
+<name>app_1_firstname</name>
+<description>1st applicant - first name</description>
+<required>0</required>
+</field>
+
+<field>
+<type>text</type>
+<name>app_1_email</name>
+<description>1st applicant - email</description>
+<required>0</required>
+</field>
+
+<field>
+<type>text</type>
+<name>app_2_surname</name>
+<description>2nd applicant - surename</description>
+<required>0</required>
+</field>
+
+<field>
+<type>text</type>
+<name>app_1_surname</name>
+<description>1st applicant - surename</description>
+<required>0</required>
+</field>
+
+<field>
+<type>text</type>
+<name>app_2_firstname</name>
+<description>2nd applicant - first name</description>
+<required>0</required>
+</field>
+
+<field>
+<type>text</type>
+<name>app_2_email</name>
+<description>2nd applicant - email</description>
+<required>0</required>
+</field>
+
+<field>
+<type>text</type>
+<name>app_3_surname</name>
+<description>3rd applicant - surename</description>
+<required>0</required>
+</field>
+
+<field>
+<type>text</type>
+<name>app_3_firstname</name>
+<description>3rd applicant - first name</description>
+<required>0</required>
+</field>
+
+<field>
+<type>text</type>
+<name>app_3_email</name>
+<description>3rd applicant - email</description>
+<required>0</required>
+</field>
+
+<field>
+<type>text</type>
+<name>app_4_surname</name>
+<description>4th applicant - surename</description>
+<required>0</required>
+</field>
+
+<field>
+<type>text</type>
+<name>app_4_email</name>
+<description>4th applicant - email</description>
+<required>0</required>
+</field>
+
+<field>
+<type>text</type>
+<name>app_5_surname</name>
+<description>5th applicant - surename</description>
+<required>0</required>
+</field>
+
+<field>
+<type>text</type>
+<name>app_5_firstname</name>
+<description>5th applicant - first name</description>
+<required>0</required>
+</field>
+
+<field>
+<type>text</type>
+<name>app_5_email</name>
+<description>5th applicant - email</description>
+<required>0</required>
+</field>
+
+<field>
+<type>text</type>
+<name>topic</name>
+<description>Topic</description>
+<required>1</required>
+</field>
+
+<field>
+<type>text</type>
+<name>supervisor</name>
+<description>Supervisor</description>
+<required>1</required>
+</field>
+
+<field>
+<type>text</type>
+<name>supervisor_email</name>
+<description>Supervisor email</description>
+<required>1</required>
+</field>
+
+<field>
+<type>textarea</type>
+<name>topic_details</name>
+<description>Details on topic</description>
+<required>1</required>
+<param2>60</param2>
+<param3>35</param3>
+<param4>1</param4>
+<param5>0</param5>
+</field>
+
+</preset>

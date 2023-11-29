@@ -53,6 +53,14 @@ A wordcloud built from texts entered as datasets.<br/>
 Download Link:
 <a href="https://github.com/srobotta/moodle-database-presets/raw/master/wordcloud-text.zip" download="wordcloud-text.zip">wordcloud-text.zip</a>
 
+### [Sign up for a project](project-signup)
+
+A database activity for a project list and a possibility to assign applicants to the
+project. The preset demonstrates how to group several fields in different tables and
+has a solution for field labels in different languages.<br/>
+Download Link:
+<a href="https://github.com/srobotta/moodle-database-presets/raw/master/project-signup.zip" download="project-signup.zip">project-signup.zip</a>
+
 ## Installation
 
 Any of these examples can be installed in your Moodle installation in the
@@ -86,6 +94,14 @@ in the course overview.
 **Note**: whenever you export/import or copy the database activity these files must
 be copied as well and the links in the templates must be adapted to the new location.
 If you use external URLs then this is not necessary.
+
+## Multilanguage
+
+The database UI is multi-language capable like any other component in Moodle.
+The templates itself are not language capable. Whatever you type in the templates or values
+that are entered in the database, are returned as they are.
+However, there is a solution at least for the templates itself. Details are in the preset
+"Sign up for a project".
 
 ## Other resources
 
