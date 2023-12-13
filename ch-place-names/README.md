@@ -1,6 +1,6 @@
 ## Switzerland place names
 
-This is a preset that makes more sense with the dataset accompanied. The database
+This is a preset that makes more sense with the accompanied dataset. The database
 provides an SVG map of Switzerland with a list of all towns and villages. The handling
 is very similar to the [Map with OSM and SVG](../map-osm-and-svg) example.
 The differences are:
@@ -17,8 +17,8 @@ list of the named places is complete).
 
 The main usage of the dataset would be probably via the list page. Because the
 dataset contains more than 10k entries, not all entries are displayed. Therefore,
-it makes sense to do some search on the name and increase the results to the
-maximum possible to have a reasonable result.
+it makes sense to do some search on the name and increase the displayed results
+to the maximum possible to have a reasonable result.
 
 <div style="margin: 0 25%;">
 
@@ -29,8 +29,9 @@ maximum possible to have a reasonable result.
 ## Installation
 
 After installing the preset you should probably also include the list of places
-from the [`dataset.csv`](dataset.csv) file and import this dataset. Note that the
-delimiter is the semicolon, that must be properly adjusted at the import page.
+from the [`dataset.csv`](dataset.csv) file and import this dataset. The
+delimiter of the data is the semicolon, that must be properly adjusted at
+the import page.
 
 ## Credits
 

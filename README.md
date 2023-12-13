@@ -81,8 +81,8 @@ Some of the examples use additional data (such as images or json) in the templat
 of the database activity. This data can be stored elsewhere (e.g. public available resources
 such as wikipedia etc.) and then referred by the URL inside the template.
 
-If you do not want to rely on external resources you also have the change to upload
-the data into the Moodle course itself. What I find useful is to create a new
+If you do not want to rely on external resources you also have the chance to upload
+the data into the Moodle course itself. What I find useful, is to create a new
 file resource, upload the file there and then use the preview link of that file inside
 the template. In order to hide the resource from general access, I created an
 additional section which is invisible in the course. The uploaded files would be
@@ -98,12 +98,19 @@ If you use external URLs then this is not necessary.
 ## Multilanguage
 
 The database UI is multi-language capable like any other component in Moodle.
-The templates itself are not language capable. Whatever you type in the templates or values
+The templates themselves are not language capable. Whatever you type in the templates, or values
 that are entered in the database, are returned as they are.
 However, there is a solution at least for the templates itself. Details are in the preset
 "Sign up for a project".
 
 ## Other resources
 
-Mebis has got a large collection of database presets and other resources for
+Florian Danger of Mebis has got a large collection of database presets and other resources for
 Moodle at https://fdagner.notion.site/0cfe4ce41b2d463da99e0d08c825a461
+
+Mebis itself has a
+[taskboard](https://www.taskcards.de/#/board/a29aa0a2-38bb-4a9a-90e1-4c38ec47f9cc/view?token=8d6e8433-486a-4717-85ee-d721aefcadb1)
+with a lot of ideas.
+
+The [Schulportal Hessen](https://mo1300.schule.hessen.de/course/view.php?id=41) contains
+another collection of database ideas and preset.

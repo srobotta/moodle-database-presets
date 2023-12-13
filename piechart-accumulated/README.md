@@ -1,24 +1,26 @@
 ## Pie chart accumulated
 
-This entry works like a voting. The user (database entries) can be done by voting the
+This example works like a voting machine. A new entry is added by the user that votes for his
 favourite food among a selection of 9 choices. With each entry three votes can be placed.
-Thia can be 3 votes for one choice but the 3 votes may also be distributed between
+This can be 3 votes for one choice. Also, the 3 votes may also be distributed between
 different choices.
 
 The accumulated view (list view of all entries) is put into a pie chart by counting
 the votes for each choice.
 
-The frontend checks when the user tries to place more than three votes (this is done
-in `checkNewInput()` in the *Custom JavaScript* template. However, one must
+The frontend checks when the user tries to place more than three votes. This is done
+in `checkNewInput()` in the *Custom JavaScript* template. An error is displayed as an
+alert message above. You may need to scroll up to see the message (the focus of the
+alert message is not done automatically). However, one must
 be aware that by manipulating the POST request it's still possible to send any
 values to the backend that would be considered being an invalid vote.
 Real systems (e.g. a voting machine) must have checks on the server side
 whether the request is valid or not. With the database activity we do not have the choice
 to add backend checks.
 
-At the single entry page, instead of showing the selected options, the data is used
-to display an image for each vote. Repeated images on that page mean that the user
-gave more than one vote to the same option.
+At the single entry page, instead of showing plain values of the given votes,
+the data is used to display an image for each choosen option. Repeated images on that
+page indicate that the user gave more than one vote to the same option.
 
 <div style="margin: 0 25%;">
 

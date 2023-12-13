@@ -11,7 +11,7 @@ is manually e.g. the students need to contact the teacher.
 
 The example consists of two groups of fields. One group defines the project itself, which
 is `topic`, `topic_details`, `supervisor`, and `supervisor_email`. The second
-groups of fields are for the possible 5 applicants that can pick the same topic. Fields
+groups of fields is for the possible 5 applicants that can pick one topic. Fields
 are `app_X_surname`, `app_X_firstname`, `app_X_email`. These are repeated
 5 times with `X` being a number between 1 and 5.
 
@@ -24,7 +24,7 @@ are `app_X_surname`, `app_X_firstname`, `app_X_email`. These are repeated
 
 
 In the *New entry* as well the *Single view* template the data is grouped by these
-to criteria resulting in two tables (or one subheadline and paragraph and one table).
+two criteria resulting in two tables (or one subheadline and paragraph and one table).
 
 ### Multi language
 
@@ -58,9 +58,9 @@ Language strings are defined in the *Custom JavaScript* template like this:
 ```
 const dbPresetLangStr = {
   "en": {
-    "firstname": "Vorname",
-    "surname": "Familienname",
-    "email": "E-Mail",
+    "firstname": "Firstnamw",
+    "surname": "Lastname",
+    "email": "Email",
   },
   "de": {
     "firstname": "Vorname",
@@ -70,7 +70,7 @@ const dbPresetLangStr = {
 }
 ```
 
-When the page is loaded, a event listener on the DOMContentLoaded event triggers
+When the page is loaded, an event listener on the `DOMContentLoaded` event triggers
 a function that:
 
 1. Try to determine the current language (from the page or the browser settings).
