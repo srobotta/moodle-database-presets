@@ -1,8 +1,47 @@
 .defaulttemplate-listentry img.list_picture {
   width: 100%;
-  height: 15vw;
   object-fit: cover;
+}
+@media screen and (min-width: 0px) {
+   .defaulttemplate-listentry img.list_picture {
+    height: 50vw;
+  }
+}
+@media screen and (min-width: 576px) {
+   .defaulttemplate-listentry img.list_picture {
+    height: 40vw;
+  }
+}
+
+@media screen and (min-width: 768px) {
+   .defaulttemplate-listentry img.list_picture {
+    height: 30vw;
+  }
+}
+@media screen and (min-width: 992px) {
+   .defaulttemplate-listentry img.list_picture {
+    height: 20vw;
+  }
+}
+@media screen and (min-width: 1200px) {
+   .defaulttemplate-listentry img.list_picture {
+    height: 20vh;
+  }
 }
 .defaulttemplate-listentry .col-12.img {
   height: 15em;
+}
+.defaulttemplate-listentry .caption {
+  height: 1.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.defaulttemplate-listentry .caption-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 3rem;
 }
