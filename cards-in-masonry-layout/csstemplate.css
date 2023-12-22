@@ -1,0 +1,14 @@
+.card-preview {
+  display: inline-block;
+  border-radius: 0.5rem;
+}
+@media (min-width: 576px) {
+  .card-columns {
+    column-count: 2;
+  }
+}
+@media (min-width: 992px) {
+  .card-columns {
+    column-count: 3;
+  }
+}

@@ -1,0 +1,36 @@
+<div id="defaulttemplate-addentry">
+    <div class="row">
+        <div class="col-6">   
+            <div class="form-group pt-3">
+                <div class="font-weight-bold">[[card_type#description]]</div>
+                [[card_type]]
+            </div>
+            <div class="form-group pt-3">
+                <div class="font-weight-bold">[[card_title#description]]</div>
+                [[card_title]]
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="m-2 card-preview text-white p-3">Card title and content...</div>
+        </div>
+        <div class="col-12">
+            <div class="form-group pt-3">
+                <div class="font-weight-bold">[[card_content#description]]</div>
+                [[card_content]]
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('[[card_type#id]]').addEventListener('change', (e) => {
+    const preview = document.querySelector('#defaulttemplate-addentry .card-preview');
+    preview.classList.forEach((cls) => {
+      if (cls.startsWith('bg-')) {
+        preview.classList.remove(cls);
+      }
+    });
+    preview.classList.add('bg-' + e.target.value);
+  });
+});
+</script>

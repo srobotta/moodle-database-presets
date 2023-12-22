@@ -61,6 +61,14 @@ has a solution for field labels in different languages.<br/>
 Download Link:
 <a href="https://github.com/srobotta/moodle-database-presets/raw/master/project-signup.zip" download="project-signup.zip">project-signup.zip</a>
 
+### [Cards in masonry layout](cards-in-masonry-layout)
+
+Show cards in a masonry layout style. Each database entry represents one card, that can be of
+a certain type. Depending on the type the background color is different. The cards are displayed
+in a grid with on e to three columns, depending on the screen size.<br/>
+Download Link:
+<a href="https://github.com/srobotta/moodle-database-presets/raw/master/cards-in-masonry-layout.zip" download="cards-in-masonry-layout.zip">cards-in-masonry-layout.zip</a>
+
 ## Installation
 
 Any of these examples can be installed in your Moodle installation in the

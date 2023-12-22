@@ -1,0 +1,8 @@
+card_type,card_title,card_content
+primary,"This a text block A","<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren.</p>"
+secondary,"This a text block B",
+success,"This a text block C","<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna.</p>"
+info,"This a text block D",
+dark,"This a text block E",
+warning,"This a text block F",
+danger,"This a text block G","<p>Do not touch this extra paragraph.</p>"
