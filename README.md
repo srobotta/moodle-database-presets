@@ -122,3 +122,8 @@ with a lot of ideas.
 
 The [Schulportal Hessen](https://mo1300.schule.hessen.de/course/view.php?id=41) contains
 another collection of database ideas and preset.
+
+## FAQ
+
+From the official forum and other resources I started to create a [FAQ](FAQ.md)
+that should answer some questions that may arise when creating custom presets.
