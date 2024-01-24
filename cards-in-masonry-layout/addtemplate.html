@@ -11,6 +11,7 @@
             </div>
         </div>
         <div class="col-6">
+            <div class="font-weight-bold">Preview</div>
             <div class="m-2 card-preview text-white p-3">Card title and content...</div>
         </div>
         <div class="col-12">
@@ -32,5 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     preview.classList.add('bg-' + e.target.value);
   });
+  document.getElementById('[[card_type#id]]').dispatchEvent(new Event('change'));
 });
 </script>
