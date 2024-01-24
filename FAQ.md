@@ -6,6 +6,16 @@ other resources. The questions
 deal with some custom requirement that in most cases can be achieved easily with some
 code or configuration. 
 
+### Delete all entries at once
+
+To delete all entries at once is not possible by default. However, in the *List view template*
+in the middle section that is displayed for each item, you may add `##delcheck##` somewhere in
+the html. That code displays a checkbox for an item. Also, when this checkbox is displayed the
+sticky footer contains two new button "Select all" and "Delete selected". With the help
+of these buttons you may select all displayed enties and delete them at once.
+You may need to increase the "Entries per page" property at the top to display
+all items of your database activity.
+
 ### Hide the footer area
 
 The footer area might be empty in some setups ands therefore should not appear.
