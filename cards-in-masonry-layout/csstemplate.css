@@ -12,3 +12,17 @@
     column-count: 3;
   }
 }
+div.card-content.line-clamp {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  /* truncate to 4 lines */
+  -webkit-line-clamp: 4;
+}
+.read-more, .read-less {
+  color: #fff;
+  padding-left: 0;
+}
+.read-more:hover, .read-less:hover {
+  color: #fff;
+}

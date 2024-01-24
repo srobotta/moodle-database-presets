@@ -32,9 +32,20 @@ arbitrary HTML. Even images can be used there.
 The *Add entry template* is modified in that way, that when changing the card type, a little
 preview is shown how the card would look like.
 
-The *Custom CSS* template contains styles for this little card preview in the *Add entry template* 
-and also adds media queries, that defines the used columns for the card layout, depending
+The *Custom CSS* template contains styles for:
+* The little card preview in the *Add entry template*
+* Media queries, that defines the used columns for the card layout, depending
 on the screen with.
+* Styles for the content container of the card content and the necessary styles for the
+read more and read less buttons.
+
+The bottom block of the *List view template* contains javascript for the "Read more" and "Read less"
+buttons. The height of a card is controlled by the css setting `-webkit-line-clamp: 4;` (which
+refers to 4 lines height). You can adjust the value to your needs. If you do not want/need this
+functionality you may remove the entire javascript from the footer part of the template, and remove
+the buttons from the center block of the template. Also, the `<div>` element surrounding the
+`[[card_content]]` can be removed. The idea for the "Read more" functionality was taken from
+[https://rubyyagi.com/how-to-truncate-long-text-and-show-read-more-less-button/](https://rubyyagi.com/how-to-truncate-long-text-and-show-read-more-less-button/)
 
 A dataset sample in `sample-cards.csv` can be used to see how the page would look like with the
 different card types. It contains basically what is shown in the screenshot. 

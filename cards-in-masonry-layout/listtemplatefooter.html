@@ -1,1 +1,29 @@
 </div>
+<script>
+const cardTriggerMoreLess = function(ev) {
+  ev.preventDefault();
+  ev.target.classList.add('hidden');
+  const container = ev.target.parentElement;
+  const content = container.querySelector('.card-content');
+  if (content.classList.contains('line-clamp')) {
+    content.classList.remove('line-clamp');
+    container.querySelector('button.read-less').classList.remove('hidden');
+  } else {
+    content.classList.add('line-clamp');
+    container.querySelector('button.read-more').classList.remove('hidden');
+  }
+};
+document.addEventListener("DOMContentLoaded", (event) => {
+  const cards = document.querySelectorAll('div.card-content');
+  cards.forEach((el) => {
+    if (el.offsetHeight < el.scrollHeight || el.offsetWidth < el.scrollWidth) {
+       // element has overflow and is truncated, add event listener to read more / read less button
+      el.parentElement.querySelectorAll('button').forEach((b) => b.addEventListener("click", cardTriggerMoreLess, false));  
+    } else {
+      // Remove the line-clamp class and hide the read more button because the content fits in the container.
+      el.classList.remove('line-clamp');
+      el.parentElement.querySelector('button.read-more').classList.add('hidden');
+    }
+  });
+});
+</script>
