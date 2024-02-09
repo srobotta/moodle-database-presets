@@ -101,3 +101,48 @@ parameter names in the url to find out.
 
 Link: https://moodle.org/mod/forum/discuss.php?d=452335
 
+### Do not automatically download files of the field type file
+
+By default, if you use the field type file and display the
+uploaded file with `[[my_field_field]]` the *List view template* and
+*Single view template* an anchor tag with a link to the file is shown.
+When the link is clicked, the file is downloaded by the browser. To
+prevent the download the following code can be placed either in one
+of the view templates or, for having the functionality in both
+templates, in the *Custom JavaScript template*.
+
+```
+document.addEventListener("DOMContentLoaded", event => {
+  document.querySelectorAll('a.data-field-link').forEach(a => {
+    a.addEventListener('click', ev => {
+      const url = ev.target.getAttribute('href');
+      ev.preventDefault();
+      fetch(url)
+        .then(response => response.blob())
+        .then(blob => {
+          const urlCreator = window.URL || window.webkitURL;
+          const blobData = urlCreator.createObjectURL(blob);
+          const ifTab = window.open('');
+          ifTab.document.write('<iframe width="100%" height="100%" style="border: none" src="' + blobData + '"></iframe>');
+       });
+    });
+  });
+});
+```
+
+At each `data-field-link` anchor, a function for the click event is attached.
+When the link is clicked, the default behaviour is suppressed, the file content
+is fetched by the Javascript and the downloaded data is put as a inline source
+into an iframe which is opened in a new browser window. The downloaded `Blob` object
+contains information of the content type, and the `urlCreator` creates
+the correct encoded string for the `src` attribute.
+
+File types that cannot be displayed by the browser will still be downloaded.
+
+If you want to exclude some file types from the behaviour, then check the
+link e.g. by inserting the following line after the `querySelectorAll` line
+like `if (a.getAttribute('href').match(/.*zip$/i)) return;` and do not
+attach the custom function to the click event.
+
+Link: https://moodle.org/mod/forum/discuss.php?d=455247
+
