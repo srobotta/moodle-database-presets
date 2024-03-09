@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<preset>
+
+<description/>
+
+<settings>
+<intro>&lt;p&gt;Test Question: please edit the js template&lt;/p&gt;</intro>
+<comments>0</comments>
+<requiredentries>0</requiredentries>
+<requiredentriestoview>1</requiredentriestoview>
+<maxentries>1</maxentries>
+<rssarticles>0</rssarticles>
+<approval>0</approval>
+<manageapproved>1</manageapproved>
+<defaultsortdir>0</defaultsortdir>
+<defaultsort>0</defaultsort>
+</settings>
+
+<field>
+<type>radiobutton</type>
+<name>response</name>
+<description>Antwort</description>
+<param1>A
+B
+C
+D</param1>
+<required>1</required>
+</field>
+
+</preset>

@@ -1,0 +1,57 @@
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script>
+// Run once per session.
+if ((typeof sessionStorage !== 'undefined') &&
+   (sessionStorage.getItem('ChangeEntriesReload') === null)) {
+
+   // Set url for 1000 entries per site.
+   const params = new URLSearchParams(location.search);
+   params.set('perpage', 1000);
+   window.history.replaceState({}, '', `${location.pathname}?${params}`);
+   // Reload page.
+   window.location.reload();
+   sessionStorage.setItem('ChangeEntriesReload', true);
+}
+</script>
+<div class="text-right d-print-none ion-hide">
+    <label for="checkbox1" onClick="save()"><input type="checkbox" id="checkbox1"> Automatic
+        update</input></label></div>
+<script>
+// Save status of checkbox.
+function save() {
+    const checkbox = document.getElementById("checkbox1");
+    localStorage.setItem("checkbox1", checkbox.checked);
+    location.reload();
+}
+// Get status of checkbox.
+const checked = JSON.parse(localStorage.getItem("checkbox1"));
+document.getElementById("checkbox1").checked = checked;
+
+// Reload if checkbox is checked.
+if (checkbox1.checked == true) {
+
+    // Set single div every 15 sec.
+    setInterval(function () {
+        window.location.reload(true);
+    }, 15000);
+
+    document.addEventListener("DOMContentLoaded", function(){
+        window.location.href = '#barchart';
+    });
+}
+</script>
+<a name="barchart"></a>
+<div class="row">
+<div class="col-sm-12 col-md-6">
+<p class="head">Question</p>
+<div class="font-weight-bold h3 question"></div>
+            <div>A: <span class="option_a"></span></div>
+            <div>B: <span class="option_b"></span></div>
+            <div>C: <span class="option_c"></span></div>
+            <div>D: <span class="option_d"></span></div>
+</div>
+<div class="col-sm-12 col-md-6">
+<p class="head">Responses</p>
+<div class="barchart" id="chart"></div>
+<script type="text/javascript">
+const responses = [

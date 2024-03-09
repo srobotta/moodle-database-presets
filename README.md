@@ -35,6 +35,12 @@ Pick one choice from a selection list. Results are displayed in a animated bar c
 Download Link:
 <a href="https://github.com/srobotta/moodle-database-presets/raw/master/barchart-animated.zip" download="barchart-animated.zip">barchart-animated.zip</a>
 
+### [Multiple Choice Question](mc-question)
+
+Answer a multiple choice question and see live results how participants answered that question.<br/>
+Download Link:
+<a href="https://github.com/srobotta/moodle-database-presets/raw/master/mc-question.zip" download="mc-question.zip">mc-question.zip</a>
+
 ### [Accumulated pie chart](piechart-accumulated)
 
 Kind of a voting machine, vote for one or more options in a well-designed new entry page. The result is displayed as a pie chart.<br/>
