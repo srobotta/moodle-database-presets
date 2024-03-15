@@ -1,0 +1,9 @@
+#defaulttemplate-addentry .row {
+  margin-bottom: 0.5rem;
+}
+#defaulttemplate-addentry .inline-req {
+  display: none;
+}
+#defaulttemplate-addentry .foto {
+  max-width: 35rem;
+}

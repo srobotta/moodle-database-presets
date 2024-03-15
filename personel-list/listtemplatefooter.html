@@ -1,0 +1,68 @@
+</div>
+<script>
+// Label of the print button and the headline of the printed list (default is english).
+let btnLabel = 'Print list';
+let headlinePrint = 'Personel'
+if (document.documentElement.lang === 'de') {
+  btnLabel = 'Liste drucken';
+  headlinePrint = 'Personenliste';
+} else if (document.documentElement.lang === 'fr') {
+  btnLabel = 'Imprimer liste';
+  headlinePrint = 'Liste du personnel'
+}
+
+// printJS configuration as json, especially the style property may need changes.
+const printJsConfig = {
+  printable: 'person-grid',
+  type: 'html',
+  header: headlinePrint,
+  headerStyle: 'font-weight: 800;font-family:CustomFont;',
+  style: `
+    @font-face {
+      font-family: CustomFont;
+      src: url(https://fonts.gstatic.com/s/ojuju/v1/7r3IqXF7v9ApbplSr4kw3A.woff2);
+    }
+    .list_picture {max-width:300px; height: auto}
+    .col {float: left; width: 50%; break-inside: avoid; font-family: CustomFont;}
+    .font-weight-bold {font-weight: bold}
+  `
+};
+
+// All below this line should not need changes.
+
+// Function that handles the onclick event on the print button.
+function triggerPrintList() {
+  printJS(printJsConfig);
+}
+
+// After loading the content, setup search parameters and add print button.
+document.addEventListener('DOMContentLoaded', () => {
+  // Check that the list displayes 50 entries at least and is ordered by the field sortorder
+  let reload = false;
+  const perpage = document.getElementById('pref_perpage');
+  if (perpage && parseInt(perpage.item(perpage.selectedIndex).value) < 50) {
+    perpage.value = 50;
+    reload = true;
+  }
+  const sortby = document.getElementById('pref_sortby');
+  if (sortby && sortby.item(sortby.selectedIndex).innerHTML != 'sortorder') {
+    const options = Array.from(sortby.options);
+    const optionToSelect = options.find(item => item.text === 'sortorder');
+    optionToSelect.selected = true;
+    reload = true;  
+  }
+  if (reload) {
+    // When a reload is necessary, we simulate a click on the save button of the advanced search.
+    document.querySelector('#advsearch-save-sec > .btn').click();
+    return;
+  }
+  // Add the print button to the sticky footer, fallback is below the list output.
+  let footer = document.getElementById('sticky-footer');
+  if (!footer) {
+    footer = document.getElementById('person-grid').parentElement;
+  }
+  const div = document.createElement('div');
+  div.innerHTML = `<button type="button" class="btn btn-primary mx-1" onclick="triggerPrintList()">${btnLabel}</button>`;
+  footer.appendChild(div);
+});
+</script>
