@@ -60,7 +60,7 @@ The responsive output is not preserved because the bootstrap styled are missing.
 because paper is not responsive. Therefore, fixed values (in terms of columns or box size) for the data
 entries can be used.
 
-The styling for the print output can be controlled in the footer of the *Luit view* template. The
+The styling of the print output can be controlled in the footer of the *List view* template. The
 print.js is controlled by a json configuration:
 
 ```
@@ -95,6 +95,10 @@ variable. This variable is defined a bit more above the print.js configuration.
 
 </div>
 
+Because of the small images there is a slight misplacement in the print preview, because the
+images are not upscalled. Your images should have at least a width of 300px and the same aspect
+ratio.
+
 Both, the header for the print output as well as the "Print" button are language dependent. The
 language is checked by the document language. If you do not need language dependent strings you
 may omit this logic and hard code the strings. Also, even the heading and the print button are
@@ -109,7 +113,7 @@ is shown in the example [Sign up for a project](../project-signup).
 </div>
 
 The *Single view* template uses the email address (and actually creates a mailto link), the *List view*
-template does not include the email. In case you want have the email as well in the list view, then add
+template does not include the email. In case you want have the email included as well in the list view, add
 it in the content of the `listtemplate.html` as a row e.g. between the name and the position:
 
 ```
@@ -122,7 +126,7 @@ or without the mailto link:
 <div>[[email]]</div>
 ```
 
-Use a class in the div element, e.g. `mt-1` or `mt-2` or similar to have some spacing between the name
+Use a class in the div element, e.g. `mt-1`, `mt-2` or similar to have some spacing between the name
 and the email address.
 
 You may also have the mail in the list view at the page but not having it printed. In this
