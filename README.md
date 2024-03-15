@@ -75,6 +75,14 @@ in a grid with on e to three columns, depending on the screen size.<br/>
 Download Link:
 <a href="https://github.com/srobotta/moodle-database-presets/raw/master/cards-in-masonry-layout.zip" download="cards-in-masonry-layout.zip">cards-in-masonry-layout.zip</a>
 
+### [Personel list (with print function)](personel-list)
+
+Collect and display information about personel. The preset also includes
+a print function so that the list view can be easily transferred into a
+PDF via the print function.<br/>
+Download link:
+<a href="https://github.com/srobotta/moodle-database-presets/raw/master/personel-list.zip" download="personel-list.zip">personel-list.zip</a>
+
 ## Installation
 
 Any of these examples can be installed in your Moodle installation in the
