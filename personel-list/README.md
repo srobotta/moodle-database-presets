@@ -142,8 +142,21 @@ to hide the email div element in the print view.
 
 ### Attribution
 
-All Simpson images that were used in the screenshots were taken from the english Wikipedia and
-cropped to fit into the current layout. The images were all released as a publicity photo from
+All Simpson images used in the screenshots were taken from the english Wikipedia and
+cropped to fit into the current layout. The images are all released as a publicity photo from
 the website [foxflash.com](https://www.foxflash.com/), an official Fox publicity photo site,
-and as such should not hamper 20th Century Fox's ability to use or sell this image.
+and as such should not hamper 20th Century Fox's ability to use or sell this image. Statement on main FoxFlash page states:
+
+> All materials in the FoxFlash Web site, including the photography,
+> graphics and text, are the copyrighted property of FOX BROADCASTING
+> COMPANY, its affiliated companies or licensors, and are distributed to
+> the press solely for the promotion of FOX programming and the news or
+> entertainment media owned or legally licensed by your company. These
+> contents cannot be sold or distributed to a third party, provided
+> however, that syndicates receiving these materials may distribute them
+> to the subscribers solely for distribution in the news or entertainment
+> media. Any other use of these contents is a violation of copyright laws
+> and is prohibited.
+
+This tutorial, in which the images are used, does not contain any damaging or disparaging content that could taint the reputation of the show, and, in fact, thus counts as a valid "publicity site" by serving as a way to generate publicity for the show by creating awareness. 
 
