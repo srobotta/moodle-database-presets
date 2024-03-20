@@ -39,13 +39,18 @@ function triggerPrintList() {
 document.addEventListener('DOMContentLoaded', () => {
   // Check that the list displayes 50 entries at least and is ordered by the field sortorder
   let reload = false;
+  // If there are parameters in the addressbar assume the user wanted a different search.
+  const m = window.location.href.match(/&/g);
+  const noQuery = !m || m.length < 2;
+  // Check parameter per page that there is a reasonable amout of results to show all.
   const perpage = document.getElementById('pref_perpage');
-  if (perpage && parseInt(perpage.item(perpage.selectedIndex).value) < 50) {
+  if (noQuery && perpage && parseInt(perpage.item(perpage.selectedIndex).value) < 50) {
     perpage.value = 50;
     reload = true;
   }
+  // Check that the sort order uses our custom parameter so that the desired order is returned.
   const sortby = document.getElementById('pref_sortby');
-  if (sortby && sortby.item(sortby.selectedIndex).innerHTML != 'sortorder') {
+  if (noQuery && sortby && sortby.item(sortby.selectedIndex).innerHTML != 'sortorder') {
     const options = Array.from(sortby.options);
     const optionToSelect = options.find(item => item.text === 'sortorder');
     optionToSelect.selected = true;
