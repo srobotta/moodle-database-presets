@@ -58,9 +58,9 @@ snippet in your *List view template* in the footer section:
 
 ```
 <script>
-    window.onload = function() {
+    document.addEventListener('DOMContentLoaded', () => {
         showHideAdvSearch(true);
-    }
+    });
 </script>
 ```
 
@@ -70,7 +70,7 @@ then the Javascript looks a bit different:
 
 ```
 <script>
-    window.onload = function() {
+    document.addEventListener('DOMContentLoaded', () => {
         if (document.referrer.includes('/mod/data/view.php?')) return;
         let url = window.location.href;
         if (url.includes('advanced=')) {
@@ -84,7 +84,7 @@ then the Javascript looks a bit different:
             url += '&perpage=100';
         }
         window.location.href = url;
-    }
+    });
 </script>
 ```
 
@@ -145,4 +145,15 @@ like `if (a.getAttribute('href').match(/.*zip$/i)) return;` and do not
 attach the custom function to the click event.
 
 Link: https://moodle.org/mod/forum/discuss.php?d=455247
+
+### New entry is not saved
+
+It may happen that a new entry is not saved when you hit the save
+or save and add another button. In such cases it's very likely that the
+field list contains a field that is mandatory but the field is not
+used in the *Add new entry* template. The error message about the missing
+field is not displayed because the entire field is not visible.
+
+There is a [change request in the Moodle tracker](https://tracker.moodle.org/browse/MDL-80112)
+to report such an error.
 
