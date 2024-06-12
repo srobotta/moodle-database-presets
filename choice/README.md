@@ -41,8 +41,8 @@ the entry has been added.
 ### Item list
 
 The list of items is defined in the *Custom JavaScript* template along with
-functions to display the information in the other templates, mainly adding,
-displaying one entry and displaying the list of all entries.
+functions to display the information in the other templates, mainly adding
+and displaying one entry as well as displaying the list of all entries.
 
 From the field list, the description is used as well. It is displayed in
 the selection list in the *Add entry template*.
@@ -67,7 +67,8 @@ In this example, an item consists of two properties:
 }
 ```
 
-Remove or add items as you wish, unless you have no datasets (e.g. votes) yet.
+Remove or add items as you wish, as long as you have no datasets (e.g. votes)
+yet.
 
 This list is used to build up a list consisting of the item information and
 a selection for the preferred choice. This is done via the function
@@ -90,8 +91,8 @@ There are many of these entries, so the function needs to calculate the votes
 for each item respectively and also display the items ranked by the votes and
 not as they are defined in the list.
 
-For some reason, the `[[choice_first#name]]` placeholders did not work in the
-javascript template. Therefore the string is hard coded there. In case you change
+For some reason, placeholders like `[[choice_first#name]]` are not substituted in the
+javascript template. Therefore, the string is hard coded there. In case you change
 the names in the field list, make sure to change these here as well. In all
 other templates, the placeholders are used, so the terms update automatically.
 
