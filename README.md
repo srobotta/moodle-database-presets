@@ -83,6 +83,13 @@ PDF via the print function.<br/>
 Download link:
 <a href="https://github.com/srobotta/moodle-database-presets/raw/master/personel-list.zip" download="personel-list.zip">personel-list.zip</a>
 
+### [First, second and third choice](choice)
+
+Having a list of items to select from, users should vote for their most favourite item (first choice),
+another item as second choice and a last item as third choice.<br/>
+Download link:
+<a href="https://github.com/srobotta/moodle-database-presets/raw/master/choice.zip" download="choice.zip">choice.zip</a>
+
 ## Installation
 
 Any of these examples can be installed in your Moodle installation in the

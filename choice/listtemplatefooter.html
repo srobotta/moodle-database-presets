@@ -1,0 +1,13 @@
+];
+const factor = [ 3, 2, 1 ];
+
+const answer = votes.reduce(
+    (obj, item) => {
+        for (let i = 0; i < factor.length; i++) {
+            obj[item[i]] = obj[item[i]] + factor[i] || factor[i];
+        }
+        return obj;
+    }, {}
+);
+document.getElementById('votes-list-view').innerHTML= displayVotes(answer);
+</script>

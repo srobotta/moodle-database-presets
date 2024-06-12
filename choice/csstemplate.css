@@ -1,0 +1,7 @@
+#defaulttemplate-addentry h3 {
+  margin-bottom: 0;
+}
+#defaulttemplate-addentry .row {
+  padding: 0.2rem 0;
+  border-bottom: 1px solid #ccc;
+}

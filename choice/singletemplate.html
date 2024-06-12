@@ -1,0 +1,42 @@
+<div id="defaulttemplate-single" class="my-5">
+    <div class="defaulttemplate-single-body my-5">
+        <div class="row my-6">
+            <div class="col-auto">##userpicture##</div>
+            <div class="col">
+                <div class="row h-100">
+                    <div class="col-3 align-self-center">
+                        ##user##<br/><span class="data-timeinfo">##timeadded##</span>
+                    </div>
+                    <div class="col-4 col-md-6 text-right align-self-center data-timeinfo">
+                        <span class="font-weight-bold ">Zuletzt bearbeitet&nbsp;</span>##timemodified##
+                    </div>
+                    <div class="col-4 col-md-3 ml-auto align-self-center d-flex flex-row-reverse">
+                        <div>##actionsmenu##</div>
+                        <div class="ml-auto my-auto ##approvalstatusclass##">##approvalstatus##</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr/>
+
+            <div class="mt-4">
+                <span class="font-weight-bold">[[choice_first#description]]</span>
+                <span class="[[choice_first#name]]"></span>
+            </div>
+            <div class="mt-4">
+                <span class="font-weight-bold">[[choice_second#description]]</span>
+                <span class="[[choice_second#name]]"></span>
+            </div>
+            <div class="mt-4">
+                <span class="font-weight-bold">[[choice_third#description]]</span>
+                <span class="[[choice_third#name]]"></span>
+            </div>
+    </div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelector('span.choice_first').innerHTML = getChoiceName([[choice_first]]);
+  document.querySelector('span.choice_second').innerHTML = getChoiceName([[choice_second]]);
+  document.querySelector('span.choice_third').innerHTML =  getChoiceName([[choice_third]]);
+});
+</script>
