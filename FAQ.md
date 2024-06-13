@@ -18,7 +18,16 @@ all items of your database activity.
 
 ### Hide the footer area
 
-The footer area might be empty in some setups ands therefore should not appear.
+The footer area might be empty in some setups ands therefore should not appear. In every
+template where the footer should not appear add the following snippet:
+
+```
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelector(".stickyfooter").style.visibility="hidden";
+});
+</script>
+```
 
 Link: https://moodle.org/mod/forum/discuss.php?d=454005
 
