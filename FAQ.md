@@ -157,3 +157,29 @@ field is not displayed because the entire field is not visible.
 There is a [change request in the Moodle tracker](https://tracker.moodle.org/browse/MDL-80112)
 to report such an error.
 
+### Convert timestamps to readable dates
+
+When datasets are exported and one of the field types is a DateTime object,
+the export contains the timestamps of that entry, which is not really
+readable.
+
+There is a long outstanding tracker issue [MDL-32637](https://tracker.moodle.org/browse/MDL-32637)
+that refers to this problem. The main issue is, that it must be ensured that
+a date object gets not broken when exporting the datasets, and later reimporting
+them again without any hazzle. Therefore the solution is not that easy as it seems.
+
+Meanwhile after exporting a data set, you may add a new column next to the timestamp
+column and add a formula like:
+
+```
+= CELL_WITH_TIMESTAMP / 86400 + 25569
+```
+
+This fills the new column with another number. Reformat the cell and pick *Category*
+"Date" and then a date format that you wish. After changing one cell, click at the
+marker at the right bottom of that cell to copy format and formula accordingly to
+other cells.
+
+Note that you are not able to modifiy dates here and that you can reimport them
+again. To do that you need to manipulate the timestamp directly.
+
