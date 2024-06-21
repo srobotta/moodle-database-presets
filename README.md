@@ -95,7 +95,7 @@ Download link:
 Having a list of events, users are forced to choose only so many that the selected events fit into
 an overall duration time.<br/>
 Download link:
-<a href="choice.zip" download="choice.zip">choice.zip</a>
+<a href="choice-duration.zip" download="choice-duration.zip">choice-duration.zip</a>
 
 
 ## Installation
