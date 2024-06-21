@@ -15,49 +15,49 @@ Inside each subdirectory is an additional README.md that explains the specific p
 
 Create SVG maps from the data, use Open Street Map to enter data sets.<br/>
 Download Link:
-<a href="https://github.com/srobotta/moodle-database-presets/raw/master/map-osm-and-svg.zip" download="map-osm-and-svg.zip">map-osm-and-svg.zip</a>
+<a href="map-osm-and-svg.zip" download="map-osm-and-svg.zip">map-osm-and-svg.zip</a>
 
 ### [Switzerland place names](ch-place-names)
 
 Create SVG maps from the data, download the dynamically created SVG and have a QR code for the parameterized search.<br/>
 Download Link:
-<a href="https://github.com/srobotta/moodle-database-presets/raw/master/ch-place-names.zip" download="ch-place-names.zip">ch-place-names.zip</a>
+<a href="ch-place-names.zip" download="ch-place-names.zip">ch-place-names.zip</a>
 
 ### [Image gallery v2](image-gallery-v2)
 
 Improved image gallery that looks more modern than the original preset from Moodle.<br/>
 Download Link:
-<a href="https://github.com/srobotta/moodle-database-presets/raw/master/image-gallery-v2.zip" download="image-gallery-v2.zip">image-gallery-v2.zip</a>
+<a href="image-gallery-v2.zip" download="image-gallery-v2.zip">image-gallery-v2.zip</a>
 
 ### [Animated bar chart](barchart-animated)
 
 Pick one choice from a selection list. Results are displayed in a animated bar chart and can be periodically refreshes while the activity is ongoing.<br/>
 Download Link:
-<a href="https://github.com/srobotta/moodle-database-presets/raw/master/barchart-animated.zip" download="barchart-animated.zip">barchart-animated.zip</a>
+<a href="barchart-animated.zip" download="barchart-animated.zip">barchart-animated.zip</a>
 
 ### [Multiple Choice Question](mc-question)
 
 Answer a multiple choice question and see live results how participants answered that question.<br/>
 Download Link:
-<a href="https://github.com/srobotta/moodle-database-presets/raw/master/mc-question.zip" download="mc-question.zip">mc-question.zip</a>
+<a href="mc-question.zip" download="mc-question.zip">mc-question.zip</a>
 
 ### [Accumulated pie chart](piechart-accumulated)
 
 Kind of a voting machine, vote for one or more options in a well-designed new entry page. The result is displayed as a pie chart.<br/>
 Download Link:
-<a href="https://github.com/srobotta/moodle-database-presets/raw/master/piechart-accumulated.zip" download="piechart-accumulated.zip">piechart-accumulated.zip</a>
+<a href="piechart-accumulated.zip" download="piechart-accumulated.zip">piechart-accumulated.zip</a>
 
 ### [Wordcloud list](wordcloud-list)
 
 A wordcloud built from terms entered as datasets.<br/>
 Download Link:
-<a href="https://github.com/srobotta/moodle-database-presets/raw/master/wordcloud-list.zip" download="wordcloud-list.zip">wordcloud-list.zip</a>
+<a href="wordcloud-list.zip" download="wordcloud-list.zip">wordcloud-list.zip</a>
 
 ### [Wordclound text](wordcloud-text)
 
 A wordcloud built from texts entered as datasets.<br/>
 Download Link:
-<a href="https://github.com/srobotta/moodle-database-presets/raw/master/wordcloud-text.zip" download="wordcloud-text.zip">wordcloud-text.zip</a>
+<a href="wordcloud-text.zip" download="wordcloud-text.zip">wordcloud-text.zip</a>
 
 ### [Sign up for a project](project-signup)
 
@@ -65,7 +65,7 @@ A database activity for a project list and a possibility to assign applicants to
 project. The preset demonstrates how to group several fields in different tables and
 has a solution for field labels in different languages.<br/>
 Download Link:
-<a href="https://github.com/srobotta/moodle-database-presets/raw/master/project-signup.zip" download="project-signup.zip">project-signup.zip</a>
+<a href="project-signup.zip" download="project-signup.zip">project-signup.zip</a>
 
 ### [Cards in masonry layout](cards-in-masonry-layout)
 
@@ -73,7 +73,7 @@ Show cards in a masonry layout style. Each database entry represents one card, t
 a certain type. Depending on the type the background color is different. The cards are displayed
 in a grid with on e to three columns, depending on the screen size.<br/>
 Download Link:
-<a href="https://github.com/srobotta/moodle-database-presets/raw/master/cards-in-masonry-layout.zip" download="cards-in-masonry-layout.zip">cards-in-masonry-layout.zip</a>
+<a href="cards-in-masonry-layout.zip" download="cards-in-masonry-layout.zip">cards-in-masonry-layout.zip</a>
 
 ### [Personel list (with print function)](personel-list)
 
@@ -81,14 +81,14 @@ Collect and display information about personel. The preset also includes
 a print function so that the list view can be easily transferred into a
 PDF via the print function.<br/>
 Download link:
-<a href="https://github.com/srobotta/moodle-database-presets/raw/master/personel-list.zip" download="personel-list.zip">personel-list.zip</a>
+<a href="personel-list.zip" download="personel-list.zip">personel-list.zip</a>
 
 ### [First, second and third choice](choice)
 
 Having a list of items to select from, users should vote for their most favourite item (first choice),
 another item as second choice and a last item as third choice.<br/>
 Download link:
-<a href="https://github.com/srobotta/moodle-database-presets/raw/master/choice.zip" download="choice.zip">choice.zip</a>
+<a href="choice.zip" download="choice.zip">choice.zip</a>
 
 ### [Choice of items with duration](choice-duration)
 
