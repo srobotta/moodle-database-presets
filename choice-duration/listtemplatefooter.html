@@ -1,0 +1,14 @@
+];
+
+const answer = {};
+for (const vote of votes) {
+  if (!Array.isArray(vote)) continue;
+  for (const i of vote) {
+    const x = parseInt(i);
+    if (isNaN(x)) continue;
+    if (!answer.hasOwnProperty(x)) answer[x] = 0;
+    answer[x] += 1;
+  }
+}
+document.getElementById('votes-list-view').innerHTML= displayVotes(answer);
+</script>

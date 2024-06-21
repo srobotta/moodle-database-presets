@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<preset>
+
+<description/>
+
+<settings>
+<intro/>
+<comments>0</comments>
+<requiredentries>0</requiredentries>
+<requiredentriestoview>0</requiredentriestoview>
+<maxentries>0</maxentries>
+<rssarticles>0</rssarticles>
+<approval>0</approval>
+<manageapproved>1</manageapproved>
+<defaultsortdir>0</defaultsortdir>
+<defaultsort>0</defaultsort>
+</settings>
+
+<field>
+<type>text</type>
+<name>choice</name>
+<description>Auswahl</description>
+<required>1</required>
+</field>
+
+</preset>

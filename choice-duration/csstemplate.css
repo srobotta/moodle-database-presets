@@ -1,0 +1,24 @@
+#defaulttemplate-addentry h3 {
+  margin-bottom: 0;
+}
+#defaulttemplate-addentry .row {
+  padding: 0.2rem 0;
+  border-bottom: 1px solid #ccc;
+}
+#defaulttemplate-addentry .choice-name,  #defaulttemplate-single .choice-name {
+   font-weight: bold;
+   display: block;
+}
+#defaulttemplate-addentry .choice-user::after,  #defaulttemplate-single .choice-user::after {
+   content: ' | ';
+}
+#defaulttemplate-addentry .choice-duration,  #defaulttemplate-single .choice-duration  {
+   font-style: italic;
+}
+#defaulttemplate-addentry .choice-duration::after,  #defaulttemplate-single .choice-duration::after  {
+   content: ' min.';
+}
+#data-listview-content .row {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 0.2rem;
+}

@@ -90,6 +90,14 @@ another item as second choice and a last item as third choice.<br/>
 Download link:
 <a href="https://github.com/srobotta/moodle-database-presets/raw/master/choice.zip" download="choice.zip">choice.zip</a>
 
+### [Choice of items with duration](choice-duration)
+
+Having a list of events, users are forced to choose only so many that the selected events fit into
+an overall duration time.<br/>
+Download link:
+<a href="choice.zip" download="choice.zip">choice.zip</a>
+
+
 ## Installation
 
 Any of these examples can be installed in your Moodle installation in the

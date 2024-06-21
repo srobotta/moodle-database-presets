@@ -1,0 +1,27 @@
+<div id="defaulttemplate-addentry">
+  <div class="input-fields"></div>
+  <input type="hidden" name="[[choice#id]]" id="[[choice#id]]" value=""/>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelector('div[class="input-fields"]').innerHTML = displayChoices();
+  document.querySelectorAll('input[name^=choices]').forEach((s) => {
+    s.addEventListener('change', (e) => {
+      const { items, duration } = getSelectedChoices();
+      for (checkbox of Array.from(document.querySelectorAll('input[name^=choices]'))) {
+        if (e === checkbox || checkbox.checked) continue;
+        const i = checkbox.name.replace('choices[', '').replace(']', '');
+        checkbox.disabled = (getChoiceDuration(i) + duration > maxDuration);
+      }
+    });
+  });
+  document.getElementById('sticky-footer').querySelectorAll('input[type="submit"]')
+  .forEach((e) => {
+    e.addEventListener('click', (e) => {
+      const { items } = getSelectedChoices();
+      if (items.length === 0) return;
+      document.getElementById('[[choice#id]]').value= JSON.stringify(items);
+    });
+  });
+});
+</script>
