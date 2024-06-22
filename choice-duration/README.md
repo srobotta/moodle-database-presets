@@ -37,14 +37,14 @@ duration time which is set in `const maxDuration = 180;` (here 3 hours).
 Because the field `[[choice]]` is mandatory and there is a check if the
 selected item list is empty, the user must check at least one checkbox.
 
-Also the user cannot select events that together would exceed the maximum
+Also, the user cannot select events that together would exceed the maximum
 time. After each click, the duration of the selected events is summarized
 and all other events that would exceed the maximum time, when selected
 as well, are disabled.
 
 The data that is stored is an array of selected events in the JSON notation
 e.g. if the Workshop 2, Talk 5 and Demo 8 are selected the stored
-value is
+value is:
 
 ```
 ["1","4","7"]
@@ -74,3 +74,51 @@ at the duration of a single event. If you have other or no units, you
 can change it there as well as control the output of the data. In this
 example the event name is displayed as a block element, the presenter
 name and the duration are inline elements.
+
+### Optimal use of the duration time
+
+At the moment there is not check that the user has selected as many events
+to fill the maximal available duration in an optimal way. In this example
+it would be possible to fill the 3 hours by choosing e.g.:
+
+* Workshop 1
+* Workshop 2 and Workshop 3
+* Workshop 3 and Talk5 and Talk 7
+* Workshop 5 and all of the 3 Demos
+
+If you want the user to choice as many events as possible to fulfill
+the maximum duration, the *Add nee entry* template must be exceeded
+by code to check the total selected duraction and the maximum duration.
+
+The function that is attached to the click event of the buttons in the
+bottom may look like this:
+
+```
+e.addEventListener('click', (e) => {
+  const { items, duration } = getSelectedChoices();
+  if (items.length === 0) return;
+  if (duration < maxDuration) {
+    e.preventDefault();
+    if (document.querySelector('.duration-error')) return;
+    document.getElementById('defaulttemplate-addentry').insertAdjacentHTML(
+      'afterbegin',
+      '<div class="alert alert-danger duration-error">Please add more events to fill the complete time frame</div>'
+    );
+    return;
+  }
+  document.getElementById('[[choice#id]]').value= JSON.stringify(items);
+});
+```
+
+When there is no value set at all, `items.length` is zero. However, we
+do submit the form only to get the error of an empty mandatory field.
+
+The new part that doesn't exist in the template is the conditional block
+with the check whether `duration < maxDuration`. If that's the case the
+user may choose still another event. In this case (if not already in the
+document, add the alert box with the appropiate message. Also, note that
+here we prevend sending the form and stay on the page.
+
+It's important that the list of events allows a selection of the exact
+maximum duration time (like in the example). If that's not possible,
+then do not add this check.

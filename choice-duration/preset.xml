@@ -19,7 +19,7 @@
 <field>
 <type>text</type>
 <name>choice</name>
-<description>Auswahl</description>
+<description>List of selected choices</description>
 <required>1</required>
 </field>
 
