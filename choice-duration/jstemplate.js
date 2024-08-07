@@ -139,3 +139,31 @@ function displayVotes(votes) {
   }
   return html;
 }
+function buildCsvData(choices) {
+  const data = [];
+  const header = [];
+  header.push('Name');
+  header.push('Link');
+  for (const choice of listOfChoices) {
+    header.push('"' + choice.name.replace(/"/g, '""') + '"')
+  }
+  data.push(header.join(';'))
+  for (const choice of choices) {
+    const row = [];
+    row.push('"' + choice.u.replace(/<[^>]*>/g, '') + '"')
+    const m = choice.u.match(/href="([^"]*)"/)
+    row.push('"' + m[1] + '"')
+    for (let i = 0; i < listOfChoices.length; i++) {
+      row.push(choice.v.includes(i.toString()) ? 'X' : '')
+    }
+    data.push(row.join(';'))
+  }
+
+  const url = URL.createObjectURL(new Blob([data.join("\n")], { type: 'text/csv' }));
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'data-choices.csv';
+  a.click();
+  URL.revokeObjectURL(url);
+  return false;
+}

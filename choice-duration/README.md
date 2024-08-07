@@ -14,7 +14,8 @@ on the interests, events may be planed in parallel.
 
 To serve the second case, it's the best to export the collected data and process
 them offline. In this preset the *List view template* shows the list of events
-together with the votes each received.
+together with the votes each received and a download link to export the data
+as CSV.
 
 ### General setup of the activity
 
@@ -57,6 +58,21 @@ Note: the indices are stored as a string. When these are read to display
 the seleced values in the view template, the index is casted into an
 integer before it can be used as an index for the array.
 
+In the settings you should allow the user to add a single entry only
+and that the user must at least provide more than one entry to see the result.
+
+<div style="margin: 0 25%">
+
+![Screenshot settings entries](choice-duration-entries.png)
+
+</div>
+
+The effect of this setting is that the ordinary user will never see the
+results (except his own choice in the single view entry) and that the
+user can vote once (e.g. add one entry only). For a clean user experience
+we must remove the alert message that the user must add more entries before
+viewing the results.
+
 ### Customization
 
 To customize the event list, change the `listOfChoices` array must be
@@ -87,7 +103,7 @@ it would be possible to fill the 3 hours by choosing e.g.:
 * Workshop 5 and all of the 3 Demos
 
 If you want the user to choice as many events as possible to fulfill
-the maximum duration, the *Add nee entry* template must be exceeded
+the maximum duration, the *Add new entry* template must be exceeded
 by code to check the total selected duraction and the maximum duration.
 
 The function that is attached to the click event of the buttons in the
@@ -122,3 +138,17 @@ here we prevend sending the form and stay on the page.
 It's important that the list of events allows a selection of the exact
 maximum duration time (like in the example). If that's not possible,
 then do not add this check.
+
+### Get the results
+
+On the list view page, a table is displayed with the possible events and
+the number of votes that want to attend this event. From that list you
+cannot see who wants to attent which event and personalize the invitation
+for each user based on his choice.
+
+Therefore, the admin needs a list of the choices together with the user
+information. This is done by taking the list of choices together with
+the user data (here we use `##user##` that returns a link to the users
+page and the name inside the anchor tag) combined with the content of
+the data base field `choice` that contains the array with the numbers
+of the selected events from the list.

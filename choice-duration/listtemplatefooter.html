@@ -2,13 +2,17 @@
 
 const answer = {};
 for (const vote of votes) {
-  if (!Array.isArray(vote)) continue;
-  for (const i of vote) {
+  if (!Array.isArray(vote.v)) continue;
+  for (const i of vote.v) {
     const x = parseInt(i);
     if (isNaN(x)) continue;
     if (!answer.hasOwnProperty(x)) answer[x] = 0;
     answer[x] += 1;
   }
 }
-document.getElementById('votes-list-view').innerHTML= displayVotes(answer);
+document.getElementById('votes-list-view').innerHTML= displayVotes(answer)
+  + '<div class="mt-2"><a href="#" onclick="return buildCsvData(votes);">Download CSV</a></div>';
+// Remove the alert box that tells the user that he has to add more votes to see the results.
+const alert = document.querySelector('div[role="main"] > div.alert-danger');
+if (alert) alert.remove();
 </script>
