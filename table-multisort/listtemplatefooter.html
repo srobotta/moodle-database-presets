@@ -1,0 +1,76 @@
+    </tbody>
+</table>
+</div>
+<script>
+(function() {
+  // Reload page if there are less than the 27 countries.
+  const tableRows = document.querySelectorAll('#sort-table tr');
+  if (tableRows.length < 28) { // Header and the 27 EU countries.
+    let url = window.location.href;
+    url = url.includes('perpage=')
+      ? url.replace(/perpage=\d+/, 'perpage=50')
+       : url + '&perpage=50';
+    window.location.href = url;
+    return;
+  }
+  // Calculate density
+  tableRows.forEach(tr => {
+    const cells = tr.querySelectorAll('td');
+    if (cells.length > 0) {
+      const p = parseInt(cells.item(2).innerHTML)
+      const a = parseInt(cells.item(3).innerHTML)
+      cells.item(4).innerHTML = Math.round(p / a).toString();
+    }
+  });
+  let columns = [];
+
+  function multiColumnSort(rows, columns) {
+    return rows.sort(function(rowA, rowB) {
+      for (let column of columns) {
+        let cellA = rowA.cells[column.index].textContent;
+        let cellB = rowB.cells[column.index].textContent;
+
+        if (cellA !== cellB) {
+          if (!isNaN(cellA) && !isNaN(cellB)) {
+            return column.order * (cellA - cellB);
+          }
+          return column.order * cellA.localeCompare(cellB);
+        }
+      }
+      return 0;
+    });
+  }
+
+  function setSortIndicator(columnHeader, direction) {
+    const indicator = direction === 'asc' ? '▲' : '▼';
+    // Clear previous indicators
+    document.querySelectorAll('th').forEach((th, i) => {
+      if (columns.filter(e => e.index === i).length > 0 && columnHeader !== th) return;
+      th.textContent = th.textContent.replace('▲', '').replace('▼', '');
+    });
+    columnHeader.textContent += ' ' + indicator;
+  }
+
+  document.querySelectorAll('#sort-table th').forEach((header, i) => {
+    header.addEventListener('click', () => {
+      const direction = header.getAttribute('data-sort') === 'asc' ? 'desc' : 'asc';
+      header.setAttribute('data-sort', direction);
+      setSortIndicator(header, direction);
+      let add = true;
+      for (let k = 0; k < columns.length; k++) {
+        if (columns[k].index === i) {
+          columns[k].order = direction === 'asc' ? 1 : -1;
+          add = false;
+          break;
+        }
+      }
+      if (add) {
+        columns.push({index: i, order: 1});
+      }
+      const rows = Array.from(document.querySelector("#sort-table tbody").rows);
+      const sortedRows = multiColumnSort(rows, columns);
+      sortedRows.forEach(row => document.querySelector("#sort-table tbody").appendChild(row));
+    });
+  });
+})();
+</script>

@@ -1,0 +1,12 @@
+#sort-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+#sort-table th, #sort-table td  {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+#sort-table th {
+  cursor: pointer;
+  background-color: #f2f2f2;
+}

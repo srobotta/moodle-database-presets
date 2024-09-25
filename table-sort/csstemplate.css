@@ -1,0 +1,10 @@
+#eu-countries th, #eu-countries td  {
+  padding: 2px 5px;
+}
+#eu-countries th {
+  background-color: blue;
+  color: #ffffff;
+}
+#eu-countries tr:nth-child(even) {
+  background-color: #cfcfcf;
+}

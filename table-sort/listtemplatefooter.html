@@ -1,0 +1,26 @@
+    </tbody>
+</table>
+</div>
+<script>
+(function() {
+  const tableRows = document.querySelectorAll('#eu-countries tr');
+  // Reload the page if the table does not contain the header and the 27 EU countries.
+  if (tableRows.length < 28) {
+    let url = window.location.href;
+    url = url.includes('perpage=')
+      ? url.replace(/perpage=\d+/, 'perpage=50')
+       : url + '&perpage=50';
+    window.location.href = url;
+    return;
+  }
+  // Calculate the density of each country.
+  tableRows.forEach(tr => {
+    const cells = tr.querySelectorAll('td');
+    if (cells.length > 0) {
+      const p = parseInt(cells.item(2).innerHTML)
+      const a = parseInt(cells.item(3).innerHTML)
+      cells.item(4).innerHTML = Math.round(p / a).toString();
+    }
+  });
+})();
+</script>

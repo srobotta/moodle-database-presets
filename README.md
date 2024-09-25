@@ -97,6 +97,17 @@ an overall duration time.<br/>
 Download link:
 <a href="choice-duration.zip" download="choice-duration.zip">choice-duration.zip</a>
 
+### [Table with sorting per column](table-sort)
+
+List the dataset in an HTML table that can be sorted ascending or descending by a certain column.<br/>
+Download link:
+<a href="table-sort.zip" download="table-sort.zip">table-sort.zip</a>
+
+### [Table with sorting by several criteria](table-multisort)
+
+List the dataset in an HTML table that can be sorted ascending or descending by several columns at once.<br/>
+Download link:
+<a href="table-multisort.zip" download="table-multisort.zip">table-multisort.zip</a>
 
 ## Installation
 
