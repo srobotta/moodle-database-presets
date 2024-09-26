@@ -88,7 +88,7 @@ then the Javascript looks a bit different:
             url += '&advanced=1';
         }
         if (url.includes('perpage=')) {
-            url = url.replace(/perpage=\d/, 'perpage=100');
+            url = url.replace(/perpage=\d+/, 'perpage=100');
         } else {
             url += '&perpage=100';
         }

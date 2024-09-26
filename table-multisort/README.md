@@ -53,5 +53,29 @@ comparing two values is very simple done on the values, either numeric or alphab
 
 ### Data
 
-The data is the same that is used in the [table sort](../table-sort/README.md) example.
+The data is the same that is used in the [table-sort](../table-sort/README.md) example.
 Also the density is calculated here on the fly and not contained in the dataset.
+
+For your own data, adjust the two variables `expectedRows` and `maxRowsToDisplay`.
+The first is the amount of datasets, that you expect to show. In our case these are
+all EU countries which are 27 + 1 for the header row. The latter is the variable
+how many data rows to load at once. In general, this can be set to 1000 at a maximum
+(limited by Moodle itself). You might lower the value if the loading is costly because
+your data set has too much data to fetch.
+
+If you have not a fixed data set but a growing number, then counting the table rows
+will not work reliably. In this case check the value for `perpage` eighter from the
+url, or checking the value of the select element (in this order).
+
+```
+let perpage = 10;
+const match = window.location.href.match(/perpage=(\d+)/);
+if (match) {
+  perpage = parseInt(match[1]);
+} else {
+  const sel = document.getElementById('pref_perpage');
+  if (sel) {
+    perpage = parseInt(sel.value);
+  }
+}
+```

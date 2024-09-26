@@ -1,10 +1,10 @@
-#eu-countries th, #eu-countries td  {
+#db-sort-table th, #eu-countries td  {
   padding: 2px 5px;
 }
-#eu-countries th {
+#db-sort-table th {
   background-color: blue;
   color: #ffffff;
 }
-#eu-countries tr:nth-child(even) {
+#db-sort-table tr:nth-child(even) {
   background-color: #cfcfcf;
 }

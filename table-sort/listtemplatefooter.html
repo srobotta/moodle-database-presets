@@ -3,16 +3,20 @@
 </div>
 <script>
 (function() {
-  const tableRows = document.querySelectorAll('#eu-countries tr');
-  // Reload the page if the table does not contain the header and the 27 EU countries.
-  if (tableRows.length < 28) {
+  const expectedRows = 28; // In this example header and the 27 EU countries.
+  const maxRowsToDisplay = 1000; // Maximum number of rows to display.
+
+  // Reload page if there are less than the expected rows.
+  const tableRows = document.querySelectorAll('#db-sort-table tr');
+  if (tableRows.length < expectedRows) {
     let url = window.location.href;
     url = url.includes('perpage=')
-      ? url.replace(/perpage=\d+/, 'perpage=50')
-       : url + '&perpage=50';
+      ? url.replace(/perpage=\d+/, 'perpage=' + maxRowsToDisplay)
+      : url + '&perpage=' + maxRowsToDisplay;
     window.location.href = url;
     return;
   }
+
   // Calculate the density of each country.
   tableRows.forEach(tr => {
     const cells = tr.querySelectorAll('td');
