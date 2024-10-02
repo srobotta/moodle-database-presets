@@ -1,4 +1,4 @@
-## Choice
+## First, second and third choice
 
 This preset was developed on the use case to get a ranking of a list of items.
 In this special case there is a list of party games, proposed by team members and
