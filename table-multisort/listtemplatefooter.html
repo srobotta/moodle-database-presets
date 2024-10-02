@@ -55,9 +55,9 @@
     // that are not in the columns to sort array.
     document.querySelectorAll('th').forEach((th, i) => {
       if (columns.filter(e => e.index === i).length > 0 && columnHeader !== th) return;
-      th.textContent = th.textContent.replace('▲', '').replace('▼', '');
+      th.innerHTML = th.innerHTML.replace('▲', '').replace('▼', '');
     });
-    columnHeader.textContent += ' ' + indicator;
+    columnHeader.innerHTML += ' ' + indicator;
   }
 
   document.querySelectorAll('#sort-table th').forEach((header, i) => {
