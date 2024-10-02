@@ -192,3 +192,17 @@ other cells.
 Note that you are not able to modifiy dates here and that you can reimport them
 again. To do that you need to manipulate the timestamp directly.
 
+### Hide alert, you must add X entries before viewing the results
+
+In some cases, you want the students never see any other entries of other students but
+still want to show a cumulated result (e.g. in the [First, second and third choice](choice)). In this case the following snippet can be placed into the *List view template*
+and the *Single view template*:
+
+```
+const alert = document.querySelector('div[role="main"] > div.alert-danger');
+if (alert) alert.remove();
+```
+
+This checks for the red container with the warning message and, incase it's found, it
+will remove it. Because of the limiting `div[role="main"]` the correct container should
+be found and any other container of the same type should remain unchanged.
