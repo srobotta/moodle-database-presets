@@ -49,12 +49,13 @@ At the moment sorting cannot be canceled, you have to reload the page to have no
 sort criteria and may start from scratch.
 
 Also, sorting is simple, unlike the table sort library from the other example
-comparing two values is very simple done on the values, either numeric or alphabetical.
+comparing two values is very simple, see if both cells contain a number, then
+a calculation is done, otherwise a text compare is done.
 
 ### Data
 
 The data is the same that is used in the [table-sort](../table-sort/README.md) example.
-Also the density is calculated here on the fly and not contained in the dataset.
+Also, the density is calculated on the fly and not contained in the dataset.
 
 For your own data, adjust the two variables `expectedRows` and `maxRowsToDisplay`.
 The first is the amount of datasets, that you expect to show. In our case these are
@@ -79,3 +80,6 @@ if (match) {
   }
 }
 ```
+
+Whenever your value in `perpage` is less than the expected number, do a reload
+of the page with the parameter `perpage` set accordingly.
