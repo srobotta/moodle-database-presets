@@ -38,7 +38,7 @@ some work they need to present, and each student must not see the work of others
 but only his own.
 
 In this case do the following:
-* In the database settings, in the section *Entries* set *Approval required* to "no".
+* In the database settings, in the section *Entries* set *Approval required* to "yes".
 * Never approve any entry as a teacher.
 
 Link: https://moodle.org/mod/forum/discuss.php?d=443555
