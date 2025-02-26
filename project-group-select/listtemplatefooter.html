@@ -1,0 +1,101 @@
+</table>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // First check, if we see a single group name, then assume we are a student
+  // and see if we already got any results. In case of yes, hide the "Add entry" button.
+  let addButtonHidden = false;
+  const g = document.querySelector('div.groupselector').innerHTML;
+  const group = g.substring(g.indexOf(':') + 1).trim();
+  document.querySelectorAll('td.groupselect').forEach(td => {
+    if (td.innerHTML.trim() === group) {
+      document.querySelector(".stickyfooter").style.visibility="hidden";
+      addButtonHidden = true;
+    }
+  });
+  // Do not process results any further when Add Entry button was hidden.
+  if (addButtonHidden) {
+    const p1 = parseInt(document.querySelector('table.plain-results td').innerHTML);
+    const p2 = parseInt(document.querySelectorAll('table.plain-results td')[1].innerHTML);
+    const p3 = parseInt(document.querySelectorAll('table.plain-results td')[2].innerHTML);
+    document.getElementsByClassName('choice-results')[0].innerHTML= `
+    <div>Selected in your Group</div>
+    <div>1. ${getChoiceName(p1)}</div>
+    <div>2. ${getChoiceName(p2)}</div>
+    <div>3. ${getChoiceName(p3)}</div>
+    `;
+    return;
+  }
+  const factor = [ 3, 2, 1 ]; // Weight factor.
+  const projects = []; // Collect here all projects with votes from each group.
+  for (const c of choices) {
+    // Create an array of three elements (first, second, third choice) and hold group name there.
+    projects.push([ [], [], [] ]);
+  }
+  // Store here groups that are finally assigned to a project, e.g. their accepted choice.
+  const selectedProjects = [];
+  const selectedGroups = [];
+  // Store processed group names here to avoid counting more than one votes for a group.
+  const groupsdone = [];
+  const rows = document.querySelectorAll('table.plain-results tr');
+  for (let i = 0; i < rows.length; i++) {
+    const g = rows[i].querySelectorAll('td')[3].innerHTML.trim();
+    if (groupsdone.includes(g)) {
+      console.log(`Group ${g} has been counted already, no double votes.`);
+      continue; 
+    }
+    groupsdone.push(g);
+    // When the project has not been choosen, take the prefered choice for the group.
+    const p1 =  parseInt(rows[i].querySelector('td').innerHTML);
+    if (typeof(selectedProjects[p1]) === 'undefined') {
+      selectedProjects[p1] = [g, 'First choice'];
+      selectedGroups.push(g);
+      continue;
+    }
+    // Store all choices of this group, because there first choice has been taken by someone else.
+    const p2 = parseInt(rows[i].querySelectorAll('td')[1].innerHTML);
+    const p3 = parseInt(rows[i].querySelectorAll('td')[2].innerHTML);
+    // Push the group name to each project at the correct valued position.
+    projects[p1][0].push(g);
+    projects[p2][1].push(g);
+    projects[p3][2].push(g);
+  }
+  // Run over all second and third choices and assign these to the group, if possible.
+  [1, 2].forEach(c => {
+    for (let i = 0; i < choices.length; i++) {
+      if (typeof(selectedProjects[i]) === 'undefined') {
+        while (projects[i][c].length > 0) { 
+          const g = projects[i][c].shift();
+          if (selectedGroups.includes(g)) continue;
+          selectedProjects[i] = [g, ((c === 1) ? 'Second' : 'Third' ) + ' choice'];
+          selectedGroups.push(g);
+        }
+      }
+    }
+  });
+  // We still might have groups that have no assigned project yet, assign any project
+  // that is still available but was not choosen by the group.
+  for (const g of groupsdone) {
+    if (!selectedGroups.includes(g)) {
+      for (let i = 0; i < choices.length; i++) {
+        if (typeof(selectedProjects[i]) === 'undefined') {
+          selectedProjects[i] = [g, 'Leftover assignment'];
+          selectedGroups.push(g);
+          break;
+        }
+      }
+    }
+  }
+  let htmlres = '<table><tr><th>Project</th><th>Group</th><th>Reason</th></tr>';
+  for (let i = 0; i < choices.length; i++) {
+    htmlres += `<tr><td>${choices[i]}</td>`;
+    if (typeof(selectedProjects[i]) !== 'undefined') {
+      htmlres += `<td>${selectedProjects[i][0]}</td><td>${selectedProjects[i][1]}</td>`;
+    } else {
+      htmlres += '<td></td><td></td>';
+    }
+    htmlres += '</tr>';
+  }
+  htmlres += '</table>';
+  document.getElementsByClassName('choice-results')[0].innerHTML= htmlres;
+});
+</script>

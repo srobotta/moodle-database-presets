@@ -1,0 +1,46 @@
+<div id="defaulttemplate-single" class="my-5">
+    <div class="defaulttemplate-single-body my-5">
+        <div class="row my-6">
+            <div class="col-auto">##userpicture##</div>
+            <div class="col">
+                <div class="row h-100">
+                    <div class="col-3 align-self-center">
+                        ##user##<br/><span class="data-timeinfo">##timeadded##</span>
+                    </div>
+                    <div class="col-4 col-md-6 text-right align-self-center data-timeinfo">
+                        <span class="font-weight-bold ">Zuletzt bearbeitet&nbsp;</span>##timemodified##
+                    </div>
+                    <div class="col-4 col-md-3 ml-auto align-self-center d-flex flex-row-reverse">
+                        <div>##actionsmenu##</div>
+                        <div class="ml-auto my-auto ##approvalstatusclass##">##approvalstatus##</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr/>
+
+            <div class="mt-4 row">
+                <div class="col-2 font-weight-bold">[[choice_first#description]]</div>
+                <div class="col-8 [[choice_first#name]]"></div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-2 font-weight-bold">[[choice_second#description]]</div>
+                <div class="col-8 [[choice_second#name]]"></div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-2 font-weight-bold">[[choice_third#description]]</div>
+                <div class="col-8 [[choice_third#name]]"></div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-2 font-weight-bold">[[group#description]]</div>
+                <div class="col-8">[[group]]</div>
+            </div>
+    </div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelector('div.choice_first').innerHTML = getChoiceName([[choice_first]]);
+  document.querySelector('div.choice_second').innerHTML = getChoiceName([[choice_second]]);
+  document.querySelector('div.choice_third').innerHTML =  getChoiceName([[choice_third]]);
+});
+</script>

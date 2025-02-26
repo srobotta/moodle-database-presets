@@ -1,0 +1,47 @@
+<div id="defaulttemplate-addentry">
+  <div class="input-fields"></div>
+  <input type="hidden" class="groupname" name="[[group#id]]" id="[[group#id]]" value=""/>
+  <input type="hidden" class="choice_first" name="[[choice_first#id]]" id="[[choice_first#id]]" value=""/>
+  <input type="hidden" class="choice_second" name="[[choice_second#id]]" id="[[choice_second#id]]" value=""/>
+  <input type="hidden" class="choice_third" name="[[choice_third#id]]" id="[[choice_third#id]]" value=""/>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const g = document.querySelector('div.groupselector').innerHTML;
+  const group = g.substring(g.indexOf(':') + 1).trim();
+  document.querySelector('input.groupname').setAttribute('value', group);
+  document.querySelector('div[class="input-fields"]').innerHTML = displayChoices();
+  document.querySelectorAll('select[name^=choices]').forEach((s) => {
+    s.addEventListener('change', (e) => {
+      const selectedVals = Array.from(
+        document.getElementById('defaulttemplate-addentry').querySelectorAll('option:checked')
+      ).map(o => o.value).filter(o => o != '');
+      const selections = document.querySelectorAll('select[name^=choices]');
+      for (sel of selections) {
+        if (e === sel) continue;
+        for (option of sel.options) {
+          if (option.selected) continue;
+          option.disabled = selectedVals.includes(option.value) && option.value != '';
+        }
+      }
+    });
+  });
+  document.getElementById('sticky-footer').querySelectorAll('input[type="submit"]')
+  .forEach((e) => {
+    e.addEventListener('click', (e) => {
+      Array.from(document.querySelectorAll('input[class^="choice_"]'))
+      .forEach(e => e.setAttribute('value', ''));
+      document.getElementById('defaulttemplate-addentry')
+      .querySelectorAll('option:checked')
+      .forEach((option) => {
+        if (option.value === '') return;
+        const input = document.querySelector(`input[class="${option.value}"]`);
+        if (input) {
+          input.setAttribute('value', option.parentElement.getAttribute('name')
+          .replace('choices[', '').replace(']', ''));
+        }
+      });
+    });
+  });
+});
+</script>

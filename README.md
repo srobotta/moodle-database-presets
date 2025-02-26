@@ -109,6 +109,14 @@ List the dataset in an HTML table that can be sorted ascending or descending by 
 Download link:
 <a href="table-multisort.zip" download="table-multisort.zip">table-multisort.zip</a>
 
+### [Project selection for student groups](project-group-select)
+
+This dataset is for a project selection in student groups. From a list of projects one
+member of each group may add one entry to set 3 choices with preference for a project
+from a list. At the end for each group one project should be assigned.
+Download link:
+<a href="project-group-select.zip" download="project-group-select.zip">project-group-select.zip</a>
+
 ## Installation
 
 Any of these examples can be installed in your Moodle installation in the
