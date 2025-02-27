@@ -39,8 +39,9 @@ groups first in your course so that this setting may take effect.
 
 ![Group settings](common-module-settings.png "Group settings")
 
-Note: this preset works with **one** group for each stundent only. Also, the "sepatate goup" mode must be used. Otherwise, the group name cannot be scrapped from the page when adding
-an entry.
+Note: this preset works with **one** group for each stundent only. Also, the
+"sepatate goup" mode must be used. Otherwise, the group name cannot be scrapped from
+the page when adding an entry.
 
 ### Setup of the projects
 
@@ -78,6 +79,9 @@ handled the same way. If a group is still without project assignment, then a ran
 assignment of the next "free" project is done. Because the selection is not transparent at
 the page itself, behind each assignment is a label that explains the reason, why this
 project assignment was done.
+
+Because the sort order by default is ascending by entry added, the groups that have send
+their choice earlier are also the first ones assigned for a project.
 
 The teacher still has the chance to export the dataset as CSV or Excel in order to look
 at the plain values submitted by each group.

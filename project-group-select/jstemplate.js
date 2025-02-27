@@ -1,3 +1,4 @@
+// List of project names. Once you have entries, do not change the sequence of the values.
 const choices = [
   "Project 1",
   "Project 2",
@@ -26,14 +27,29 @@ const choices = [
   "Project 25",
   "Project 26"
 ];
+// Strings that are used at the templates.
+const STR = {
+  "reason_1": "Most preferred",
+  "reason_2": "Second preferred",
+  "reason_3": "Least preferred",
+  "reason_random": "Randomly assigned",
+  "select_1": "1st choice",
+  "select_2": "2nd choice",
+  "select_3": "3rd choice",
+  "selected_by_group": "Selected by your group",
+  "th_project": "Project",
+  "th_group": "Group",
+  "th_reason": "Reason",
+};
+// Template for the Add new entry template.
 const TMPL_INPUT_ENTRY = `
 <div class="row align-items-center h-100">
   <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 mx-auto">
     <select name="choices[{num}]" class="custom-select">
       <option value="">Please choose</option>
-      <option value="choice_first">1st choice</option>
-      <option value="choice_second">2nd choice</option>
-      <option value="choice_third">3rd choice</option>
+      <option value="choice_first">${STR.select_1}</option>
+      <option value="choice_second">${STR.select_2}</option>
+      <option value="choice_third">${STR.select_3}</option>
     </select>
   </div>
   <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6 mx-auto">
@@ -42,6 +58,10 @@ const TMPL_INPUT_ENTRY = `
 </div>
 `;
 
+/**
+ * Display the list of all projects with a selection in front of the project name.
+ * @return {String}
+ */
 function displayChoices() {
   let html = '';
   let num = 0;
@@ -53,31 +73,11 @@ function displayChoices() {
   }
   return html;
 };
+/**
+ * Display the name of a project, based on the index.
+ * @param {Number} val
+ * @return {String}
+ */
 function getChoiceName(val) {
   return choices[val] ? choices[val] : val;
 }
-async function hasGroupEntry() {
-    const m = window.location.href.match(/id=(\d+)/);
-    if (m) {
-      fetch('/mod/data/view.php?id=' + id).then(function (response) {
-        if (response.ok) {
-          const res = response.text();
-          const s = res.indexOf('<table class="plain-results hidden"');
-          if (s > -1) {
-            const t = res.indexOf('</table>', s);
-            if (t > -1) {
-              const snippet = res.substring(s, t - s);
-              if (snippet.indexOf('<tr>') > -1) {
-                return true;
-              }
-            }
-          }
-          return false;
-        }
-        throw response;
-      }).then(function (text) {
-        console.log(text);
-      });
-    }
-    return false;
-  }
