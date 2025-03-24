@@ -31,36 +31,40 @@ document.addEventListener('DOMContentLoaded', function() {
     projects.push([ [], [] ]);
   }
   // Store here groups that are finally assigned to a project, e.g. their accepted choice.
+  // The array looks like: [project number => [group name => reason]] 
   const selectedProjects = [];
+  // Store here all groups (array of group names) that have been assigned a project.
   const selectedGroups = [];
-  // Store processed group names here to avoid counting more than one votes for a group.
+  // Store processed group names here to avoid counting more than one vote for a group.
   const groupsdone = [];
   const rows = document.querySelectorAll('table.plain-results tr');
   for (let i = 0; i < rows.length; i++) {
+    // Fetch group name.
     const g = rows[i].querySelectorAll('td')[3].innerHTML.trim();
     if (groupsdone.includes(g)) {
       console.log(`Group ${g} has been counted already, no double votes.`);
       continue; 
     }
-    groupsdone.push(g);
-    // When the project has not been choosen, take the prefered choice for the group.
+    groupsdone.push(g); // Make sure that one group can make one entry only.
+    // When the project has not been choosen, take the prefered 1st choice for the group.
     const p1 =  parseInt(rows[i].querySelector('td').innerHTML);
     if (typeof(selectedProjects[p1]) === 'undefined') {
       selectedProjects[p1] = [g, STR.reason_1];
       selectedGroups.push(g);
       continue;
     }
-    // Store all choices of this group, because there first choice has been taken by someone else.
+    // Store 2n and 3rd choice of this group, because the 1st choice has been taken by someone else.
     const p2 = parseInt(rows[i].querySelectorAll('td')[1].innerHTML);
     const p3 = parseInt(rows[i].querySelectorAll('td')[2].innerHTML);
     // Push the group name to each project at the correct valued position.
     projects[p2][0].push(g);
     projects[p3][1].push(g);
   }
-  // Run over all second and third choices and assign these to the group, if possible.
+  // Run over all 2nd [0] and 3rd choices [1] and assign these to the group, if possible.
   [0, 1].forEach(c => {
     for (let i = 0; i < choices.length; i++) {
       if (typeof(selectedProjects[i]) === 'undefined') {
+        // The project is not yet selected, check who has it as a 2nd c=0, or  3rd choice c=1
         while (projects[i][c].length > 0) { 
           const g = projects[i][c].shift();
           if (selectedGroups.includes(g)) continue;
