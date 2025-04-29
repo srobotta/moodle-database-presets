@@ -6,6 +6,8 @@ other resources. The questions
 deal with some custom requirement that in most cases can be achieved easily with some
 code or configuration. 
 
+[[_TOC_]]
+
 ### Delete all entries at once
 
 To delete all entries at once is not possible by default. However, in the *List view template*
@@ -206,3 +208,51 @@ if (alert) alert.remove();
 This checks for the red container with the warning message and, incase it's found, it
 will remove it. Because of the limiting `div[role="main"]` the correct container should
 be found and any other container of the same type should remain unchanged.
+
+### Link to entry
+
+In the list view, you might want a link to the single view of an entry. This is especially
+useful when you display a few field values in the list view, and have all the
+field values displayed in the single view only.
+
+In the list view template in the Repeated entry block you may use:
+
+1. Generic link: `##more##`
+2. Custom build link `<a href="/mod/data/view.php?d=XXX&rid=##id##">Entry</a>`
+
+The first variant is the easiest way. That gives you a lense icon with a + in it.
+
+The second variant lets you define the link more detailed. The `d` parameter with XXX
+stands for the database activity id. You can derive the number from an existing link
+e.g. the list view. Whenever you copy the preset/import the preset in another database
+activity, this ID needs to be adjusted.
+
+You may also build the custom link dynamically by using:
+
+```
+<a class="db-link-entry" href="/mod/data/view.php?d=~~__D__~~&rid=##id##">Entry</a></li>
+```
+
+In the Footer of the List view template the following Javascript snippet  must be added
+that replaces the pattern with the correct database id.
+
+```
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const p = /(\?|&)d=(\d+)/;
+        let m = window.location.href.match(p);
+        if (!m) {
+           const i = document.querySelector('input[name="d"]')
+           if (i) {
+               m = [0, 0, i.getAttribute('value')];
+           }
+        }
+        if (m) {
+            document.querySelectorAll('.db-link-entry')
+            .forEach((e) => {
+                e.setAttribute('href', e.getAttribute('href').replace('~~__D__~~', m[2]));
+            });
+        }
+    });
+</script>
+```
