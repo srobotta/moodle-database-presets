@@ -1,0 +1,19 @@
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const p = /(\?|&)d=(\d+)/;
+        let m = window.location.href.match(p);
+        if (!m) {
+           const i = document.querySelector('input[name="d"]')
+           if (i) {
+               m = [0, 0,  i.getAttribute('value')];
+           }
+        }
+        if (m) {
+            document.querySelectorAll('.db-link-entry')
+            .forEach((e) => {
+                e.setAttribute('href', e.getAttribute('href').replace('~~__D__~~', m[2]));
+            });
+        }
+    });
+</script>

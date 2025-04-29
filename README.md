@@ -109,6 +109,12 @@ List the dataset in an HTML table that can be sorted ascending or descending by 
 Download link:
 <a href="table-multisort.zip" download="table-multisort.zip">table-multisort.zip</a>
 
+### [Table with Bootstrap](table-with-bootstrap)
+
+List the dataset in an HTML table using the Bootstrap grid.<br/>
+Download link:
+<a href="table-with-bootstrap.zip" download="table-with-bootstrap.zip">table-with-bootstrap.zip</a>
+
 ### [Project selection for student groups](project-group-select)
 
 This dataset is for a project selection in student groups. From a list of projects one
