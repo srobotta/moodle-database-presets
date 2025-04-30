@@ -111,7 +111,8 @@ Download link:
 
 ### [Table with Bootstrap](table-with-bootstrap)
 
-List the dataset in an HTML table using the Bootstrap grid.<br/>
+List the dataset in an HTML table using the Bootstrap grid. The example in this set tries to
+collect a list of (online) resources, than can be expanded and commented by students.<br/>
 Download link:
 <a href="table-with-bootstrap.zip" download="table-with-bootstrap.zip">table-with-bootstrap.zip</a>
 

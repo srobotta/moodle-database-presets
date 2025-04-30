@@ -3,11 +3,19 @@
 This preset shows the demonstration of a table in the list view. The table is build
 from divs, using the column grid to build a table.
 
+The original use case was a collection of materials, either online, referred by a link
+or uploaded via a file. Therefore, the set offers a list of categories, where the item
+might fit into, a description, a link and/or a file, containing the information. The idea
+is that the class collaboratively collects information into a list.
+
 <div style="margin: 0 25%;">
 
 ![List view](list-view.png "List view with table")
 
 </div>
+
+Before using this, the categories need to be adapted, depending on the type of information
+that is beeing collected.
 
 ### Technical details
 
