@@ -6,8 +6,6 @@ other resources. The questions
 deal with some custom requirement that in most cases can be achieved easily with some
 code or configuration. 
 
-[[_TOC_]]
-
 ### Delete all entries at once
 
 To delete all entries at once is not possible by default. However, in the *List view template*
@@ -44,6 +42,16 @@ In this case do the following:
 * Never approve any entry as a teacher.
 
 Link: https://moodle.org/mod/forum/discuss.php?d=443555
+
+### Student does not see the add entry button
+
+If a student does not see the "Add entry" button at the bottom then check the following:
+1. The activity is set up in group mode but the student is not in a group.
+1. The student did already add an entry and the limit of allowed entries has been reached.
+1. The user has not the capability to add entries (`mod/data:writeentry`). Change
+this in the Database navigation > More > Permissions and also in the Course navigation > Participants > Permissions.
+
+Link: https://moodle.org/mod/forum/discuss.php?d=468041
 
 ### Rating should also be possible for students
 
