@@ -145,10 +145,10 @@ of the database activity. This data can be stored elsewhere (e.g. public availab
 such as wikipedia etc.) and then referred by the URL inside the template.
 
 If you do not want to rely on external resources you also have the chance to upload
-the data into the Moodle course itself. What I find useful, is to create a new
+the data into the Moodle course itself. What I recommend is to create a new
 file resource, upload the file there and then use the preview link of that file inside
-the template. In order to hide the resource from general access, I created an
-additional section which is invisible in the course. The uploaded files would be
+the database template. In order to hide the resource from general access, I created an
+additional (sub)section which is invisible in the course. The uploaded files would be
 invisible as well, however you can make them accessible even they do not show up
 in the course overview.
 
