@@ -33,6 +33,12 @@ from the [`dataset.csv`](dataset.csv) file and import this dataset. The
 delimiter of the data is the semicolon, that must be properly adjusted at
 the import page.
 
+The [geojson file](assets/ch_outline.geojson) that describes the border of Switzerland
+is also included in this repository, in the assets folder. The example works without
+installing it because the database Javascript template references the geojson in this repo
+directly. You may also download the file to your server and upload it into your Moodle as
+a file recource and uses that link inside the database template.
+
 ## Credits
 
 The dataset with the list of places has been taken from [Geonames](https://www.geonames.org)
