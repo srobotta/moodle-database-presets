@@ -165,6 +165,8 @@ attach the custom function to the click event.
 
 Link: https://moodle.org/mod/forum/discuss.php?d=455247
 
+See also: [Embed PDF directly in webpage](FAQ.md#embed-pdf-directly-in-webpage)
+
 ### New entry is not saved
 
 It may happen that a new entry is not saved when you hit the save
@@ -264,3 +266,39 @@ that replaces the pattern with the correct database id.
     });
 </script>
 ```
+
+### Embed PDF directly in webpage
+
+With the field type `file` the user can upload files. Normally the field content is
+replaced by an icon with the file type and the link to the file directly. When the user
+clicks on it, the file is downloaded.
+
+Assuming that the file type field is named *pdf*, then the *Single view template* can be
+extended with the following code block at the bottom:
+
+```
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const a = document.querySelector("#defaulttemplate-single a.data-field-link");
+    if (a) {
+      const href = a.getAttribute('href');
+      if (href && href.substr(-4).toLowerCase() === '.pdf' ) {
+        const embed = document.createElement('embed');
+        embed.setAttribute('width', '500');
+        embed.setAttribute('height', '375');
+        embed.setAttribute('src', href);
+        embed.setAttribute('type', 'application/pdf');
+        a.replaceWith(embed);
+      }
+    }
+  });
+</script>
+```
+
+This checks for the anchor element in the single view template and replaces it with an embed
+element that displays the PDF directly embedded into the page. With and height can be adjusted
+to your needs.
+
+Link: https://moodle.org/mod/forum/discuss.php?d=468906
+
+See also: [Do not automatically download files of the field type file](FAQ.md#do-not-automatically-download-files-of-the-field-type-file)
