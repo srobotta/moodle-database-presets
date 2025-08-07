@@ -11,6 +11,13 @@ plugin for Wordpress and adapted to be generic for the database activity in Mood
 
 </div>
 
+To get to that table view, the fist click is done on the column currency to sort the
+entries by currency in ascending order. This makes all Euro countries show up first.
+The second click is done on the country column that sorts the countries in ascending
+order. The third click is again done on the country column to reverse the order to
+descending. A country with a currency not being the Euro is not shown here in the
+screenshot because it appears at the bottom of the list.
+
 ### Technical details
 
 The *List view template* is modified. The datasets are written as HTML to the page.
