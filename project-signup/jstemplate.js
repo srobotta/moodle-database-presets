@@ -26,7 +26,7 @@ const dbPresetLangStr = {
     "email": "E-Mail",
     "applicants": "Bewerber"
   },
-}
+};
 document.addEventListener('DOMContentLoaded', () => {
   let lang = navigator.language || navigator.userLanguage;
   lang = 'xx'; // Remove this line, if you prefer to use the browser language.
