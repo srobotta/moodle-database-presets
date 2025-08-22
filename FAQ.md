@@ -302,3 +302,107 @@ to your needs.
 Link: https://moodle.org/mod/forum/discuss.php?d=468906
 
 See also: [Do not automatically download files of the field type file](FAQ.md#do-not-automatically-download-files-of-the-field-type-file)
+
+### Use dates in a database field set
+
+While there is a special date field type in the database activity, the support is not optimal.
+One of the issues is that when the field is optional and you don't select a date, it uses the
+preselect values. Also, it doesn't come with a nice datepicker.
+
+Therefore, I recommend using a short text field for date strings or even a number field when
+storing timestamps. The following approach makes use of the short text field to store a date
+string in the form of YYYY-MM-DD and optional with the time. The advantage is also that the
+sort order can be easily done by this field.
+
+#### Date input
+
+In the *Add entry template* wrap the date field placeholder with an html element that
+makes it easy to select the input field later. I have choosen something like this:
+
+```
+<div class="date-field">[[date]]</div>
+```
+
+assuming that my field is called `date`.
+
+At the bottom of the *Add entry template* add the following code:
+
+```
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+window.document.addEventListener("DOMContentLoaded", (event) => {
+  // Add the flatpickr stylesheet if it is not already there.
+  if(!document.getElementById('flatpickr_css')) {
+    var link = document.createElement('link');
+    link.id = 'flatpickr_css';
+    link.rel = 'stylesheet';
+    link.href = 'https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css';
+    document.head.appendChild(link);
+  }
+  flatpickr('.date-field input');
+});
+</script>
+```
+
+This snippet makes use of the [flatpickr library](https://flatpickr.js.org/) that adds a nice
+date picker element when focusing the date field, and also puts the correct string in it.
+
+If you also need the time, the last line can be adjusted to `flatpickr('.date-field input', {enableTime: true});`.
+See the website for all options you can set there. Also, here you note why we needed the little
+change about wrapping the input field. That makes it a lot easier to select that input field only.
+
+#### Date output
+
+Without changing anything on the output templates, the dates are displayed as they are
+stored in the system. This is in the form of `YYYY-MM-DD` a partial ISO string.
+
+In case you want a nice output instead of the ISO string like `2025-09-25`, you must add some
+changes to the *Single view template* and the *List view template*.
+
+Whereever the `[[date]]` placeholder is, wrap it with an HTML element, so that inside that
+element the field value is contained only (e.g. the plain date iso string). By default the
+placeholder is already inside a html element. Therefore, I just added a class `date-field-out`
+to let it look like the following in the *Single view template*:
+
+```
+<p class="mt-2 date-field-out">[[date]]</p>
+```
+
+The *List view template* looks like this:
+
+```
+ <div class="col-8 col-lg-9 ms-n3 date-field-out">[[date]]</div>
+```
+
+At the bottom of the *Single view template* and in the Footer box of the *List view template* the
+following code can be placed:
+
+```
+<script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+<script>
+window.document.addEventListener('DOMContentLoaded', (event) => {
+  const nodes = document.querySelectorAll('.date-field-out');
+  for (let i = 0; i < nodes.length; i++) {
+    const value = nodes[i].innerHTML;
+    if (value.trim().length > 0) {
+      nodes[i].innerHTML = dayjs(value).format('MMMM D, YYYY');
+    }
+  }
+});
+</script>
+```
+
+The javascript loads the [day.js](https://day.js.org/) library, reads the YYYY-MM-DD date content
+(which is inside the elements that contain the `date-field-out` class) and reformats the value
+to the given format.
+
+If you need the time information as well, add it to the format string, e.g. like this `MMMM D, YYYY h:mm A [hrs]`.
+The string in the sqare brackets is escaped. A value `2025-08-12 15:30` would be transformed into
+`August 12, 2025 3:30 PM hrs`.
+ 
+One thing to watch out when using dates, is the timezone and daylight savings time. For this proof of concept I
+didn't check any of these issues, but you should be aware of it and may change the code a bit. The mentioned
+libraries support timezones etc., while the plain Date object within javascript treats everything as UTC
+and you would have to calculate the correct hour on your own.
+
+Link: https://moodle.org/mod/forum/discuss.php?d=469483
