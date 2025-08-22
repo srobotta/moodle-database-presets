@@ -20,9 +20,6 @@ do
   fi
 
   zipfile="${dir:0:-1}.zip"
-  if [ -e "$zipfile" ]; then
-    rm $zipfile
-  fi
 
   cd $dir
   zip $zipfile  \
@@ -39,6 +36,16 @@ do
     singletemplate.html
 
   cd ..
-  mv ${dir}${zipfile} .
+
+  oldsum=''
+  if [ -e "$zipfile" ]; then
+    oldsum=$(md5sum $zipfile | cut -d ' ' -f1)
+  fi
+  newsum=$(md5sum ${dir}${zipfile} | cut -d ' ' -f1)
+  if [[ "$newsum" == "$oldsum" ]]; then
+    rm ${dir}${zipfile}
+  else
+    mv ${dir}${zipfile} .
+  fi
 
 done
