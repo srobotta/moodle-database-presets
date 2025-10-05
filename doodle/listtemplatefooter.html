@@ -1,0 +1,41 @@
+const answer = allOptions.split(/\n/).reduce(
+    (obj, opt) => {
+        opt = opt.trim();
+        if (!opt) return obj;
+        obj[opt] = ++obj[opt] || 1;
+        return obj;
+    }, {}
+);
+
+const maxVotes = Object.entries(answer).map(v => v[1]).sort().pop();
+
+/* Order by number of selected option, descending */
+const orderedCnt = Object.fromEntries(
+    Object.entries(answer).sort(([, a], [, b]) => b - a)
+);
+
+/* Order chronologically by date */
+// Function to strip suffixes (st, nd, rd, th) from dates.
+// Must be adapted when your date format is different.
+function cleanDateString(dateStr) {
+  return dateStr.replace(/(\d+)(st|nd|rd|th)/, "$1");
+}
+const ordered = Object.fromEntries(
+  Object.entries(answer).sort(([a], [b]) => {
+    const dateA = new Date(cleanDateString(a));
+    const dateB = new Date(cleanDateString(b));
+    return dateA - dateB;
+  })
+);
+
+const resultDiv = document.querySelector('div.doodle-result-table');
+for (const [item, count] of Object.entries(orderedCnt)) {
+    const container = document.createElement('div');
+    container.classList.add("row");
+    if (count === maxVotes) {
+      container.classList.add("most-votes");
+    }
+    container.innerHTML = `<div class="col-4 text-right">${item}</div><div class="col-1">${count}</div>`;
+    resultDiv.appendChild(container);
+};
+</script>

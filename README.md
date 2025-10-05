@@ -120,9 +120,17 @@ Download link:
 
 This dataset is for a project selection in student groups. From a list of projects one
 member of each group may add one entry to set 3 choices with preference for a project
-from a list. At the end for each group one project should be assigned.
+from a list. At the end for each group one project should be assigned.<br/>
 Download link:
 <a href="project-group-select.zip" download="project-group-select.zip">project-group-select.zip</a>
+
+### [Doodle like selections](doodle)
+
+This preset is intented to find a possible common date or other item from a list of choices.
+The options are listed with checkboxes and the user select all suitable or preferred options. On
+the result page, the list of choices with the collected votes is displayed.<br/>
+Download link:
+<a href="doodle.zip" download="doodle.zip">doodle.zip</a>
 
 ## Installation
 
@@ -137,6 +145,13 @@ Before you see anything, start creating a few entries or import a sample dataset
 
 Detailed instructions how templates should be applied to fit your needs are described
 at each readme file inside the subdirectory of the preset.
+
+## List view for the content to be displayed
+
+Most of these presets make the use of the list view by aggerating the data in a different way.
+Therefore, it's important when viewing the List view, to include all data by changing the parameter
+`perpage` and exceed it to the maximum that can be displayed (1000 entries). More details can be
+found in the FAQ at [Show the advanced search by default and predefine settings](FAQ.md#show-the-advanced-search-by-default-and-predefine-settings).
 
 ## Additional data in templates
 

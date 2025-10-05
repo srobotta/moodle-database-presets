@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<preset>
+
+<description/>
+
+<settings>
+<intro>&lt;p&gt;Please choose the possible days that you'd prefer for for excursion to take place.&lt;/p&gt;</intro>
+<comments>0</comments>
+<requiredentries>0</requiredentries>
+<requiredentriestoview>0</requiredentriestoview>
+<maxentries>1</maxentries>
+<rssarticles>0</rssarticles>
+<approval>0</approval>
+<manageapproved>1</manageapproved>
+<defaultsortdir>0</defaultsortdir>
+<defaultsort>0</defaultsort>
+</settings>
+
+<field>
+<type>checkbox</type>
+<name>list_of_choices</name>
+<description>Appointments</description>
+<required>1</required>
+<param1>Monday, Oct 27th 2025
+Wednesday, Oct 29th 2025
+Tuesday, Nov 4th 2025
+Thursday, Nov 6th 2025</param1>
+</field>
+
+</preset>
