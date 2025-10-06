@@ -109,7 +109,7 @@ If your data items look like this:
 
 then creating the date string is a bit more complicated. The string `25.02.2026 11-12 am`
 needs to be converted into `2026-02-25 11:00:00` from which a date object can be created.
-Here, only the first hour when the appoinment starts, is used. The `cleanDateString()`
+Here, only the first hour is used, when the appoinment starts. The `cleanDateString()`
 function looks like the following:
 
 ```
@@ -137,7 +137,7 @@ The rest of the code is the same as above.
 If you simply have items that need to be ordered alphabetically then the
 ordering is much easier. It follows the principle of the ordering by votes,
 only that when converting the object into an array, the first element
-needs to be compated, and the ordering is ascending.
+needs to be compared, and the order is ascending.
 
 ```
 const ordered = Object.fromEntries(
@@ -157,8 +157,11 @@ Also, adaptions to the code must be done.
 
 </div>
 
-Using the values from the field definition of `list_of_choices` from this preset, then
-the *List view template* must be adjusted like explained in the following sections.
+In this screeshot all options have been used. However, you still would see all options even
+if one was never selected by a user. The checkboxes are then all unchecked.
+
+Using the values from the field definition of `list_of_choices` from this preset, the
+*List view template* must be adjusted like explained in the next sub sections.
 
 #### List view template Header
 
@@ -173,10 +176,10 @@ the *List view template* must be adjusted like explained in the following sectio
   </div>
 ```
 
-The dates inside the div must exacly the same values as in the field definition (no additional
+The dates inside the div must be exacly the same values as in the field definition (no additional
 space etc.). The class name `col-2` must be adapted, if you have a different number of option
 values. This is basically a grid of 12 columns, the first div with `col-4` holds the user name,
-the other 4 div elements with `col-2` spans over the remaining 8 columns (2 * 4 = 8).
+the other 4 div elements with `col-2` span over the remaining 8 columns (2 * 4 = 8).
 
 Instead of the class names, you may also use a percentage with but then must set some additional
 style properties so that the div elements appear as columns.
