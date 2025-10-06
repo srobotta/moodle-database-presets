@@ -13,9 +13,26 @@ things as well.
 This example works with a list of dates, to select the most suitable day for an event. Each
 student can make one entry only. However, the student may change the selected options.
 
-The *List view template* collects all data and summarizes the votes for each option. Note:
-only selected options appear in the list, if one item was not choosen by any of the
-participants, it will not show up at all.
+The *List view template* collects all data and summarizes the votes for each option.
+
+The settings must be set that each student is allowed to add one entry only. Approval is not
+needed and the results could be shown immediately. This is pretty much the same behaviour
+as in the original Doodles. Also, the participants have the change to delete their entry and
+reenter a new one.
+
+<div style="margin: 0 25%;">
+
+!["Settings"](settings.png "Database settings for the entries")
+
+</div>
+
+You might change the "Entries required before viewing" to 1, then the student must provide
+a selection first before viewing all the votes.
+
+This example contains a description and the checkbox is set to display the description in
+the course. The description contains a sentence, what the selection is good for. Unfortunately
+when adding an entry, this description is not shown. Therefore, you must add one or two sentences
+manually in the template above the placeholder that displays the option list.
 
 ### Field type
 
@@ -41,7 +58,7 @@ for (const [item, count] of Object.entries(orderedCnt)) {
 
 needs to be changed to use `ordered` from the chonological sorting above.
 
-Note: only the selected options appear in the list of votes. Options that have not been selected
+**Note:** only the selected options appear in the list of votes. Options that have not been selected
 by any of the participants, do not appear in the list. This is unlike the original Doodle where
 all options are displayed.
 
@@ -124,7 +141,7 @@ needs to be compated, and the ordering is ascending.
 
 ```
 const ordered = Object.fromEntries(
-    Object.entries(answer).sort(([a,], [b,]) => a - b)
+  Object.entries(answer).sort(([a,], [b,]) => a - b)
 );
 ```
 
@@ -148,11 +165,11 @@ the *List view template* must be adjusted like explained in the following sectio
 ```
 <div class="doodle-result-table">
   <div class="row">
-    <div class="col-4"> </div>
-    <div class="col-2 text-center bold option-value">Monday, Oct 27th 2025</div>
-    <div class="col-2 text-center bold option-value">Wednesday, Oct 29th 2025</div>
-    <div class="col-2 text-center bold option-value">Tuesday, Nov 4th 2025</div>
-    <div class="col-2 text-center bold option-value">Thursday, Nov 6th 2025</div>
+    <div class="col col-4"> </div>
+    <div class="col col-2 text-center bold option-value">Monday, Oct 27th 2025</div>
+    <div class="col col-2 text-center bold option-value">Wednesday, Oct 29th 2025</div>
+    <div class="col col-2 text-center bold option-value">Tuesday, Nov 4th 2025</div>
+    <div class="col col-2 text-center bold option-value">Thursday, Nov 6th 2025</div>
   </div>
 ```
 
@@ -168,12 +185,20 @@ style properties so that the div elements appear as columns.
 
 ```
 <div class="row">
-    <div class="col-4 user" data-selected="[[list_of_dates]]">##user##</div>
-    <div class="col-2 text-center"><input type="checkbox" name="id_##id##-1" value="1" disabled="1"/></div>
-    <div class="col-2 text-center"><input type="checkbox" name="id_##id##-2" value="1" disabled="1"/></div>
-    <div class="col-2 text-center"><input type="checkbox" name="id_##id##-3" value="1" disabled="1"/></div>
-    <div class="col-2 text-center"><input type="checkbox" name="id_##id##-4" value="1" disabled="1"/></div>
+  <div class="col col-4 user" data-selected="[[list_of_dates]]">##user##</div>
+  <div class="col col-2 text-center">
+    <input type="checkbox" name="id_##id##-1" value="1" disabled="1"/>
   </div>
+  <div class="col col-2 text-center">
+    <input type="checkbox" name="id_##id##-2" value="1" disabled="1"/>
+  </div>
+  <div class="col col-2 text-center">
+    <input type="checkbox" name="id_##id##-3" value="1" disabled="1"/>
+  </div>
+  <div class="col col-2 text-center">
+    <input type="checkbox" name="id_##id##-4" value="1" disabled="1"/>
+  </div>
+</div>
 ```
 
 This is the section that is repated for each entry. Again, important to know is that
@@ -219,9 +244,14 @@ document.querySelectorAll('.doodle-result-table .user').forEach((e) => {
 // Get the maximum votes from the counter object.
 const maxVotes = Object.entries(counter).map(v => v[1]).sort().pop();
 // Mark all column header that have the maximum votes.
-for (const e of optionElements) {
-  if (counter[e.innerHTML] === maxVotes) { 
-    e.style.backgroundColor = '#90ee90';
+for (let i = 0; i < optionElements.length; i++) {
+  if (counter.hasOwnProperty(optionElements[i].innerHTML) &&
+    counter[optionElements[i].innerHTML] === maxVotes
+  ) {
+    document.querySelectorAll('.doodle-result-table > .row > .col:nth-child(' + (i + 2) + ')')
+      .forEach((e) => {
+        e.classList.add('most-votes')
+      });
   }
 }
 </script>
@@ -235,3 +265,29 @@ option.
 
 Finally, the options with the maximum votes are examined, and the column header gets a
 background color set.
+
+#### CSS adaptions
+
+The most voted option should be highlighted in the table. This is done by adding the
+css class `most-votes` to the corresponding elements. The *Custom CSS* template must
+get the following definitions:
+
+```
+.doodle-result-table .row {
+  margin-left: 0;
+}
+.most-votes.option-value {
+  background-color: #90ee90;
+}
+.most-votes.col {
+  border-left: 2px solid #90ee90;
+  border-right: 2px solid #90ee90;
+}
+.row:last-child .most-votes.col {
+  border-bottom: 2px solid #90ee90;
+}
+```
+
+This sets a green backround at the header and sets a border around the column. In
+CSS this means that all div container must get a left and right border and the container
+in the last row must get a bottom border as well.
