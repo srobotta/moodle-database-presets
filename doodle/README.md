@@ -157,7 +157,7 @@ Also, adaptions to the code must be done.
 
 </div>
 
-Using the values from the field definition of `list_of_dates` from this preset, then
+Using the values from the field definition of `list_of_choices` from this preset, then
 the *List view template* must be adjusted like explained in the following sections.
 
 #### List view template Header
@@ -185,7 +185,7 @@ style properties so that the div elements appear as columns.
 
 ```
 <div class="row">
-  <div class="col col-4 user" data-selected="[[list_of_dates]]">##user##</div>
+  <div class="col col-4 user" data-selected="[[list_of_choices]]">##user##</div>
   <div class="col col-2 text-center">
     <input type="checkbox" name="id_##id##-1" value="1" disabled="1"/>
   </div>
