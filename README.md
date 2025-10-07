@@ -153,6 +153,17 @@ Therefore, it's important when viewing the List view, to include all data by cha
 `perpage` and exceed it to the maximum that can be displayed (1000 entries). More details can be
 found in the FAQ at [Show the advanced search by default and predefine settings](FAQ.md#show-the-advanced-search-by-default-and-predefine-settings).
 
+## Bootstrap dependency
+
+Moodle itself uses the [Bootstrap library](https://getbootstrap.com/) for displaying content.
+That also makes it easer to have a responsive website depending on the screen width. Some
+of the presets here use the available bootstrap classes to display the results.
+
+Most of these presets were developed when Bootstrap v4 was included with Moodle. Newer
+versions of Moodle ship with Bootstrap v5. As far as I know the column with classes are
+still the same and therefore, no changes are expected in the output. If that's not the
+case, please fill an issue and I will see that the templates will be fixed.
+
 ## Additional data in templates
 
 Some of the examples use additional data (such as images or json) in the templates
