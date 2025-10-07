@@ -48,9 +48,10 @@ because these do not appear in the result set.
 
 ### Ordering the entries
 
-On the *List view template* the entries can be displayed in an order either by some chronological or
-alphabetic order, or by votes. The latter is the easiest way to display the selected options.
-The current set contains both methods implemented, line 32 of the `listtemplatefooter.html` which reads:
+On the *List view template* the entries can be displayed either by some chronological or
+alphabetic order, or by votes received. The latter is the easiest way to display the selected options.
+The current set contains both methods implemented, with the order by votes as default. If you want
+to sort the entries chronological, then line 32 of the `listtemplatefooter.html` which reads:
 
 ```
 for (const [item, count] of Object.entries(orderedCnt)) {
@@ -68,8 +69,9 @@ makes more sense to put the options into the desired order in the field definiti
 
 ### Chonological ordering entries
 
-When sorting the entries by the item, especially if it's a date, the string somehow must
-be converted into a date. The preset uses the following entries:
+When sorting the entries by the item, especially if it's a date, the string must somehow
+be converted into a date in order to compate the date objects with each other. The preset
+uses the following entries:
 
 ```
 Monday, Oct 27th 2025
@@ -96,6 +98,10 @@ const ordered = Object.fromEntries(
   })
 );
 ```
+
+The `cleanDateString()` function provides a string, that can be used for creating the date
+object. In this case it must remove the suffix from the cardinal numnber e.g. 2nd becomes to
+2. The rest of the string is already ready to be used in a date object. 
 
 If your data items look like this:
 
@@ -147,9 +153,10 @@ const ordered = Object.fromEntries(
 
 ### Show all options in the result
 
-If all options must be shown in the result, then you must change the *List view template*
-manually and add the options from the field definition inside the template as well.
-Also, adaptions to the code must be done.
+If all options must be shown in the result, then the *List view template* needs some more
+profund changes. First, the field definion for the options must be included into the
+template. This is done in the header of the template blocks. In addition, the code
+must be adapted more profundly to make things work.
 
 <div style="margin: 0 25%;">
 
@@ -176,7 +183,7 @@ Using the values from the field definition of `list_of_choices` from this preset
   </div>
 ```
 
-The dates inside the div must be exacly the same values as in the field definition (no additional
+The dates inside the div element must be exacly the same values as in the field definition (no additional
 space etc.). The class name `col-2` must be adapted, if you have a different number of option
 values. This is basically a grid of 12 columns, the first div with `col-4` holds the user name,
 the other 4 div elements with `col-2` span over the remaining 8 columns (2 * 4 = 8).
@@ -205,10 +212,11 @@ style properties so that the div elements appear as columns.
 ```
 
 This is the section that is repated for each entry. Again, important to know is that
-the field values must not contain any special char that can be misinterpreted in an HTLM element attibute.
-Basically spoken, do not use the double quotes.
+the field values must not contain any special char that can be misinterpreted in an HTML element attibute.
+Basically, do not use the double quotes.
 
-Again, if you adjust columns in the header, you must also adjust the class names here.
+Again, if you adjust columns in the header via the `col-X` class, you must also adjust the
+class names here as well.
 
 #### List view template Footer
 
@@ -267,7 +275,7 @@ this preset and most important, sets the checkboxes to checked when the user sel
 option.
 
 Finally, the options with the maximum votes are examined, and the column header gets a
-background color set.
+background color set by adding the css class to the div element.
 
 #### CSS adaptions
 
