@@ -22,7 +22,7 @@ do
   zipfile="${dir:0:-1}.zip"
 
   cd $dir
-  zip $zipfile  \
+  zip -f $zipfile  \
     addtemplate.html \
     jstemplate.js \
     listtemplateheader.html \
@@ -33,18 +33,11 @@ do
     listtemplatefooter.html \
     listtemplate.html \
     rsstemplate.html \
-    singletemplate.html
+    singletemplate.html 2&> /dev/null
 
   cd ..
 
-  oldsum=''
-  if [ -e "$zipfile" ]; then
-    oldsum=$(md5sum $zipfile | cut -d ' ' -f1)
-  fi
-  newsum=$(md5sum ${dir}${zipfile} | cut -d ' ' -f1)
-  if [[ "$newsum" == "$oldsum" ]]; then
-    rm ${dir}${zipfile}
-  else
+  if [ -f ${dir}${zipfile} ]; then
     mv ${dir}${zipfile} .
   fi
 
