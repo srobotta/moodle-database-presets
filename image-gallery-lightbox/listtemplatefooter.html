@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     a.setAttribute('data-lightbox', 'roadtrip');
     a.setAttribute('data-title', title);
     a.setAttribute('href', a.querySelector('img').getAttribute('src').replace(/\/thumb_/, '/'));
+    // Exchange the comments of the two following lines when you want thumbnails and no titles displayed.
     a.innerHTML = title;
     //a.querySelector('img').style.maxWidth = '4rem';
   });
