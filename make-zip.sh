@@ -20,9 +20,9 @@ do
   fi
 
   zipfile="${dir:0:-1}.zip"
-
+  
   cd $dir
-  zip -f $zipfile  \
+  zip -u ../$zipfile  \
     addtemplate.html \
     jstemplate.js \
     listtemplateheader.html \
@@ -36,9 +36,5 @@ do
     singletemplate.html 2&> /dev/null
 
   cd ..
-
-  if [ -f ${dir}${zipfile} ]; then
-    mv ${dir}${zipfile} .
-  fi
 
 done
