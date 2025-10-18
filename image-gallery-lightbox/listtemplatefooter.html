@@ -1,0 +1,18 @@
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.5/js/lightbox-plus-jquery.min.js" integrity="sha512-/IJVg2oav2TggiFftaMSPgttHNmgu/0RSGP64Nm7wqYwjkxj4hAHLRMJi3QNTa22f4pIkvTsCpB848HEilV6MA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+document.addEventListener("DOMContentLoaded", (event) => {
+  document.querySelectorAll('.defaulttemplate-listentry a').forEach((a) => {
+    const title = a.parentElement.querySelector('.title').innerHTML;
+    a.setAttribute('data-lightbox', 'roadtrip');
+    a.setAttribute('data-title', title);
+    a.setAttribute('href', a.querySelector('img').getAttribute('src').replace(/\/thumb_/, '/'));
+    a.innerHTML = title;
+    //a.querySelector('img').style.maxWidth = '4rem';
+  });
+  lightbox.option({
+      'resizeDuration': 200,
+      'wrapAround': true
+   });
+});
+</script>

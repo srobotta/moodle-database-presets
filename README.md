@@ -29,6 +29,14 @@ Improved image gallery that looks more modern than the original preset from Mood
 Download Link:
 <a href="image-gallery-v2.zip" download="image-gallery-v2.zip">image-gallery-v2.zip</a>
 
+### [Image gallery with Lighbox](image-gallery-lightbox)
+
+An image gallery that uses the lightbox library at the list view. Entries are listed by title only. When clicking
+on the title, an overlay opens where the image can be viewed, and they can be flipped through to see the other
+images.<br/>
+Download Link:
+<a href="image-gallery-lightbox.zip" download="image-gallery-lightbox.zip">image-gallery-lightbox.zip</a>
+
 ### [Animated bar chart](barchart-animated)
 
 Pick one choice from a selection list. Results are displayed in a animated bar chart and can be periodically refreshes while the activity is ongoing.<br/>
