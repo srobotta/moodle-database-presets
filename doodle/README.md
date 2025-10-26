@@ -156,7 +156,7 @@ const ordered = Object.fromEntries(
 If all options must be shown in the result, then the *List view template* needs some more
 profund changes. First, the field definion for the options must be included into the
 template. This is done in the header of the template blocks. In addition, the code
-must be adapted more profundly to make things work.
+must be adapted in some other places as well to make things work.
 
 <div style="margin: 0 25%;">
 
@@ -174,39 +174,31 @@ Using the values from the field definition of `list_of_choices` from this preset
 
 ```
 <div class="doodle-result-table">
-  <div class="row">
-    <div class="col col-4"> </div>
-    <div class="col col-2 text-center bold option-value">Monday, Oct 27th 2025</div>
-    <div class="col col-2 text-center bold option-value">Wednesday, Oct 29th 2025</div>
-    <div class="col col-2 text-center bold option-value">Tuesday, Nov 4th 2025</div>
-    <div class="col col-2 text-center bold option-value">Thursday, Nov 6th 2025</div>
+  <div class="one-entry">
+    <div class="item-name"></div>
+    <div class="item-dates">
+      <div class="single-date bold option-value">Monday, Oct 27th 2025</div>
+      <div class="single-date bold option-value">Wednesday, Oct 29th 2025</div>
+      <div class="single-date bold option-value">Tuesday, Nov 4th 2025</div>
+      <div class="single-date bold option-value">Thursday, Nov 6th 2025</div>
+    </div>
   </div>
 ```
 
 The dates inside the div element must be exacly the same values as in the field definition (no additional
-space etc.). The class name `col-2` must be adapted, if you have a different number of option
-values. This is basically a grid of 12 columns, the first div with `col-4` holds the user name,
-the other 4 div elements with `col-2` span over the remaining 8 columns (2 * 4 = 8).
-
-Instead of the class names, you may also use a percentage with but then must set some additional
-style properties so that the div elements appear as columns.
+space etc.). If you have a different number of selectable dates, then add or remove on of
+the `<div class="single-date bold option-value"></div>` elements.
 
 #### List view template Repeated entry
 
 ```
-<div class="row">
-  <div class="col col-4 user" data-selected="[[list_of_choices]]">##user##</div>
-  <div class="col col-2 text-center">
-    <input type="checkbox" name="id_##id##-1" value="1" disabled="1"/>
-  </div>
-  <div class="col col-2 text-center">
-    <input type="checkbox" name="id_##id##-2" value="1" disabled="1"/>
-  </div>
-  <div class="col col-2 text-center">
-    <input type="checkbox" name="id_##id##-3" value="1" disabled="1"/>
-  </div>
-  <div class="col col-2 text-center">
-    <input type="checkbox" name="id_##id##-4" value="1" disabled="1"/>
+<div class="one-entry">
+  <div class="item-name user" data-selected="[[list_of_choices]]">##user##</div>
+  <div class="item-dates">
+    <div class="single-date"><input type="checkbox" name="id_##id##-1" value="1" disabled="1"/></div>
+    <div class="single-date"><input type="checkbox" name="id_##id##-2" value="1" disabled="1"/></div>
+    <div class="single-date"><input type="checkbox" name="id_##id##-3" value="1" disabled="1"/></div>
+    <div class="single-date"><input type="checkbox" name="id_##id##-4" value="1" disabled="1"/></div>
   </div>
 </div>
 ```
@@ -215,8 +207,9 @@ This is the section that is repated for each entry. Again, important to know is 
 the field values must not contain any special char that can be misinterpreted in an HTML element attibute.
 Basically, do not use the double quotes.
 
-Again, if you adjust columns in the header via the `col-X` class, you must also adjust the
-class names here as well.
+Again, if you adjust columns in the header by adding or removing a `div` element, you must
+do the same here. The `.single-date` elements of the header and the repeated entry must occur in the
+same number.
 
 #### List view template Footer
 
@@ -259,7 +252,7 @@ for (let i = 0; i < optionElements.length; i++) {
   if (counter.hasOwnProperty(optionElements[i].innerHTML) &&
     counter[optionElements[i].innerHTML] === maxVotes
   ) {
-    document.querySelectorAll('.doodle-result-table > .row > .col:nth-child(' + (i + 2) + ')')
+    document.querySelectorAll('.doodle-result-table .item-dates > div:nth-child(' + (i + 1) + ')')
       .forEach((e) => {
         e.classList.add('most-votes')
       });
@@ -279,26 +272,51 @@ background color set by adding the css class to the div element.
 
 #### CSS adaptions
 
-The most voted option should be highlighted in the table. This is done by adding the
-css class `most-votes` to the corresponding elements. The *Custom CSS* template must
-get the following definitions:
+To display the dates as shown in a table, the css must contain the styles for the flex
+layout. Also, the most voted option should be highlighted in the table. This is done by adding the
+css class `most-votes` to the corresponding elements. The *Custom CSS* template then
+looks like this:
 
 ```
-.doodle-result-table .row {
-  margin-left: 0;
+.doodle-result-table .one-entry {
+  display: flex;
+}
+.doodle-result-table .item-name {
+  flex: 0 0 13rem; /* Fixed width for the name. */
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+.doodle-result-table .item-dates {
+    flex: 1; /* Takes remaining space next to the name. */
+    display: flex;
+}
+.doodle-result-table .single-date {
+  flex: 1; /* Each column (with the date header or the checkbox) take equal share */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2px 5px;
+}
+/* Mark the most voted option. */
+.most-votes {
+  border-left: 2px solid #90ee90;
+  border-right: 2px solid #90ee90;
 }
 .most-votes.option-value {
   background-color: #90ee90;
 }
-.most-votes.col {
-  border-left: 2px solid #90ee90;
-  border-right: 2px solid #90ee90;
-}
-.row:last-child .most-votes.col {
+.one-entry:last-child .most-votes {
   border-bottom: 2px solid #90ee90;
 }
 ```
 
-This sets a green backround at the header and sets a border around the column. In
-CSS this means that all div container must get a left and right border and the container
-in the last row must get a bottom border as well.
+The `.one-entry` container holds one entry. Inside is a left container `.item-name` that
+contains the name of the student. This container is set to a fixed width. The `.item-dates`
+container uses the rest of the available space where inside a column for each single date
+of the same size is preserved in `.single-date`.
+
+With the class `.most-votes` a green backround at the header and a border is set around
+the column. This means that all div container must get a left and right border and the
+container in the last row must get a bottom border as well.
