@@ -406,3 +406,40 @@ libraries support timezones etc., while the plain Date object within javascript 
 and you would have to calculate the correct hour on your own.
 
 Link: https://moodle.org/mod/forum/discuss.php?d=469483
+
+#### Extend the amount of entries automatically
+
+Many of the presets work only, when all entries are displayed on the *List view*. When the page is visited
+the first time, usually 10 entries are displayed only. This cannot be changed, however if there was no
+specific search, the `perpage` can be automatically adjusted and the page reloaded to see more entries
+at once.
+
+The following snippet should go in the footer block of the *List view template*:
+
+```
+document.addEventListener('DOMContentLoaded', () => {
+  // This is the minimum entries to load.
+  const minToLoad = 50;
+  // If there are parameters in the addressbar assume the user wanted a different search.
+  const m = window.location.href.match(/&/g);
+  const noQuery = !m || m.length < 2;
+  // Check whether we have a pagination in the sticky footer.
+  const pagination = document.querySelector('#sticky-footer nav.pagination');
+  // When there is a pagination we have more entries to show. Also, if there is noQuery
+  // then the user has *not* specified a search (no query params). Then we can reload the page.
+  if (noQuery && pagination) {
+     window.location.href += '&perpage=' + minToLoad;
+  }
+});
+```
+
+Whenever you specifiy a specific search, either via the standard elements like by
+a search term, the sort order or the entries per page, or if you are on advanced search and
+specify parameters. In both cases, when the form is set, the parameters are sent as GET parameters
+and show up in the query part of the url.
+
+Also when there are few entries only and all are displayed, then there is no pagination element
+in the sticky footer.
+
+If there is a pagination and there are no query params except for the database id, then we can
+add the `perpage` param to the url and so let the browser reload the result list view.
