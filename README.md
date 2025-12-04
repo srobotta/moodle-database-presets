@@ -134,7 +134,7 @@ Download link:
 
 ### [Doodle like selections](doodle)
 
-This preset is intented to find a possible common date or other item from a list of choices.
+Find a possible common date or other item from a list of choices.
 The options are listed with checkboxes and the user select all suitable or preferred options. On
 the result page, the list of choices with the collected votes is displayed.<br/>
 Download link:
@@ -142,30 +142,34 @@ Download link:
 
 ## Installation
 
-Any of these examples can be installed in your Moodle installation in the
+Any of these examples can be installed in your Moodle in the
 following way:
 1. In your course, create a new database activity. Give it a name and click on "Save and display".
-2. In the next screen click the button "Import a preset", select the zip file for upload and click "Import preset and apply".
+2. In the next screen click the button "Import a preset", select the downloaded zip file for upload
+and click "Import preset and apply".
 3. When the import was successful you should see a list of the field definitions.
 To check the templates navigate in the tab to the template section and check them.
 
 Before you see anything, start creating a few entries or import a sample dataset when provided.
 
-Detailed instructions how templates should be applied to fit your needs are described
+Detailed instructions on how templates should be applied to fit your needs are described
 at each readme file inside the subdirectory of the preset.
 
 ## List view for the content to be displayed
 
-Most of these presets make the use of the list view by aggerating the data in a different way.
+Most of these presets make the use of the list view by aggregating the data in a different way.
 Therefore, it's important when viewing the List view, to include all data by changing the parameter
 `perpage` and exceed it to the maximum that can be displayed (1000 entries). More details can be
-found in the FAQ at [Show the advanced search by default and predefine settings](FAQ.md#show-the-advanced-search-by-default-and-predefine-settings).
+found in the FAQ at
+[Show the advanced search by default and predefine settings](FAQ.md#show-the-advanced-search-by-default-and-predefine-settings)
+and
+[Extend the amount of entries automatically](FAQ.md#extend-the-amount-of-entries-automatically).
 
 ## Bootstrap dependency
 
 Moodle itself uses the [Bootstrap library](https://getbootstrap.com/) for displaying content.
 That also makes it easer to have a responsive website depending on the screen width. Some
-of the presets here use the available bootstrap classes to display the results.
+of these presets use the available bootstrap classes to display the results.
 
 Most of these presets were developed when Bootstrap v4 was included with Moodle. Newer
 versions of Moodle ship with Bootstrap v5. As far as I know the column with classes are
@@ -196,9 +200,10 @@ If you use external URLs then this is not necessary.
 
 The database UI is multi-language capable like any other component in Moodle.
 The templates themselves are not language capable. Whatever you type in the templates, or values
-that are entered in the database, are returned as they are.
+that are entered in the database, remain as they have been provided.
 However, there is a solution at least for the templates itself. Details are in the preset
-"Sign up for a project".
+"Sign up for a project", where the labels in the template are dynamically changed
+depending on the user language.
 
 ## Other resources
 

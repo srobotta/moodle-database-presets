@@ -407,7 +407,7 @@ and you would have to calculate the correct hour on your own.
 
 Link: https://moodle.org/mod/forum/discuss.php?d=469483
 
-#### Extend the amount of entries automatically
+### Extend the amount of entries automatically
 
 Many of the presets work only, when all entries are displayed on the *List view*. When the page is visited
 the first time, usually 10 entries are displayed only. This cannot be changed, however if there was no
