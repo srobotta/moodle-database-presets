@@ -140,6 +140,14 @@ the result page, the list of choices with the collected votes is displayed.<br/>
 Download link:
 <a href="doodle.zip" download="doodle.zip">doodle.zip</a>
 
+### [Competencies wheel](competencies-wheel)
+
+Whenever you need a self assessment based on a bunch of criterias and want to make the result
+visible in a wheel (radar chart) this preset helps you setup the database activity and provides
+some tools to visualize the data.<br/>
+Download link:
+<a href="competencies-wheel.zip" download="competencies-wheel.zip">competencies-wheel.zip</a>
+
 ## Installation
 
 Any of these examples can be installed in your Moodle in the

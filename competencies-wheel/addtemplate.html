@@ -1,0 +1,146 @@
+<div id="defaulttemplate-addentry">
+    <input type="hidden" name="[[crit_1_1#id]]" data-name="crit_1_1" value="0"/>
+    <input type="hidden" name="[[crit_1_2#id]]" data-name="crit_1_2" value="0"/>
+    <input type="hidden" name="[[crit_1_3#id]]" data-name="crit_1_3" value="0"/>
+    <input type="hidden" name="[[crit_1_4#id]]" data-name="crit_1_4" value="0"/>
+    <input type="hidden" name="[[crit_2_1#id]]" data-name="crit_2_1" value="0"/>
+    <input type="hidden" name="[[crit_2_2#id]]" data-name="crit_2_2" value="0"/>
+    <input type="hidden" name="[[crit_2_3#id]]" data-name="crit_2_3" value="0"/>
+    <input type="hidden" name="[[crit_3_1#id]]" data-name="crit_3_1" value="0"/>
+    <input type="hidden" name="[[crit_3_2#id]]" data-name="crit_3_2" value="0"/>
+    <input type="hidden" name="[[crit_3_3#id]]" data-name="crit_3_3" value="0"/>
+    <input type="hidden" name="[[crit_3_4#id]]" data-name="crit_3_4" value="0"/>
+    <input type="hidden" name="[[crit_4_1#id]]" data-name="crit_4_1" value="0"/>
+    <input type="hidden" name="[[crit_4_2#id]]" data-name="crit_4_2" value="0"/>
+    <input type="hidden" name="[[crit_4_3#id]]" data-name="crit_4_3" value="0"/>
+    <input type="hidden" name="[[crit_4_4#id]]" data-name="crit_4_4" value="0"/>
+    <input type="hidden" name="[[crit_5_1#id]]" data-name="crit_5_1" value="0"/>
+    <input type="hidden" name="[[crit_5_2#id]]" data-name="crit_5_2" value="0"/>
+    <input type="hidden" name="[[crit_5_3#id]]" data-name="crit_5_3" value="0"/>
+    <input type="hidden" name="[[crit_5_4#id]]" data-name="crit_5_4" value="0"/>
+
+    <h2>Digial Competencies</h2>
+    <p>Please rate each of the following criteria to self assess your digital competencies:</p>
+    <div class="competencies"></div>
+    <div class="button-list">
+        <div>
+            <button type="button" class="btn btn-secondary prev">Previous</button>
+            <button type="button" class="btn btn-primary next">Next</button>
+        </div>
+    </div>
+
+    <!-- Circles which indicates the steps of the form: -->
+    <div class="steps-indicator"></div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const BTN_LABEL_NEXT = 'Next';
+        const BTN_LABEL_PREV = 'Back';
+        const BTN_LABEL_SUBMIT = 'Send';
+        const mainDiv = document.getElementById('defaulttemplate-addentry');
+        let html = '';
+        let stepHtml = '';
+        for (let i = 0; i < competencies.length; i++) {
+            stepHtml += '<span class="step"></span>';
+            html += '<div class="tab"><h3>' + competencies[i].dimension + '</h3>';
+            const criteria = competencies[i].criteria;
+            for (let j = 0; j < criteria.length; j++) {
+                html += '<div class="criterion-block">';
+                html += '<h4>' + criteria[j].label + '</h4>';
+                for (let k = 1; k < 100; k++) {
+                    if (!criteria[j].hasOwnProperty(k)) break;
+                    const critId = `crit_${j}_option_${k}`;
+                    html += '<div class="radio-option">'
+                        + `<input type="radio" name="option_crit_${i + 1}_${j + 1}" id="${critId}" value="${k}"/>`
+                        + `<label for="${critId}">${criteria[j][k]}</label>`
+                        + '</div>';
+                }
+                html += '</div>';
+            }
+            html += '</div>';
+        }
+
+        mainDiv.querySelector('.competencies').innerHTML = html;
+        mainDiv.querySelector('.steps-indicator').innerHTML = stepHtml;
+        mainDiv.querySelectorAll('.radio-option input').forEach(input => {
+            input.addEventListener('click', function(event) {
+                const name = event.target.name.replace('option_', '');
+                const value = event.target.value;
+                mainDiv.querySelector(`input[data-name="${name}"]`).value = value;
+            });
+        });
+
+        const tabs = mainDiv.getElementsByClassName('tab');
+        const steps = mainDiv.getElementsByClassName('step');
+        const nextBtn = mainDiv.querySelector('button.next');
+        const prevBtn = mainDiv.querySelector('button.prev');
+        let currentTab = 0; // Current tab is set to be the first tab (0).
+        showTab(currentTab); // Display the current tab.
+        prevBtn.textContent = BTN_LABEL_PREV; // Rename the previous button (next button is done in showTab()).
+
+        function showTab(n) {
+            // This function will display the specified tab of the form ...
+            tabs[n].style.display = "block";
+            // ... and fix the Previous/Next buttons:
+            prevBtn.style.display = (n === 0) ? 'none' : 'inline';
+            nextBtn.innerHTML = (n === (tabs.length - 1)) ? BTN_LABEL_SUBMIT : BTN_LABEL_NEXT;
+            // ... and run a function that displays the correct step indicator:
+            fixStepIndicator(n)
+        }
+
+        function nextPrev(n) {
+            // This function will figure out which tab to display
+            // Exit the function if any field in the current tab is invalid:
+            if (n == 1 && !validateForm()) return false;
+            // Hide the current tab:
+            tabs[currentTab].style.display = 'none';
+            // Increase or decrease the current tab by 1:
+            currentTab = currentTab + n;
+            // if you have reached the end of the form... :
+            if (currentTab >= tabs.length) {
+                //...the form gets submitted:
+                mainDiv.closest('form').submit();
+                return false;
+            }
+            // Otherwise, display the correct tab:
+            showTab(currentTab);
+        }
+
+        function validateForm() {
+            let valid = true;
+            const y = tabs[currentTab].getElementsByClassName('criterion-block');
+            // A loop that checks the radio inputs in every radio-option and see if one is selected.
+            for (let i = 0; i < y.length; i++) {
+                // No field was checked?
+                if (y[i].querySelectorAll("input:checked").length === 0) {
+                    // Mark the criterion-block as invalid.
+                    y[i].classList.add('missing');
+                    // And remember the current block as invalid.
+                    valid = false;
+                } else {
+                    y[i].classList.remove('missing');
+                }
+            }
+            // If the valid status is true, mark the step as finished and valid.
+            if (valid) {
+                steps[currentTab].classList.add('finish');
+            }
+            return valid; // Return the valid status.
+        }
+
+        function fixStepIndicator(n) {
+            // Remove the "active" class of all steps.
+            for (let i = 0; i < steps.length; i++) {
+                steps[i].classList.remove('active');
+            }
+            // Add the "active" class to the current step.
+            steps[n].classList.add('active');
+        }
+        nextBtn.addEventListener('click', () => nextPrev(1));
+        prevBtn.addEventListener('click', () => nextPrev(-1));
+        // Hide the footer because the submit is done via the next button on the last tab.
+        document.querySelector('.stickyfooter').style.visibility='hidden';
+        // Remove the h2 title "New entry" because we have our own title.
+        mainDiv.parentElement.querySelector('h2').remove();
+    });
+</script>

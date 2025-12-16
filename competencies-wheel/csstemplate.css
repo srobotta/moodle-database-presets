@@ -1,0 +1,65 @@
+#defaulttemplate-addentry {
+  background-color: #ffffff;
+  min-width: 300px;
+}
+
+#defaulttemplate-addentry .criterion-block {
+  margin-top: 1rem;
+}
+
+#defaulttemplate-addentry input {
+  margin-right: 0.8rem;
+  margin-top: 0.3rem;
+  vertical-align: top;
+}
+
+#defaulttemplate-addentry label {
+  width: 95%;
+}
+
+/* Mark input areas where a criterion has not been filled in yet. */
+#defaulttemplate-addentry .missing {
+  border: 1px solid red;
+}
+
+#defaulttemplate-addentry .button-list {
+  overflow:auto;
+  margin-top: 1rem;
+}
+
+#defaulttemplate-addentry .button-list > div {
+  float: right;
+}
+
+/* Hide all steps by default: */
+#defaulttemplate-addentry .tab {
+  display: none;
+}
+
+/* Make circles that indicate the steps of the form. */
+#defaulttemplate-addentry .step {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbbbbb;
+  border: none;
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.5;
+}
+
+/* Mark the active step. */
+#defaulttemplate-addentry .step.active {
+  opacity: 1;
+}
+
+/* Mark the steps that are finished and valid. */
+#defaulttemplate-addentry .step.finish {
+  background-color: #04AA6D;
+}
+
+/* The steps indicator container with the circles in which tab we are. */
+#defaulttemplate-addentry .steps-indicator {
+  text-align: center;
+  margin-top: 40px;
+}

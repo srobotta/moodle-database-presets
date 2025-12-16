@@ -1,0 +1,116 @@
+<div id="defaulttemplate-single" class="my-5">
+    <div class="defaulttemplate-single-body my-5">
+        <canvas id="radar-chart"></canvas>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+
+  // Map the fields to their respective dimension and criterion indices. A list of strings like
+  // "crit_1_1", "crit_1_2", ... is created so that with the dataiIndex the correct dimension and
+  // criterion can be found.
+  const fieldsMapped = competencies.flatMap((comp, dimIndex) =>
+      comp.criteria.map((_, critIndex) => `crit_${dimIndex + 1}_${critIndex + 1}`)
+  );
+  // Get a list of labels for the spine of the radar chart. To avoid cluttering, some labels
+  // are split into two lines (converted into an array of two strings).
+  const getLabelsForWheel = function() {
+    return competencies.flatMap(d => d.criteria.map(c => c.label)).map((l, idx) => {
+      // The top spines.
+      if (idx < 2 || idx > fieldsMapped.length - 2) {
+        return l;
+      }
+      // Calculate the middle index of all criteria labels.
+      const h = Math.floor(fieldsMapped.length / 2);
+      // Spines that reach the bottom and two to each side of it.
+      if (idx > h - 2 && idx < h + 3) {
+        return l;
+      }
+      // At all other spines split the label into two lines,
+      // trying to split at a space nearest to the middle of the label.
+      const m = Math.floor(l.length / 2);
+      let i = 0;
+      while (i < m) {
+        if (l.substr(m-i, 1) === ' ') {
+          return [l.substr(0, m - i), l.substr(m - i + 1)]
+        }
+        if (i > 0 && l.substr(m + i, 1) === ' ') {
+          return [l.substr(0, m + i), l.substr(m + i + 1)]
+        }
+        i++;
+      }
+      // If no space found, just return the label as is.
+      return l;
+    });
+  };
+  // Create the radar chart.
+  const ctx = document.getElementById('radar-chart');
+  new Chart(ctx, {
+    type: 'radar',
+    data: {
+      labels: getLabelsForWheel(),
+      datasets: [{
+        label: 'Digital competencies',
+        data: [
+          [[crit_1_1]], [[crit_1_2]], [[crit_1_3]], [[crit_1_4]],
+          [[crit_2_1]], [[crit_2_2]], [[crit_2_3]],
+          [[crit_3_1]], [[crit_3_2]], [[crit_3_3]], [[crit_3_4]],
+          [[crit_4_1]], [[crit_4_2]], [[crit_4_3]], [[crit_4_4]],
+          [[crit_5_1]], [[crit_5_2]], [[crit_5_3]], [[crit_5_4]],
+        ],
+        fill: true,
+        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        borderColor: 'rgb(255, 99, 132)',
+        pointBackgroundColor: 'rgb(255, 99, 132)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgb(255, 99, 132)'
+      }]
+    },
+    options: {
+      elements: {
+        line: {
+          borderWidth: 3
+        }
+      },
+      scales: {
+        r: {
+          min: 0,
+          max: 5,
+          ticks: {
+            // This callback makes sure that only integer tick values are shown on the radial scale.
+            callback: function(val, index) {
+              return  val % 1 === 0 ? val : '';
+            }
+          }
+        }
+      },
+      plugins: {
+            // The tooltip when hovering over a data point must be customized to show the correct
+            // criterium label and value and the dimension name.
+            tooltip: {
+                usePointStyle: true,
+                callbacks: {
+                    // The title shows the dimension name.
+                    title: function(context) {
+                      const field = fieldsMapped[context[0].dataIndex] ?? '';
+                      if (!field) return context.title;
+                      const [_, dim, crit] = field.split('_');
+                      return competencies[parseInt(dim) - 1].dimension;
+                    },
+                    // The label is composed of the criterium label and the criterium value text that
+                    // the user selected.
+                    label: function(context) {
+                        const field = fieldsMapped[context.dataIndex] ?? '';
+                        if (!field) return '';
+                        return [
+                          criteriumLabel(field) + ':',
+                          criteriumValue(field, context.raw)
+                      ];
+                    }
+                }
+            }
+        }
+    }
+  });
+</script>

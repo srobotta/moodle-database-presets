@@ -1,0 +1,20 @@
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const entry = document.querySelectorAll('.defaulttemplate-list-body');
+        entry.forEach(ent => {
+            ent.querySelectorAll('.row').forEach(row => {
+                const firstDiv = row.querySelector('div:first-child');
+                const lastDiv = row.querySelector('div:last-child');
+                const field = firstDiv.textContent.trim();
+                const value = lastDiv.textContent.trim();
+                const label = criteriumLabel(field);
+                firstDiv.textContent = label;
+                lastDiv.textContent = criteriumValue(field, value);
+            });
+            ent.querySelectorAll('h4').forEach(h => {
+              const idx = parseInt(h.textContent.trim().replace('dim_', ''));
+              h.innerHTML = competencies[idx - 1].dimension;
+            });
+        });
+    });
+</script>
