@@ -1,9 +1,9 @@
 <div id="defaulttemplate-addentry">
   <div class="input-fields"></div>
   <input type="hidden" class="groupname" name="[[group#id]]" id="[[group#id]]" value=""/>
-  <input type="hidden" class="choice_first" name="[[choice_first#id]]" id="[[choice_first#id]]" value=""/>
-  <input type="hidden" class="choice_second" name="[[choice_second#id]]" id="[[choice_second#id]]" value=""/>
-  <input type="hidden" class="choice_third" name="[[choice_third#id]]" id="[[choice_third#id]]" value=""/>
+  <input type="hidden" class="choice_first" name="[[choice_first#id]]" id="[[choice_first#id]]" value="-1"/>
+  <input type="hidden" class="choice_second" name="[[choice_second#id]]" id="[[choice_second#id]]" value="-1"/>
+  <input type="hidden" class="choice_third" name="[[choice_third#id]]" id="[[choice_third#id]]" value="-1"/>
 </div>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -26,11 +26,14 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   });
-  document.getElementById('sticky-footer').querySelectorAll('input[type="submit"]')
-  .forEach((e) => {
+  let container = document.getElementById('sticky-footer')
+  if (!container) {
+    container = document.getElementById('region-main');
+  }
+  container.querySelectorAll('input[type="submit"]').forEach((e) => {
     e.addEventListener('click', (e) => {
       Array.from(document.querySelectorAll('input[class^="choice_"]'))
-      .forEach(e => e.setAttribute('value', ''));
+      .forEach(e => e.setAttribute('value', '-1'));
       document.getElementById('defaulttemplate-addentry')
       .querySelectorAll('option:checked')
       .forEach((option) => {

@@ -1,82 +1,101 @@
 </table>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+  const getChoices = (cell) => {
+     if (!cell) {
+        cell = document.querySelector('table.plain-results td');
+     }
+     const [p1, p2, p3] = cell.innerHTML.split('||')
+       .map(e => parseInt(e))
+       .map(e => {
+         return isNaN(e) ? -1 : e
+       });
+     return [p1, p2, p3];
+  };
+
   // First check, if we see a single group name, then assume we are a student
   // and see if we already got any results. In case of yes, hide the "Add entry" button.
   let addButtonHidden = false;
   const g = document.querySelector('div.groupselector').innerHTML;
   const group = g.substring(g.indexOf(':') + 1).trim();
-  document.querySelectorAll('td.groupselect').forEach(td => {
+  document.querySelectorAll('td.groupname').forEach(td => {
     if (td.innerHTML.trim() === group) {
-      document.querySelector(".stickyfooter").style.visibility="hidden";
+      const stickyFooter = document.querySelector('.stickyfooter');
+      if (stickyFooter) stickyFooter.style.visibility = 'hidden';
+      const navitem = document.querySelector('.navitem a.btn-primary');
+      if (navitem) navitem.style.display = 'none';
       addButtonHidden = true;
     }
   });
+  // Set the h4 content from the strings for the choices.
+  document.querySelector('.choice-by-group > h4').innerHTML = STR.h_choices;
   // Do not process results any further when Add Entry button was hidden.
   if (addButtonHidden) {
-    const p1 = parseInt(document.querySelector('table.plain-results td').innerHTML);
-    const p2 = parseInt(document.querySelectorAll('table.plain-results td')[1].innerHTML);
-    const p3 = parseInt(document.querySelectorAll('table.plain-results td')[2].innerHTML);
-    document.getElementsByClassName('choice-results')[0].innerHTML= `
+    const choicesSelected = getChoices();
+    document.getElementsByClassName('choice-by-group')[0].innerHTML+= `
     <div>${STR.selected_by_group}</div>
-    <div>1. ${getChoiceName(p1)}</div>
-    <div>2. ${getChoiceName(p2)}</div>
-    <div>3. ${getChoiceName(p3)}</div>
+    <div>1. ${getChoiceName(choicesSelected[0])}</div>
+    <div>2. ${getChoiceName(choicesSelected[1])}</div>
+    <div>3. ${getChoiceName(choicesSelected[2])}</div>
     `;
+    document.getElementsByClassName('choice-results')[0].remove();
     return;
   }
+  // Set the h4 content from the strings for the ranking.
+  document.querySelector('.choice-results > h4').innerHTML = STR.h_ranking;
   const projects = []; // Collect here all projects with 2nd and 3rd vote from each group.
   for (const c of choices) {
-    // Create an array of two elements (second, third choice) and hold group name there.
+    // Create an array of two elements (second, third choice) and hold group names
+    // there as an array in their order of the choices.
     projects.push([ [], [] ]);
   }
   // Store here groups that are finally assigned to a project, e.g. their accepted choice.
-  // The array looks like: [project number => [group name => reason]] 
-  const selectedProjects = [];
-  // Store here all groups (array of group names) that have been assigned a project.
+  const selectedProjects = {};
   const selectedGroups = [];
-  // Store processed group names here to avoid counting more than one vote for a group.
-  const groupsdone = [];
+  // Store processed group names and their selections,
+  // that also avoids counting more than one vote for a group.
+  const groupsdone = {};
   const rows = document.querySelectorAll('table.plain-results tr');
   for (let i = 0; i < rows.length; i++) {
-    // Fetch group name.
-    const g = rows[i].querySelectorAll('td')[3].innerHTML.trim();
-    if (groupsdone.includes(g)) {
+    const g = rows[i].querySelector('td.groupname').innerHTML.trim();
+    if (groupsdone.hasOwnProperty(g)) {
       console.log(`Group ${g} has been counted already, no double votes.`);
       continue; 
     }
-    groupsdone.push(g); // Make sure that one group can make one entry only.
-    // When the project has not been choosen, take the prefered 1st choice for the group.
-    const p1 =  parseInt(rows[i].querySelector('td').innerHTML);
-    if (typeof(selectedProjects[p1]) === 'undefined') {
-      selectedProjects[p1] = [g, STR.reason_1];
+    // Remember that we found the group in the list of results.
+    // When the project has not been choosen, take the prefered choice for the group.
+    const priority = getChoices(rows[i].querySelector('td'));
+    groupsdone[g] = priority;
+    if (typeof(selectedProjects[priority[0]]) === 'undefined') {
+      selectedProjects[priority[0]] = [g, STR.reason_1];
       selectedGroups.push(g);
       continue;
     }
-    // Store 2n and 3rd choice of this group, because the 1st choice has been taken by someone else.
-    const p2 = parseInt(rows[i].querySelectorAll('td')[1].innerHTML);
-    const p3 = parseInt(rows[i].querySelectorAll('td')[2].innerHTML);
     // Push the group name to each project at the correct valued position.
-    projects[p2][0].push(g);
-    projects[p3][1].push(g);
+    projects[priority[1]][0].push(g);
+    projects[priority[2]][1].push(g);
   }
-  // Run over all 2nd [0] and 3rd choices [1] and assign these to the group, if possible.
+  // Run over all second and third choices and assign these to the group, if possible.
+  // Do this several times, until all groups are assigned or no projects are left over.
   [0, 1].forEach(c => {
     for (let i = 0; i < choices.length; i++) {
+      // Current project has not yet been choosen by a group.
       if (typeof(selectedProjects[i]) === 'undefined') {
-        // The project is not yet selected, check who has it as a 2nd c=0, or  3rd choice c=1
-        while (projects[i][c].length > 0) { 
+        while (projects[i][c].length > 0) {      
           const g = projects[i][c].shift();
+          // If group is already in the selection, they had their higher prioritized choice selected.
           if (selectedGroups.includes(g)) continue;
+          // Pick the second or third choice of that group.
           selectedProjects[i] = [g, (c === 0) ? STR.reason_2 : STR.reason_3 ];
           selectedGroups.push(g);
+          break;
         }
       }
     }
   });
   // We still might have groups that have no assigned project yet, assign any project
   // that is still available but was not choosen by the group.
-  for (const g of groupsdone) {
+  for (const g in groupsdone) {
     if (!selectedGroups.includes(g)) {
       for (let i = 0; i < choices.length; i++) {
         if (typeof(selectedProjects[i]) === 'undefined') {
@@ -87,22 +106,43 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
   }
-  let htmlres = `<table>
+  let html = `<table>
     <tr>
       <th>${STR.th_project}</th>
       <th>${STR.th_group}</th>
       <th>${STR.th_reason}</th>
      </tr>`;
   for (let i = 0; i < choices.length; i++) {
-    htmlres += `<tr><td>${choices[i]}</td>`;
+    html += `<tr><td>${choices[i]}</td>`;
     if (typeof(selectedProjects[i]) !== 'undefined') {
-      htmlres += `<td>${selectedProjects[i][0]}</td><td>${selectedProjects[i][1]}</td>`;
+      html += `<td>${selectedProjects[i][0]}</td><td>${selectedProjects[i][1]}</td>`;
     } else {
-      htmlres += '<td></td><td></td>';
+      html += '<td></td><td></td>';
     }
-    htmlres += '</tr>';
+    html += '</tr>';
   }
-  htmlres += '</table>';
-  document.getElementsByClassName('choice-results')[0].innerHTML= htmlres;
+  html += '</table>';
+  document.getElementsByClassName('choice-results')[0].innerHTML+= html;
+  
+  html = `<table>
+    <tr>
+      <th>${STR.th_group}</th>
+      <th>${STR.reason_1}</th>
+      <th>${STR.reason_2}</th>
+      <th>${STR.reason_3}</th>
+    </tr>`;
+  for (const g in groupsdone) {
+    html += `<tr><td>${g}</td>`;
+    for (let i = 0; i < 3; i++) {
+      let cell = '<td>__</td>';
+      if (g === selectedProjects[groupsdone[g][i]][0]) {
+        cell = cell.replace('__', '<strong>__</strong>');
+      }
+      html += cell.replace('__', getChoiceName(groupsdone[g][i]));
+    }
+    html += '</tr>';
+  }
+  html += '</table>';
+  document.getElementsByClassName('choice-by-group')[0].innerHTML+= html;
 });
 </script>

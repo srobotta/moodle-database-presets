@@ -40,6 +40,8 @@ const STR = {
   "th_project": "Project",
   "th_group": "Group",
   "th_reason": "Reason",
+  "h_ranking": "Ranking",
+  "h_choices": "Choices",
 };
 // Template for the Add new entry template.
 const TMPL_INPUT_ENTRY = `
@@ -79,5 +81,5 @@ function displayChoices() {
  * @return {String}
  */
 function getChoiceName(val) {
-  return choices[val] ? choices[val] : val;
+  return (val > -1 && choices[val]) ? choices[val] : '';
 }
