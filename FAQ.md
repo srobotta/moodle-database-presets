@@ -443,3 +443,51 @@ in the sticky footer.
 
 If there is a pagination and there are no query params except for the database id, then we can
 add the `perpage` param to the url and so let the browser reload the result list view.
+
+
+### Use plaintext instead of tinyMCE
+
+When a textarea field is used, the editor depends on the user settings (preferred editor). In
+case you want the plain text area regardless of what is set in the preferred editor of the
+user, then the tinyMCE must be removed. This can be done with the following code snippet
+that must be added to the *Add entry template*:
+
+```
+<script>
+(function() {
+  const fieldPrefix = '[[Comment#id]]';
+  let repeat = 10;
+  const hideTiny = function() {
+    repeat--;
+    if (repeat === 0) clearTimeout(id);
+    if (typeof(tinyMCE) === 'undefined') return;
+    const textarea = document.querySelector(`textarea[id^="${fieldPrefix}"]`);
+    if (textarea) {
+      tinyMCE.get(textarea.id).destroy();
+      const formatSelect = document.querySelector(`select[name^="${fieldPrefix}"]`);
+      const formatPlain = document.createElement('input');
+      formatPlain.setAttribute('type', 'hidden');
+      formatPlain.setAttribute('name', formatSelect.name);
+      formatPlain.setAttribute('value', '2');
+      formatSelect.replaceWith(formatPlain);
+    }
+    clearTimeout(id);
+  };
+  const id = setTimeout(hideTiny, 1000);
+})()
+</script>
+```
+
+This snippet assumes that you have a field of the type `textarea` with the name `Comment`.
+If your field is called different, change the assignment to `fieldPrefix` but keep the
+`#id` suffix which is essential for selecting the correct HTML element in the DOM.
+
+Before the code can successfully run, the TinyMCE editor must be loaded. That's why the `hideTiny`
+funtion is called via the timeout handler and repeatedly called until the `tinyMCE` object
+has been initialized. The `repeat` variable is there to prevent an endless loop (which
+would occur when the user already has the plain text are displayed and the tinyMCE object
+never gets loaded at all).
+
+Also, when plain text is entered, the selection of the format needs to be changed to
+plain text instead of HTML. This is done by adding a hidden input field and removing
+the format selection (which has one element only, anyway).
