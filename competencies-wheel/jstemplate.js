@@ -147,13 +147,13 @@ const competencies = [{
     "5": "I create dashboards, interpret complex data, and guide data-driven decision cultures."
   }]
 }];
-// Function that given a field like "crit_1_2" returns the label of the corresponding criterium",
+// Function that given a field like "crit_1_2" returns the label of the corresponding criterion",
 // or the text from the selected level.",
-const criteriumLabel = (field) => {
+const criterionLabel = (field) => {
   const [dimIdx, critIdx] = field.split('_').slice(1).map(v => parseInt(v) - 1);
   return competencies[dimIdx].criteria[critIdx].label;
 }
-const criteriumValue = (field, level) => {
+const criterionValue = (field, level) => {
   const [dimIdx, critIdx] = field.split('_').slice(1).map(v => parseInt(v) - 1);
   return competencies[dimIdx].criteria[critIdx][level];
 };

@@ -87,7 +87,7 @@
       },
       plugins: {
             // The tooltip when hovering over a data point must be customized to show the correct
-            // criterium label and value and the dimension name.
+            // criterion label and value and the dimension name.
             tooltip: {
                 usePointStyle: true,
                 callbacks: {
@@ -98,14 +98,14 @@
                       const [_, dim, crit] = field.split('_');
                       return competencies[parseInt(dim) - 1].dimension;
                     },
-                    // The label is composed of the criterium label and the criterium value text that
+                    // The label is composed of the criterion label and the criterion value text that
                     // the user selected.
                     label: function(context) {
                         const field = fieldsMapped[context.dataIndex] ?? '';
                         if (!field) return '';
                         return [
-                          criteriumLabel(field) + ':',
-                          criteriumValue(field, context.raw)
+                          criterionLabel(field) + ':',
+                          criterionValue(field, context.raw)
                       ];
                     }
                 }

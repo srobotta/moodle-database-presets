@@ -7,9 +7,9 @@
                 const lastDiv = row.querySelector('div:last-child');
                 const field = firstDiv.textContent.trim();
                 const value = lastDiv.textContent.trim();
-                const label = criteriumLabel(field);
+                const label = criterionLabel(field);
                 firstDiv.textContent = label;
-                lastDiv.textContent = criteriumValue(field, value);
+                lastDiv.textContent = criterionValue(field, value);
             });
             ent.querySelectorAll('h4').forEach(h => {
               const idx = parseInt(h.textContent.trim().replace('dim_', ''));

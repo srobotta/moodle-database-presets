@@ -65,16 +65,16 @@ const competencies = [{
 ```
 
 The database activity must have as many fields defined as criterias exist. The name of the
-field is in the form of `crit_<dimension>_<criterium>`. Both dimension and criterium is a
-number, to identify the correct criterium in the dataset. The field with the name `crit_2_1`
-represents the first criterium of the second dimension / category. In the preceeding example
+field is in the form of `crit_<dimension>_<criterion>`. Both dimension and criterion is a
+number, to identify the correct criterion in the dataset. The field with the name `crit_2_1`
+represents the first criterion of the second dimension / category. In the preceeding example
 this would be "name of the criteria 2.1".
 
 All fields in the database are of type number. The value is the skill level achieved. In our
 example this would be a number between 1 and 3. The preset with the digital competencies uses
 5 skill levels.
 
-For each criterium must be the same numbers for the skill levels. Otherwise, the wheel would
+For each criterion must be the same numbers for the skill levels. Otherwise, the wheel would
 not be balanced, because even with the highest skill level that can be achived, the spine of
 the wheel looks shorter for criterias that have less skill levels than others. Also the skill
 levels should use the same meassurement so that criteria can be compared with each other.
@@ -104,8 +104,8 @@ labels there but that has no semantic meaning.
 
 #### Add entry template
 
-In the *Add entry template* make sure for each criterium field there is a hidden field for
-each criterium:
+In the *Add entry template* make sure for each criterion field there is a hidden field for
+each criterion:
 
 ```
   <input type="hidden" name="[[crit_3_3#id]]" data-name="crit_3_3" value="0"/>
@@ -114,7 +114,7 @@ each criterium:
 You may also adapt the headline and the paragraph denoting what to do.
 
 The rest of the template can remain as it is. There is kind of a slider where each slide
-contains the criteria and level desctiption of one dimension. For each criterium a level
+contains the criteria and level desctiption of one dimension. For each criterion a level
 needs to be selected with the radion buttons. All criteria must be responsed before continuing
 to the next slide. There is an idicator at the bottom, on which slide the user is and what
 is still left to answer.
@@ -135,7 +135,7 @@ the name of the dimension, followed by the criteria and the criteria level. The 
 holders are in the template. These are filled by Javascript inside the template.
 
 At the bottom the dots are the indicatior on the progress of the form. Whenever one clicks
-the next button but not all criteria are responded, a read frame is drawn around the criterium
+the next button but not all criteria are responded, a read frame is drawn around the criterion
 and the skill levels. The appearance is controlled in the css. In the html just a class is
 added to the block.
 
@@ -160,7 +160,7 @@ later is replaced with the numeric values from the fields and is a long array wi
 #### List view template
 
 In the *List view template* the block for each entry must be changed only. Inside this block there
-must be the following html snippet for each criterium:
+must be the following html snippet for each criterion:
 
 ```
 <div class="row my-3 align-items-start justify-content-start">
@@ -176,11 +176,11 @@ than this preset, also add/remove the subheadline for the dimension:
 <h4>dim_1</h4>
 ```
 
-The `dim_X` and `crit_X_Y` placeholders are exchanged for the real label of the dimension and criterium.
+The `dim_X` and `crit_X_Y` placeholders are exchanged for the real label of the dimension and criterion.
 This is done by the Javascript in the footer block after the data is loaded. The placeholder `[[crit_X_Y]]`
-is aready rendered by the server with the submitted value for that criterium. That is a single number.
+is aready rendered by the server with the submitted value for that criterion. That is a single number.
 The Javascript in the footer block replaces that number with the label for the competency level within
-that criterium.
+that criterion.
 
 <div style="margin: 0 25%;">
 
@@ -255,5 +255,5 @@ in the dimension. In this case, the dimension 1 has two criteria, the dimension 
 `['Dim 1', '', 'Dim 2', '', '']`
 
 The tooltip that is composed whenever one hovers the data point at the spine is composed of the
-dimension in the tooltip title. The content holds in the first line the criterium label and in the
+dimension in the tooltip title. The content holds in the first line the criterion label and in the
 second line the skill level that was choosen. Again the two lines are composed from an array.
