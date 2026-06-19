@@ -218,8 +218,8 @@ depending on the user language.
 Florian Danger of Mebis has got a large collection of database presets and other resources for
 Moodle at https://fdagner.notion.site/0cfe4ce41b2d463da99e0d08c825a461
 
-Mebis itself has a
-[taskboard](https://www.taskcards.de/#/board/a29aa0a2-38bb-4a9a-90e1-4c38ec47f9cc/view?token=8d6e8433-486a-4717-85ee-d721aefcadb1)
+ByCS (ex. Mebis) itself has a
+[taskboard](https://www.taskcards.de/#/board/a29aa0a2-38bb-4a9a-90e1-4c38ec47f9cc/view)
 with a lot of ideas.
 
 The [Schulportal Hessen](https://mo1300.schule.hessen.de/course/view.php?id=41) contains
