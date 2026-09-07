@@ -225,6 +225,9 @@ with a lot of ideas.
 The [Schulportal Hessen](https://mo1300.schule.hessen.de/course/view.php?id=41) contains
 another collection of database ideas and preset.
 
+There is a Plugin [Reactions](https://marketplace.moodle.com/plugins/3559) from Andrew
+Rowatt that adds Social Media like reactions to database entries.
+
 ## FAQ
 
 From the official forum and other resources I started to create a [FAQ](FAQ.md)
