@@ -1,4 +1,8 @@
-<p class="head">Lieblingsinstrumente</p>
+<p class="head favorite-instrument">
+  <span class="multilang" lang="de">Lieblingsinstrumente</span>
+  <span class="multilang" lang="fr">Instruments préférés</span>
+  <span class="multilang" lang="en">Favorite instruments</span>
+</p>
    
 <script>
 // Run once per session.
@@ -17,9 +21,15 @@ if ((typeof sessionStorage !== 'undefined') &&
    sessionStorage.setItem('ChangeEntriesReload', true);
 }
 </script>
-<div class="text-right d-print-none ion-hide">
-    <label for="checkbox1" onClick="save()"><input type="checkbox" id="checkbox1"> Automatic reload
-        </input></label></div>
+<div class="text-right d-print-none ion-hide favorite-instrument">
+  <label for="checkbox1" onClick="save()">
+    <input type="checkbox" id="checkbox1">
+      <span class="multilang" lang="en">Automatic reload</span>
+      <span class="multilang" lang="de">Automatisch neu laden</span>
+      <span class="multilang" lang="fr">Recharger automatiquement</span>
+    </input>
+  </label>
+</div>
 <script>
 // Save status of checkbox.
 function save() {
@@ -33,7 +43,6 @@ document.getElementById("checkbox1").checked = checked;
 
 // Reload if checkbox is checked.
 if (checkbox1.checked == true) {
-
     // Set single div every 15 sec.
     setInterval(function () {
         window.location.reload(true);
@@ -45,7 +54,7 @@ if (checkbox1.checked == true) {
 }
 </script>
 
- <a name="barchart"></a>
+<a name="barchart"></a>
 
 <div class="barchart" id="links"></div>
 <script type="text/javascript">

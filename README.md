@@ -39,7 +39,8 @@ Download Link:
 
 ### [Animated bar chart](barchart-animated)
 
-Pick one choice from a selection list. Results are displayed in a animated bar chart and can be periodically refreshes while the activity is ongoing.<br/>
+Pick one choice from a selection list. Results are displayed in a animated bar chart and can be
+periodically refreshes while the activity is ongoing. This preset also handles multi language content.<br/>
 Download Link:
 <a href="barchart-animated.zip" download="barchart-animated.zip">barchart-animated.zip</a>
 
@@ -211,7 +212,8 @@ The templates themselves are not language capable. Whatever you type in the temp
 that are entered in the database, remain as they have been provided.
 However, there is a solution at least for the templates itself. Details are in the preset
 "Sign up for a project", where the labels in the template are dynamically changed
-depending on the user language.
+depending on the user language. Also, the "Animated bar chart" preset uses multi language for
+both the labels and the values.
 
 ## Other resources
 
