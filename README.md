@@ -40,9 +40,16 @@ Download Link:
 ### [Animated bar chart](barchart-animated)
 
 Pick one choice from a selection list. Results are displayed in a animated bar chart and can be
-periodically refreshes while the activity is ongoing. This preset also handles multi language content.<br/>
+periodically refreshes while the activity is ongoing. This presets is multilanguage capable.<br/>
 Download Link:
-<a href="barchart-animated.zip" download="barchart-animated.zip">barchart-animated.zip</a>
+<a href="barchart-animated.zip" download="barchart-animated.zip">barchart-animated.zip</a><br/>
+
+### [Animated bar chart multilang](barchart-animated-multilang)
+This is almost the same set as the Animated barchart, except that while the previous preset operates
+on language independen values (icons that work in all languages) this set also translates the values
+of the selection field.<br/>
+Download Link:
+<a href="barchart-animated-multilang.zip" download="barchart-animated-multilang.zip">barchart-animated-multilang.zip</a>
 
 ### [Multiple Choice Question](mc-question)
 
