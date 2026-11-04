@@ -2,6 +2,7 @@
     <div class="defaulttemplate-single-body my-5">
         <canvas id="radar-chart"></canvas>
     </div>
+    <button id="download-radar-chart" class="btn btn-primary">Download chart</button>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
@@ -113,4 +114,34 @@
         }
     }
   });
+  const downloadBtn = document.getElementById('download-radar-chart');
+  downloadBtn.addEventListener('click', (ev) => {
+    ev.preventDefault();
+    
+    // 1. Create a temporary canvas with the same size as the original
+    const tempCanvas = document.createElement('canvas');
+    tempCanvas.width = ctx.width;
+    tempCanvas.height = ctx.height;
+    const tempCtx = tempCanvas.getContext('2d');
+
+    // 2. Fill the temporary canvas with a white background
+    tempCtx.fillStyle = '#ffffff';
+    tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
+
+    // 3. Draw the original chart canvas over the white background
+    tempCtx.drawImage(ctx, 0, 0);
+
+    // 4. Trigger the download of the temporary canvas
+    const a = document.createElement('a');
+    a.href = tempCanvas.toDataURL('image/png');
+    a.download = 'radarchart.png';
+    a.click();
+    a.remove();
+  }); 
+  // Correct the download label to the German or French, when used.
+  if (M.cfg.language === 'de') {
+      downloadBtn.textContent = 'Grafik herunterladen';
+  } else if (M.cfg.language === 'fr') {
+      downloadBtn.textContent = 'Télécharger le graphique';
+  }
 </script>

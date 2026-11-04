@@ -257,3 +257,15 @@ in the dimension. In this case, the dimension 1 has two criteria, the dimension 
 The tooltip that is composed whenever one hovers the data point at the spine is composed of the
 dimension in the tooltip title. The content holds in the first line the criterion label and in the
 second line the skill level that was choosen. Again the two lines are composed from an array.
+
+#### Download the chart
+
+The canvas can be donwloaded as a PNG file. In order to do this, the same click mechanism us used
+as in other examples in this repo. The button that triggers the click needs to get the data
+from the canvas, write it into the `href` attribute of the anchor as a data url and then trigger
+a click so that the browser downloads it.
+The problem here is that the original canvas in `ctx` has no background set, which results in a
+transparent png. That is not good when using the image as it is. Therefore, a second canvas,
+which is not visible, is created. It gets the same size as the original canvas and is initially
+filled with white. Afterwards, the elements from the original canvas are drawn over the white
+background. This canvas data is then written to the temporary anchor.
