@@ -51,6 +51,28 @@ If a student does not see the "Add entry" button at the bottom then check the fo
 1. The user has not the capability to add entries (`mod/data:writeentry`). Change
 this in the Database navigation > More > Permissions and also in the Course navigation > Participants > Permissions.
 
+If the students sees the "add entry" button but should not add any entries (e.g. because
+he may edit existing entries only), then hide the button with this snippet:
+
+```
+document.addEventListener("DOMContentLoaded", function() {
+    // Check if the "Templates" or "Fields" tab exists in the secondary navigation.
+    // Only users with editing/teacher capabilities see these links.
+    const isNonprivilegedUser = document.querySelector('.secondary-navigation a[href*="/mod/data/templates.php"], .secondary-navigation a[href*="/mod/data/field.php"]') === null;
+
+    if (isNonprivilegedUser) {
+        const buttons = document.querySelectorAll('.navitem [role="button"]');
+        for (const el of buttons) {
+            if (el.tagName === 'A' && el.getAttribute('href').indexOf('mod/data/edit.php') > -1) {
+              el.remove();
+              break;
+            }
+        }  
+    } 
+});
+```
+This snippet is best placed in the *Custom Javascript* template.
+
 Link: https://moodle.org/mod/forum/discuss.php?d=468041
 
 ### Rating should also be possible for students
