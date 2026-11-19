@@ -513,3 +513,137 @@ never gets loaded at all).
 Also, when plain text is entered, the selection of the format needs to be changed to
 plain text instead of HTML. This is done by adding a hidden input field and removing
 the format selection (which has one element only, anyway).
+
+### Remove an already taken option from the drop down list
+
+In a use case, students should pick a project and a room. This is modeled in the
+database activity with two fields:
+
+* Short text field named `Date and Room`
+* Dropdown list `Project`
+
+The trainer already import the datasets with the date and room set but the project
+empty. The students must enter the list view, pick a room and date entry, click
+the pen icon to edit the entry (this needs an aditional permission set for the student
+in the activity) and select a project. When that entry is saved again the project
+is set along with the room and date (the dataset also contains the user id internally).
+
+If another student picks a project, the already selected should not appear in the list
+to choose from, anymore.
+
+This is done with the following *Add entry template*:
+
+```
+<table id="table_add_new_entry">
+    <tbody>
+        <tr class="bthe_viewAdd_tr">
+            <td class="bthe_viewAdd_header_td">Date / Room</td>
+            <td>
+                <div class="bthe_viewAdd_input room">[[Date and Room]]</div>
+                <div style="color: #ff0000;">!!! Must not be changed !!!</div>
+            </td>
+        </tr>
+        <tr class="bthe_viewAdd_tr">
+            <td class="bthe_viewAdd_header_td">Used by:</td>
+            <td><div class="bthe_viewAdd_input select-wrapper">[[Project]]</div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<script>
+(function() {
+    // The date and room must not be changed, set it to readonly.
+    document.querySelector('.bthe_viewAdd_input.room input').setAttribute('readonly', 'readonly');
+})();
+
+(async function () {
+    'use strict';
+    async function fetchTableColumn(url, columnIndex, tableSelector = 'table[id="table_listview"]') {
+        try {
+            // Fetch the URL via GET
+            const response = await fetch(url, {
+                method: 'GET'
+            });
+            if (!response.ok) {
+                throw new Error(`HTTP error: ${response.status}`);
+            }
+            // Get HTML response
+            const html = await response.text();
+            // Parse HTML
+            const doc = new DOMParser().parseFromString(html, 'text/html');
+            // Find table
+            const table = doc.querySelector(tableSelector);
+            if (!table) {
+                throw new Error('Table not found');
+            }
+            // Extract column values (skip header row)
+            const values = Array.from(table.querySelectorAll('tr'))
+                .slice(1)
+                .map(row => row.cells[columnIndex]?.textContent.trim())
+                .filter(value => value !== undefined && value !== '');
+
+            return values;
+
+        } catch (error) {
+            console.error('Error fetching table:', error);
+            return [];
+        }
+    }
+    // Collect all values from the existing form.
+    const table = document.getElementById('table_add_new_entry');
+    const select = table.querySelector('select');
+    const form = table.closest('form');
+    const d = form.querySelector('input[name="d"]').value
+    const sesskey = form.querySelector('input[name="sesskey"]').value;
+    const field = table.querySelector('select').id;
+    // This is the prepared url to list all entries ordered by the selection value.
+    const url = window.location.pathname.replace('edit.php', 'view.php')
+        + `?d=${d}&perpage=500&sort=${field}&order=DESC&filter=1&f_${field}=`;
+    // Have here all options that need to be cleaned from alread taken options.
+    const options = select.querySelectorAll('option');
+    // The current selected option must not be removed from the list of options.
+    const optionSelected = select.value.relpace(/\s/g, '');
+
+    // Get all values from the third column (index 2)
+    fetchTableColumn(url, 2)
+        .then(values => {
+            for (let value of values) {
+                value = value.replace(/\s/g, '');
+                for (const option of options) {
+                    if (option.value.replace(/\s/g, '') === value && value !== optionSelected) {
+                        option.remove();
+                    }
+                }
+            }
+        });
+})();
+</script>
+```
+
+When the form is displayed, in the background a search is done, selecting all entries
+ordered by the project. The exact location of the selected values depends on the content
+of the *List view template*. In this case, it's a table with three columns:
+
+```
+<table id="table_listview" style="width: 100%;">
+    <tbody>
+        <tr class="bthe_viewList_header_tr">
+            <th style="width: 28%;">Date / Room</th>
+            <th style="width: 4%;"> </th>
+            <th style="width: 68%;">Project</th>
+        </tr>
+=====
+<tr><td>[[Date and Room]]</td><td>##edit##</td><td>[[Project]]</td></tr>
+=====
+</tbody>
+</table>
+```
+
+The `=====` indicate the delimiters between header, repeated entry and footer.
+If your output differs, then the `fetchTableColumn` function must be adapted to
+lookup the selected values in the output.
+
+Replacing any whitespace makes the whole validation of a selected option easier.
+In the original content of the field definition tabs, multiple whitespace etc. might
+be used, that are already altered when the html is rendered. Therefore, this seemed
+a foolproof solution.
